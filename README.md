@@ -1,8 +1,28 @@
 # RESMOD
+Projeto API - FATEC 2° ADS 2026
 
-## DESAFIO 🎯
+<p align="center"><img width="750" height="226" alt="Intellidog - RESMD" src="https://github.com/user-attachments/assets/31d81066-f919-4564-a06c-a11ae934fbcb" /></p>
 
-O projeto consiste no desenvolvimento de uma ferramenta digital de Gestão de Compras, com foco em organização, rastreabilidade e governança do processo interno de aquisições. 
+
+<h3 align="center">"Desenvolvendo e Otimizando Gestão"</h3>
+
+## 🎯 DESAFIO 
+
+O projeto consiste no desenvolvimento de uma ferramenta digital de Gestão de Compras, com foco em organização, rastreabilidade e governança do processo interno de aquisições.
+
+---
+
+## 📌 OBJETIVO 
+
+Desenvolver um software de gestão de pedidos de compra que automatize a abertura e aprovação de solicitações, integre controle de fornecedores, cotações e estoque, registre histórico e níveis de acesso, e forneça dashboards com indicadores. A plataforma deverá padronizar o processo, aumentar a transparência, reduzir compras não autorizadas e gerar dados estratégicos para apoio à tomada de decisão e auditorias.
+
+---
+
+## 🗂️ DOCUMENTAÇÃO DO PROJETO
+
+🚧 In Progress... 🚧
+
+---
 
 ## Backlog do Produto
 
