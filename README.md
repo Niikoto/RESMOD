@@ -2,7 +2,7 @@
 
 ## DESAFIO 🎯
 
-O projeto consiste no desenvolvimento de uma ferramenta digital de Gestão de Compras, com foco em organização, rastreabilidade e governança do processo interno de aquisições. 
+O projeto consiste no desenvolvimento de uma ferramenta digital de Gestão de Compras com foco em organização, rastreabilidade e governança do processo interno de aquisições. 
 
 ## Backlog do Produto
 
