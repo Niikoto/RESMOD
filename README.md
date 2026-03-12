@@ -1,8 +1,8 @@
+# RESMOD
 
-<p align="center"><img width="750" height="226" alt="Intellidog - RESMD" src="https://github.com/user-attachments/assets/31d81066-f919-4564-a06c-a11ae934fbcb" /></p>
+## DESAFIO 🎯
 
-
-# Desenvolvendo e Otimizando Gestão
+O projeto consiste no desenvolvimento de uma ferramenta digital de Gestão de Compras, com foco em organização, rastreabilidade e governança do processo interno de aquisições. 
 
 ## Backlog do Produto
 
