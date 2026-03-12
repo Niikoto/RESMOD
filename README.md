@@ -1,4 +1,8 @@
-# RESMOD
+
+<p align="center"><img width="750" height="226" alt="Intellidog - RESMD" src="https://github.com/user-attachments/assets/31d81066-f919-4564-a06c-a11ae934fbcb" /></p>
+
+
+# Desenvolvendo e Otimizando Gestão
 
 ## Backlog do Produto
 
