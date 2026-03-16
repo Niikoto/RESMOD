@@ -1,5 +1,4 @@
 # RESMOD
-Projeto API - FATEC 2° ADS 2026
 
 <p align="center"><img width="750" height="226" alt="Intellidog - RESMD" src="https://github.com/user-attachments/assets/31d81066-f919-4564-a06c-a11ae934fbcb" /></p>
 
@@ -126,3 +125,72 @@ Desenvolver um software de gestão de pedidos de compra que automatize a abertur
     </tr>
 
 </table>
+
+## 📅 Cronograma de Sprints
+
+🚧 In Progress... 🚧
+
+## 💻 Tecnologias
+
+🚧 In Progress... 🚧
+
+## 👨‍💻 Equipe
+
+<div align="center">
+  <table>
+    <tr>
+      <th>Membro</th>
+      <th>Função</th>
+      <th>Github</th>
+      <th>Linkedin</th>
+    </tr>
+    <tr>
+      <td>Elizabeth Baltazar</td>
+      <td>Product Owner</td>
+      <td><a href="https://github.com/BeteBaltazar"><img src="https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white"></a></td>
+      <td><img src="https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white"></a></td>
+    </tr>
+    <tr>
+      <td>Lucas Suzuki</td>
+      <td>Scrum Master</td>
+      <td><img src="https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white"></a></td>
+      <td><img src="https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white"></a></td>
+    </tr>
+    <tr>
+      <td>Manuela Santos</td>
+      <td>Desenvolvedora</td>
+      <td><a href="https://github.com/manuoops"><img src="https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white"></a></td>
+      <td><img src="https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white"></a></td>
+    </tr><tr>
+      <td>Heitor Galvão</td>
+      <td>Desenvolvedor</td>
+      <td><a href="https://github.com/Scareev"><img src="https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white"></a></td>
+      <td><img src="https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white"></a></td>
+    </tr><tr>
+      <td>Miguel Duarte</td>
+      <td>Desenvolvedor</td>
+      <td><img src="https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white"></a></td>
+      <td><img src="https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white"></a></td>
+    </tr><tr>
+      <td>Nicolas Escobar</td>
+      <td>Desenvolvedor</td>
+      <td><a href="https://github.com/Niikoto"><img src="https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white"></a></td>
+      <td><img src="https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white"></a></td>
+    </tr><tr>
+      <td>Pedro Maciel</td>
+      <td>Desenvolvedor</td>
+      <td><img src="https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white"></a></td>
+      <td><img src="https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white"></a></td>
+    </tr><tr>
+      <td>Eduardo Felipe</td>
+      <td>Desenvolvedor</td>
+      <td><img src="https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white"></a></td>
+      <td><img src="https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white"></a></td>
+    </tr><tr>
+      <td>Vinícius Morais</td>
+      <td>Desenvolvedor</td>
+      <td><img src="https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white"></a></td>
+      <td><img src="https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white"></a></td>
+    </tr>
+  </table>
+</div>
