@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/src/RESMOD.iml" filepath="$PROJECT_DIR$/src/RESMOD.iml" />
+      <module fileurl="file://$PROJECT_DIR$/RESMOD.iml" filepath="$PROJECT_DIR$/RESMOD.iml" />
     </modules>
   </component>
 </project>
