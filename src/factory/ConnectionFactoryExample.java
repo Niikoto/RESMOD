@@ -5,11 +5,11 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 
 public class ConnectionFactory {
-    String url = "jdbc:mysql://localhost/intellidog";
-    String root = "root";
-    String password = ""; // <--- COLOCAR USA SENHA AQUI
+    static String url = "jdbc:mysql://localhost/intellidog";
+    static String root = "root";
+    static String password = ""; // <--- COLOCAR USA SENHA AQUI
 
-    public Connection getConnection(){
+    public static Connection getConnection(){
         try{
             return DriverManager.getConnection(url, root, password);
         } catch (SQLException e) {
@@ -17,4 +17,5 @@ public class ConnectionFactory {
         }
     }
 }
+
 */
