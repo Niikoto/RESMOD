@@ -3,7 +3,7 @@
 <p align="center"><img width="750" height="226" alt="Intellidog - RESMD" src="https://github.com/user-attachments/assets/31d81066-f919-4564-a06c-a11ae934fbcb" /></p>
 
 
-<h3 align="center">"Desenvolvendo e Otimizando Gestão"</h3>
+<h3 align="center">Desenvolvendo e Otimizando Gestão</h3>
 
 ## 🎯 DESAFIO 
 
