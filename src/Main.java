@@ -1,8 +1,8 @@
-import dao.UsuarioDAO;
-import modelo.Usuario;
+//import dao.UsuarioDAO;
+//import modelo.Usuario;
 
-import java.sql.SQLException;
-import java.util.Scanner;
+//import java.sql.SQLException;
+//import java.util.Scanner; <-- apague os barras da desses imports para que todo o resto funcione
 
 public class Main {
     public static void main(String[] args) {
@@ -11,8 +11,11 @@ public class Main {
         // TEMPORÁRIO!
         // Sistema de login via terminal
         // Pois não há front-end ainda.
-        Scanner input = new Scanner(System.in);
+        
+        //Scanner input = new Scanner(System.in);<-- apague os barras para liberar o input
 
+        /*
+        Inputs para criar conta TESTES
         System.out.print("Email: ");
         String email = input.nextLine();
         System.out.print("Nome: ");
@@ -21,6 +24,8 @@ public class Main {
         String senha = input.nextLine();
         System.out.print("Cargo (número): ");
         int cargo = input.nextInt();
+        
+        input.close();
 
         Usuario u = new Usuario();
         u.setId_email(email);
@@ -35,6 +40,28 @@ public class Main {
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
+        */
 
+        /* 
+        Verificar conta TESTE
+        System.out.print("Digite seu email: ");
+        String ID_email = input.nextLine();
+        System.out.print("Digite sua senha: ");
+        String senha = input.nextLine();
+
+        input.close();
+
+        Usuario u = new Usuario();
+        u.setId_email(ID_email);
+        u.setSenha(senha);
+
+        UsuarioDAO dao = new UsuarioDAO();
+        try{
+            dao.verificar(u);
+        }
+        catch(SQLException e){
+            throw new RuntimeException(e);
+        }
+            */
     }
 }
