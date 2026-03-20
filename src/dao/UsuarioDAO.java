@@ -1,6 +1,5 @@
 package dao;
 
-import factory.ConnectionFactory;
 import modelo.Usuario;
 
 import java.sql.Connection;

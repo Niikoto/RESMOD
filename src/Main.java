@@ -4,10 +4,26 @@
 //import java.sql.SQLException;
 //import java.util.Scanner; <-- apague os barras da desses imports para que todo o resto funcione
 
-public class Main {
+
+import javafx.application.Application;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.stage.Stage;
+
+
+public class Main extends Application{
+    @Override
+    public void start(Stage stage) throws Exception {
+        Parent root = FXMLLoader.load(
+                getClass().getResource("/gui/TelaPrincipal.fxml")
+        );
+        stage.setScene(new Scene(root));
+        stage.show();
+    }
     public static void main(String[] args) {
         System.out.println("Projeto RESMOD funcionando!");
-
+        launch(args);
         // TEMPORÁRIO!
         // Sistema de login via terminal
         // Pois não há front-end ainda.
