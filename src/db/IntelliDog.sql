@@ -109,6 +109,8 @@ CREATE TABLE IF NOT EXISTS `intellidog`.`produto` (
   `ID_produto` INT NOT NULL AUTO_INCREMENT,
   `nome_produto` VARCHAR(45) NOT NULL,
   `preço` DECIMAL(2) NOT NULL,
+  `quantidade` INT NOT NULL,
+  `minimo` INT NULL,
   `COD_categoria` INT NOT NULL,
   `COD_fornecedor` INT NOT NULL,
   PRIMARY KEY (`ID_produto`),
@@ -153,17 +155,16 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `intellidog`.`estoque`
+-- Table `intellidog`.`entrada_saida`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `intellidog`.`estoque` (
-  `ID_estoque` INT NOT NULL AUTO_INCREMENT,
+CREATE TABLE IF NOT EXISTS `intellidog`.`entrada_saida` (
+  `ID_entrada_saida` INT NOT NULL AUTO_INCREMENT,
   `tipo` TINYINT NOT NULL,
   `quantidade` INT NOT NULL,
-  `minimo` INT NULL,
   `COD_produto` INT NOT NULL,
-  PRIMARY KEY (`ID_estoque`),
-  INDEX `fk_estoque_produto1_idx` (`COD_produto` ASC) VISIBLE,
-  CONSTRAINT `fk_estoque_produto1`
+  PRIMARY KEY (`ID_entrada_saida`),
+  INDEX `fk_entrada_saida_produto1_idx` (`COD_produto` ASC) VISIBLE,
+  CONSTRAINT `fk_entrada_saida_produto1`
     FOREIGN KEY (`COD_produto`)
     REFERENCES `intellidog`.`produto` (`ID_produto`)
     ON DELETE NO ACTION
