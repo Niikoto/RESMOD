@@ -23,7 +23,7 @@ Desenvolver um software de gestão de pedidos de compra que automatize a abertur
 🚧 In Progress... 🚧
 ### [Backlog do produto](./docs/Backlog_produto.md)
 
-### Planning poker com fibonacci adaptado
+### [Planning poker com fibonacci adaptado](./docs/Fibonacci.md)
 
 ### Cronograma de evolução do projeto
 
@@ -95,7 +95,7 @@ Desenvolver um software de gestão de pedidos de compra que automatize a abertur
     <tr>
       <td>Lucas Suzuki</td>
       <td>Scrum Master</td>
-      <td><img src="https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white"></a></td>
+      <td><a href="https://github.com/LucaSuzuki"><img src="https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white"></a></td>
       <td><img src="https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white"></a></td>
     </tr>
     <tr>
@@ -111,7 +111,7 @@ Desenvolver um software de gestão de pedidos de compra que automatize a abertur
     </tr><tr>
       <td>Miguel Duarte</td>
       <td>Desenvolvedor</td>
-      <td><img src="https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white"></a></td>
+      <td><a href="https://github.com/Duarte-Biophysics"><img src="https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white"></a></td>
       <td><img src="https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white"></a></td>
     </tr><tr>
       <td>Nicolas Escobar</td>
@@ -121,17 +121,17 @@ Desenvolver um software de gestão de pedidos de compra que automatize a abertur
     </tr><tr>
       <td>Pedro Maciel</td>
       <td>Desenvolvedor</td>
-      <td><img src="https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white"></a></td>
+      <td><a href="https://github.com/MaciellCB"><img src="https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white"></a></td>
       <td><img src="https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white"></a></td>
     </tr><tr>
       <td>Eduardo Felipe</td>
       <td>Desenvolvedor</td>
-      <td><img src="https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white"></a></td>
+      <td><a href="https://github.com/Eduardo-Felipe9231"><img src="https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white"></a></td>
       <td><img src="https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white"></a></td>
     </tr><tr>
       <td>Vinícius Morais</td>
       <td>Desenvolvedor</td>
-      <td><img src="https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white"></a></td>
+      <td><a href="https://github.com/oViniciusMorais"><img src="https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white"></a></td>
       <td><img src="https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white"></a></td>
     </tr>
   </table>
