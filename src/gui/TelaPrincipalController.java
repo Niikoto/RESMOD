@@ -40,7 +40,7 @@ public class TelaPrincipalController {
     @FXML
     public void abrirTelaCadastro(ActionEvent event) {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/gui/TelaCadastro.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/TelaCadastro.fxml"));
             Parent root = loader.load();
 
             Stage stage = new Stage();

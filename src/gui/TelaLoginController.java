@@ -18,6 +18,10 @@ public class TelaLoginController {
     @FXML
     private TextField campoEmail;
 
+    public TextField getCampoEmail() {
+        return campoEmail;
+    }
+
     @FXML
     private PasswordField campoSenha;
 
@@ -36,7 +40,7 @@ public class TelaLoginController {
 
             if (usuarioLogado != null) {
 
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("/gui/TelaPrincipal.fxml"));
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/TelaPrincipal.fxml"));
                 Parent root = loader.load();
 
                 TelaPrincipalController controllerPrincipal = loader.getController();

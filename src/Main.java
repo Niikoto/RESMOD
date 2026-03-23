@@ -5,7 +5,11 @@
 //import java.util.Scanner; <-- apague os barras da desses imports para que todo o resto funcione
 
 
+import java.io.IOException;
+
+import gui.TelaPrincipalController;
 import javafx.application.Application;
+import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -13,14 +17,17 @@ import javafx.stage.Stage;
 
 
 public class Main extends Application{
+
+    //Mostra/chama a tela de login para o usuario
     @Override
     public void start(Stage stage) throws Exception {
         Parent root = FXMLLoader.load(
-                getClass().getResource("/gui/TelaLogin.fxml")
+                getClass().getResource("/view/TelaLogin.fxml")
         );
         stage.setScene(new Scene(root));
         stage.show();
     }
+
     public static void main(String[] args) {
         System.out.println("Projeto RESMOD funcionando!");
         launch(args);
