@@ -10,20 +10,19 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+import modelo.Session;
 import modelo.Usuario;
 import java.sql.SQLException;
 
 public class TelaLoginController {
 
     @FXML
-    private TextField campoEmail;
-
+    private TextField campoEmail;     //id do FXML
+    @FXML
+    private PasswordField campoSenha; //id do FXML
     public TextField getCampoEmail() {
         return campoEmail;
     }
-
-    @FXML
-    private PasswordField campoSenha;
 
     @FXML
     public void fazerLogin(ActionEvent event) {
@@ -40,16 +39,22 @@ public class TelaLoginController {
 
             if (usuarioLogado != null) {
 
+                // Inicia a sessão
+                Session.iniciar(usuarioLogado);
+
+                // Carrega a tela principal
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/TelaPrincipal.fxml"));
                 Parent root = loader.load();
-
-                TelaPrincipalController controllerPrincipal = loader.getController();
-                controllerPrincipal.iniciarDados(usuarioLogado);
 
                 Stage stage = (Stage) campoEmail.getScene().getWindow();
                 stage.setScene(new Scene(root));
                 stage.centerOnScreen();
                 stage.show();
+
+                // Puxando do principal para limitar janelas
+                // Será revisto no futuro.
+                TelaPrincipalController.janela_aberta += 1;
+                System.out.println(TelaPrincipalController.janela_aberta);
 
             } else {
                 exibirAlerta("Erro", "E-mail ou senha incorretos.");

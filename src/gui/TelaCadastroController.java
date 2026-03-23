@@ -29,12 +29,8 @@ public class TelaCadastroController {
 
         String email = campoEmailCadastro.getText();
         u.setId_email(email);
-
-
         u.setNome(email);
-
         u.setSenha(campoSenhaCadastro.getText());
-
         String cargoEscolhido = campoCargo.getValue();
         int cargoNumero = 0;
 

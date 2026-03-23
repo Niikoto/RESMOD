@@ -21,6 +21,8 @@
 
       <Label layoutX="149.0" layoutY="110.0" text="Eu nao entendi exatamente como ficara formatado" textFill="#6b6b6b" />
 
+      <Button layoutX="100.0" layoutY="40.0" text="Sair" onAction="#fazerLogout" />
+
       <Button fx:id="botaoCriarConta" layoutX="386.0" layoutY="346.0" mnemonicParsing="false" onAction="#abrirTelaCadastro" prefHeight="40.0" prefWidth="200.0" style="-fx-background-color: #2b78e4; -fx-text-fill: white; -fx-font-weight: bold;" text="Criar Novo Usuário" />
    </children>
 </AnchorPane>
