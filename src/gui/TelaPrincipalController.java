@@ -8,6 +8,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 import javafx.stage.Window;
 import modelo.Session;
 import modelo.Usuario;
@@ -76,6 +77,7 @@ public class TelaPrincipalController {
                 Parent root = loader.load();
 
                 Stage stage = new Stage();
+                stage.initStyle(StageStyle.UNDECORATED); // Remove tudo: barra, bordas
                 stage.setTitle("Cadastrar Usuário");
                 stage.setScene(new Scene(root));
                 stage.show();

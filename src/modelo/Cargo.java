@@ -5,20 +5,38 @@ public class Cargo {
     private String tipo;
     private boolean adm;
 
-    //Constructor vazio
-    public Cargo(){}
+    // Constructor vazio
+    public Cargo() {
+    }
 
-    //geters
-    public int getID_cargo() {return ID_cargo;}
+    // geters
+    public int getID_cargo() {
+        return ID_cargo;
+    }
 
-    public String getTipo() {return tipo;}
+    public String getTipo() {
+        return tipo;
+    }
 
-    public boolean isAdm() {return adm;}
+    public boolean isAdm() {
+        return adm;
+    }
 
-    //seters
-    public void setID_cargo(int iD_cargo) {ID_cargo = iD_cargo;}
+    // seters
+    public void setID_cargo(int iD_cargo) {
+        ID_cargo = iD_cargo;
+    }
 
-    public void setTipo(String tipo) {this.tipo = tipo;}
+    public void setTipo(String tipo) {
+        this.tipo = tipo;
+    }
 
-    public void setAdm(boolean adm) {this.adm = adm;}
+    public void setAdm(boolean adm) {
+        this.adm = adm;
+    }
+
+    @Override //Subscrever o metodo que já exite, para que escreva o nome do cargo em vez do espaço alocado
+    public String toString() {
+        return getTipo();
+    }
 }
