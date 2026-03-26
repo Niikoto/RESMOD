@@ -12,5 +12,6 @@
     <orderEntry type="library" name="lib1" level="project" />
     <orderEntry type="library" name="lib2" level="project" />
     <orderEntry type="library" name="mysql-connector-j-9.6.1" level="project" />
+    <orderEntry type="library" name="mysql-connector-j-9.6.2" level="project" />
   </component>
 </module>
