@@ -1,5 +1,7 @@
 package dashboard;
 
+import dao.DashboardDAO;
+
 public class DashboardService {
 
     private DashboardDAO dao = new DashboardDAO();
