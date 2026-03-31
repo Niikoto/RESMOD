@@ -13,7 +13,7 @@ public class UsuarioDAO {
     Connection conectar = ConnectionFactory.getConnection();
 
     public void cadastrar(Usuario u) throws SQLException {
-        String sql = "INSERT INTO usuario(ID_email, Nome, Senha, COD_cargo)" + " VALUES(?, ?, ?, ?)";
+        String sql = "INSERT INTO usuario(ID_email, Nome, Senha, COD_cargo) VALUES(?, ?, ?, ?)";
 
 
         try(PreparedStatement comando = conectar.prepareStatement(sql)){

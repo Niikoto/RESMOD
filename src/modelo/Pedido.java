@@ -8,7 +8,7 @@ public class Pedido {
     private float preco_total;
     private String forma_de_pagamento;
     private String motivo;
-    private int COD_email;
+    private String COD_email;
     
 
     //Constructor vazio
@@ -29,7 +29,7 @@ public class Pedido {
     
     public String getMotivo() {return motivo;}
     
-    public int getCOD_email() {return COD_email;}
+    public String getCOD_email() {return COD_email;}
     
     //Seters
     public void setMotivo(String motivo) {this.motivo = motivo;}
@@ -46,5 +46,10 @@ public class Pedido {
 
     public void setID_pedido(int iD_pedido) {ID_pedido = iD_pedido;}
 
-    public void setCOD_email(int cOD_email) {COD_email = cOD_email;}
+    public void setCOD_email(String cOD_email) {COD_email = cOD_email;}
+
+    @Override //Subscrever o metodo que já exite, para que escreva o nome do cargo em vez do espaço alocado
+    public String toString() {
+        return getID_pedido() +" "+ getMotivo() +" "+ getStatus() +" "+ getPreco_total() +" "+ getCriado() +" "+ getForma_de_pagamento();
+    }
 }

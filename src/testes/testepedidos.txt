@@ -1,0 +1,16 @@
+Pedido pedidos = new Pedido();
+        pedidos.setStatus("Em aberto");
+        pedidos.setMotivo("Teste");
+        pedidos.setCOD_email("joaokleber@gmail.com");
+
+        PedidoDAO dao = new PedidoDAO();
+
+        try{
+            dao.cadastrarPedido(pedidos);
+            System.out.println("Deu certo");
+        }catch(SQLException e){
+            throw new RuntimeException(e);
+        }
+        
+PedidoDAO dao = new PedidoDAO();
+        System.out.print(dao.listarPedidos());
