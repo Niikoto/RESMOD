@@ -28,6 +28,10 @@ public class TelaPrincipalController {
 
     private Usuario usuarioLogado;
 
+    @FXML private Button botaoPedidos;
+
+    @FXML private Button botaoLogout;
+
     @FXML
     public void initialize() {
 
@@ -39,8 +43,8 @@ public class TelaPrincipalController {
     public void iniciarDados(Usuario u) {
         this.usuarioLogado = u;
 
-        if (usuarioLogado.getCargo() != 1) {
-            botaoCriarConta.setVisible(false);
+        if (usuarioLogado.getCargo() != 1) {//Isso daqui vai verificar se a pessoa logada é administração
+            botaoCriarConta.setVisible(false);//Caso não seja botão na aparece
             botaoCriarConta.setManaged(false);
         }
     }
@@ -79,6 +83,26 @@ public class TelaPrincipalController {
                 Stage stage = new Stage();
                 stage.initStyle(StageStyle.UNDECORATED); // Remove tudo: barra, bordas
                 stage.setTitle("Cadastrar Usuário");
+                stage.setScene(new Scene(root));
+                stage.show();
+
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        } else{
+            System.out.println("ERRO");
+        }
+    }
+
+    @FXML
+    public void abrirTelaPedidos(ActionEvent event) {
+        janela_aberta += 1;
+        if(janela_aberta <= limite) {
+            try {
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/TelaPedidos.fxml"));
+                Parent root = loader.load();
+
+                Stage stage = new Stage();
                 stage.setScene(new Scene(root));
                 stage.show();
 

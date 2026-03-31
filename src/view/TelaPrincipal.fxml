@@ -9,16 +9,21 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.TelaPrincipalController">
+<AnchorPane xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1"
+   fx:controller="gui.TelaPrincipalController">
    <children>
-      <BorderPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="500.0" prefWidth="700.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <BorderPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308"
+         prefHeight="500.0" prefWidth="700.0" AnchorPane.bottomAnchor="0.0"
+         AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <top>
-            <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" style="-fx-background-color: #4287f5;" BorderPane.alignment="CENTER">
+            <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0"
+               style="-fx-background-color: #4287f5;" BorderPane.alignment="CENTER">
                <BorderPane.margin>
                   <Insets />
                </BorderPane.margin>
                <children>
-                  <ImageView fitHeight="100.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fitHeight="100.0" fitWidth="200.0" pickOnBounds="true"
+                     preserveRatio="true">
                      <image>
                         <Image url="@/sources/intelliDog_TM.png" />
                      </image>
@@ -30,9 +35,13 @@
             </HBox>
          </top>
          <left>
-            <VBox alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="-Infinity" prefHeight="400.0" prefWidth="181.0" style="-fx-background-color: C8D0E3;" BorderPane.alignment="CENTER">
+            <VBox alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="-Infinity"
+               prefHeight="400.0" prefWidth="181.0" style="-fx-background-color: C8D0E3;"
+               BorderPane.alignment="CENTER">
                <children>
-                  <Button mnemonicParsing="false" style="-fx-background-color: #2b78e4; -fx-font-weight: Bold;" text="Criar Pedido" textFill="WHITE">
+                  <Button fx:id="botaoPedidos" mnemonicParsing="false" onAction="#abrirTelaPedidos"
+                     style="-fx-background-color: #2b78e4; -fx-font-weight: Bold;"
+                     text="Pedidos" textFill="WHITE">
                      <padding>
                         <Insets bottom="5.0" left="22.0" right="22.0" top="5.0" />
                      </padding>
@@ -40,7 +49,9 @@
                         <Insets bottom="3.0" left="3.0" right="3.0" top="3.0" />
                      </VBox.margin>
                   </Button>
-                  <Button mnemonicParsing="false" style="-fx-background-color: #2b78e4; -fx-font-weight: Bold;" text="Minha Área" textFill="WHITE">
+                  <Button mnemonicParsing="false"
+                     style="-fx-background-color: #2b78e4; -fx-font-weight: Bold;" text="Minha Área"
+                     textFill="WHITE">
                      <VBox.margin>
                         <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                      </VBox.margin>
@@ -48,7 +59,9 @@
                         <Insets bottom="5.0" left="22.0" right="22.0" top="5.0" />
                      </padding>
                   </Button>
-                  <Button mnemonicParsing="false" style="-fx-background-color: #2b78e4; -fx-font-weight: Bold;" text="Em Aberto" textFill="WHITE">
+                  <Button mnemonicParsing="false"
+                     style="-fx-background-color: #2b78e4; -fx-font-weight: Bold;" text="Em Aberto"
+                     textFill="WHITE">
                      <VBox.margin>
                         <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                      </VBox.margin>
@@ -56,8 +69,11 @@
                         <Insets bottom="5.0" left="25.0" right="25.0" top="5.0" />
                      </padding>
                   </Button>
-            
-                                          <Button fx:id="botaoCriarConta" mnemonicParsing="false" onAction="#abrirTelaCadastro" prefHeight="27.0" prefWidth="110.0" style="-fx-background-color: #2b78e4; -fx-text-fill: white; -fx-font-weight: bold;" text="Novo Usuário">
+
+                  <Button fx:id="botaoCriarConta" mnemonicParsing="false"
+                     onAction="#abrirTelaCadastro" prefHeight="27.0" prefWidth="110.0"
+                     style="-fx-background-color: #2b78e4; -fx-text-fill: white; -fx-font-weight: bold;"
+                     text="Novo Usuário">
                      <VBox.margin>
                         <Insets bottom="3.0" left="3.0" right="3.0" top="3.0" />
                      </VBox.margin>
@@ -65,8 +81,9 @@
                         <Insets bottom="5.0" left="25.0" right="25.0" top="5.0" />
                      </padding>
                   </Button>
-            
-                                                                                                                              <Button alignment="CENTER" contentDisplay="CENTER" onAction="#fazerLogout" style="-fx-background-color: WHITE;" text="Sair" textAlignment="CENTER">
+
+                  <Button fx:id="botaoLogout" alignment="CENTER" contentDisplay="CENTER" onAction="#fazerLogout"
+                     style="-fx-background-color: WHITE;" text="Sair" textAlignment="CENTER">
                      <padding>
                         <Insets bottom="5.0" left="25.0" right="25.0" top="5.0" />
                      </padding>
