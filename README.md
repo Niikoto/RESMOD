@@ -25,7 +25,7 @@ Desenvolver um software de gestão de pedidos de compra que automatize a abertur
 
 ### [Planning poker com fibonacci adaptado](./docs/Fibonacci.md)
 
-### Cronograma de evolução do projeto
+### [Cronograma de evolução do projeto](./docs/CronogramaEvolução.md)
 
 ---
 
