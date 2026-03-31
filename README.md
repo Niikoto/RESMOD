@@ -32,13 +32,13 @@ Desenvolver um software de gestão de pedidos de compra que automatize a abertur
 ## 📋 DEFINIÇÕES DE QUALIDADE
 
 🚧 In Progress... 🚧
-### DOR
+### DoR
 
-### DOD
+### DoD
 
-### DOR por sprint
+### [DoR por sprint](./docs/DOR_Sprints.md)
 
-### DOD por sprint
+### DoD por sprint
 ---
 
 ## 🎨 MODELAGEM 
