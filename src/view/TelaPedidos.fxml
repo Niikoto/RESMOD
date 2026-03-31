@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.paint.Color?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #c2e5ff;" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <ListView layoutX="14.0" layoutY="129.0" prefHeight="227.0" prefWidth="572.0" style="-fx-background-color: #eaf6ff; -fx-background-radius: 10px; -fx-border-radius: 10px;">
+         <effect>
+            <DropShadow blurType="GAUSSIAN" height="26.86" offsetY="3.0" radius="11.465">
+               <color>
+                  <Color red="0.45098039507865906" green="0.5764706134796143" blue="1.0" />
+               </color>
+            </DropShadow>
+         </effect>
+      </ListView>
+      <TextField alignment="CENTER" layoutX="14.0" layoutY="41.0" prefHeight="46.0" prefWidth="104.0" promptText="67" style="-fx-background-color: #c5ffd6; -fx-background-radius: 10px; -fx-border-radius: 10px;" text="67">
+         <effect>
+            <DropShadow offsetY="3.0">
+               <color>
+                  <Color red="0.45098039507865906" green="0.5764706134796143" blue="1.0" />
+               </color>
+            </DropShadow>
+         </effect>
+      </TextField>
+      <TextField alignment="CENTER" layoutX="14.0" layoutY="7.0" prefHeight="4.0" prefWidth="104.0" promptText="aprovados" style="-fx-background-color: #c5ffd6; -fx-background-radius: 10px; -fx-border-radius: 10px;" text="aprovados">
+         <effect>
+            <DropShadow offsetY="3.0">
+               <color>
+                  <Color red="0.45098039507865906" green="0.5764706134796143" blue="1.0" />
+               </color>
+            </DropShadow>
+         </effect>
+      </TextField>
+      <TextField alignment="CENTER" layoutX="130.0" layoutY="41.0" prefHeight="46.0" prefWidth="104.0" promptText="67" style="-fx-background-color: #ffdada; -fx-background-radius: 10px; -fx-border-radius: 10px;" text="67">
+         <effect>
+            <DropShadow offsetY="3.0">
+               <color>
+                  <Color red="0.45098039507865906" green="0.5764706134796143" blue="1.0" />
+               </color>
+            </DropShadow>
+         </effect>
+      </TextField>
+      <TextField alignment="CENTER" layoutX="130.0" layoutY="7.0" prefHeight="4.0" prefWidth="104.0" promptText="negados" style="-fx-background-color: #ffdada; -fx-background-radius: 10px; -fx-border-radius: 10px;" text="negados">
+         <effect>
+            <DropShadow offsetY="3.0">
+               <color>
+                  <Color red="0.45098039507865906" green="0.5764706134796143" blue="1.0" />
+               </color>
+            </DropShadow>
+         </effect>
+      </TextField>
+      <TextField alignment="CENTER" layoutX="246.0" layoutY="41.0" prefHeight="46.0" prefWidth="104.0" promptText="67" style="-fx-background-color: #fdffd2; -fx-background-radius: 10px; -fx-border-radius: 10px;" text="67">
+         <effect>
+            <DropShadow offsetY="3.0">
+               <color>
+                  <Color red="0.45098039507865906" green="0.5764706134796143" blue="1.0" />
+               </color>
+            </DropShadow>
+         </effect>
+      </TextField>
+      <TextField alignment="CENTER" layoutX="246.0" layoutY="7.0" prefHeight="4.0" prefWidth="104.0" promptText="em aberto" style="-fx-background-color: #fdffd2; -fx-background-radius: 10px; -fx-border-radius: 10px;" text="em aberto">
+         <effect>
+            <DropShadow offsetY="3.0">
+               <color>
+                  <Color red="0.45098039507865906" green="0.5764706134796143" blue="1.0" />
+               </color>
+            </DropShadow>
+         </effect>
+      </TextField>
+      <TextField alignment="CENTER" layoutX="363.0" layoutY="41.0" prefHeight="46.0" prefWidth="104.0" promptText="67" style="-fx-background-color: #f9f9ff; -fx-background-radius: 10px; -fx-border-radius: 10px;" text="67">
+         <effect>
+            <DropShadow offsetY="3.0">
+               <color>
+                  <Color red="0.45098039507865906" green="0.5764706134796143" blue="1.0" />
+               </color>
+            </DropShadow>
+         </effect>
+      </TextField>
+      <TextField alignment="CENTER" layoutX="363.0" layoutY="7.0" prefHeight="4.0" prefWidth="104.0" promptText="em análise" style="-fx-background-color: #f9f9ff; -fx-background-radius: 10px; -fx-border-radius: 10px;" text="em análise">
+         <effect>
+            <DropShadow offsetY="3.0">
+               <color>
+                  <Color red="0.45098039507865906" green="0.5764706134796143" blue="1.0" />
+               </color>
+            </DropShadow>
+         </effect>
+      </TextField>
+      <TextField alignment="CENTER" layoutX="480.0" layoutY="41.0" prefHeight="46.0" prefWidth="104.0" promptText="67" style="-fx-background-color: #eaf6ff; -fx-background-radius: 10px; -fx-border-radius: 10px;" text="67">
+         <effect>
+            <DropShadow offsetY="3.0">
+               <color>
+                  <Color red="0.45098039507865906" green="0.5764706134796143" blue="1.0" />
+               </color>
+            </DropShadow>
+         </effect>
+      </TextField>
+      <TextField alignment="CENTER" layoutX="480.0" layoutY="7.0" prefHeight="4.0" prefWidth="104.0" promptText="total" style="-fx-background-color: #eaf6ff; -fx-background-radius: 10px; -fx-border-radius: 10px;" text="total">
+         <effect>
+            <DropShadow offsetY="3.0">
+               <color>
+                  <Color red="0.45098039507865906" green="0.5764706134796143" blue="1.0" />
+               </color>
+            </DropShadow>
+         </effect>
+      </TextField>
+      <TextField alignment="CENTER" layoutX="14.0" layoutY="95.0" prefHeight="25.0" prefWidth="572.0" promptText="N° Pedido              Motivo" style="-fx-background-color: #eaf6ff; -fx-background-radius: 10px; -fx-border-radius: 10px;" text="N° Pedido              Motivo             Criado em               Status              Preço Total              Formas de pagamento              Criado por:">
+         <effect>
+            <DropShadow offsetY="3.0">
+               <color>
+                  <Color red="0.45098039507865906" green="0.5764706134796143" blue="1.0" />
+               </color>
+            </DropShadow>
+         </effect>
+         <font>
+            <Font size="9.0" />
+         </font>
+      </TextField>
+      <Button layoutX="474.0" layoutY="365.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="111.0" style="-fx-background-color: #c5ffd6; -fx-background-radius: 10px; -fx-border-radius: 10px;" text="adicionar pedido">
+         <effect>
+            <DropShadow height="12.21" offsetY="3.0" radius="7.8025">
+               <color>
+                  <Color red="0.45098039507865906" green="0.5764706134796143" blue="1.0" />
+               </color>
+            </DropShadow>
+         </effect>
+      </Button>
+   </children>
+</AnchorPane>
