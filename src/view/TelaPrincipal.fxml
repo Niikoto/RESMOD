@@ -22,7 +22,7 @@
                   <Insets />
                </BorderPane.margin>
                <children>
-                  <ImageView fitHeight="100.0" fitWidth="200.0" pickOnBounds="true"
+                  <ImageView fx:id="minhaImagem" fitHeight="100.0" fitWidth="200.0" pickOnBounds="true"
                      preserveRatio="true">
                      <image>
                         <Image url="@/sources/intelliDog_TM.png" />

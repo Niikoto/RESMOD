@@ -7,6 +7,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import javafx.stage.Window;
@@ -16,7 +17,7 @@ import modelo.Usuario;
 public class TelaPrincipalController {
 
     @FXML
-    private Label minhaLabel;
+    private ImageView minhaImagem;
 
     @FXML
     private Button botaoCriarConta;
@@ -28,14 +29,6 @@ public class TelaPrincipalController {
 
     @FXML
     private Button botaoLogout;
-
-    @FXML
-    public void initialize() {
-
-        if (minhaLabel != null) {
-            minhaLabel.setText("IntelliDog");
-        }
-    }
 
     public void iniciarDados(Usuario u) {
         this.usuarioLogado = u;
@@ -58,7 +51,7 @@ public class TelaPrincipalController {
             Parent root = loader.load();
 
             // propriedades de tela
-            Stage stagePrincipal = (Stage) minhaLabel.getScene().getWindow();
+            Stage stagePrincipal = (Stage) minhaImagem.getScene().getWindow();
             stagePrincipal.setScene(new Scene(root)); // setar a janela
             stagePrincipal.centerOnScreen(); // centralizar na tela
             stagePrincipal.show(); // finalmente, mostrar ela
