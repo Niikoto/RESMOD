@@ -17,6 +17,7 @@ import java.sql.SQLException;
 
 public class TelaCadastroController {
     @FXML private Button buttonFechar;
+    @FXML private TextField campoNomeCadastro;
     @FXML private TextField campoEmailCadastro;
     @FXML private PasswordField campoSenhaCadastro;
     @FXML private ComboBox<Cargo> campoCargo; //puxou o comboBox do FXML e atribui a lista Cargo criada no CargoDAO
@@ -35,7 +36,7 @@ public class TelaCadastroController {
 
         String email = campoEmailCadastro.getText();
         u.setId_email(email);
-        u.setNome(email);
+        u.setNome(campoNomeCadastro.getText());
         u.setSenha(campoSenhaCadastro.getText());
         Cargo cargoEscolhido = campoCargo.getValue(); //Vai guardar o que o usuario escolheu no CampoBox
 
@@ -53,6 +54,7 @@ public class TelaCadastroController {
             exibirAlerta("Sucesso", "Usuário cadastrado com sucesso!");
 
             //Depois de cadastrado vai ser limpo os inputs
+            campoNomeCadastro.clear();
             campoEmailCadastro.clear();
             campoSenhaCadastro.clear();
             campoCargo.setValue(null);

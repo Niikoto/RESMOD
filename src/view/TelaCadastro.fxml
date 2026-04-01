@@ -16,16 +16,19 @@
             </font>
         </Label>
 
-        <Label layoutX="30.0" layoutY="80.0" text="E-mail:" />
-        <TextField fx:id="campoEmailCadastro" layoutX="30.0" layoutY="100.0" prefWidth="240.0" />
+        <Label layoutX="30.0" layoutY="80.0" text="Nome:" />
+        <TextField fx:id="campoNomeCadastro" layoutX="30.0" layoutY="100.0" prefWidth="240.0" />
 
-        <Label layoutX="30.0" layoutY="150.0" text="Senha:" />
-        <PasswordField fx:id="campoSenhaCadastro" layoutX="30.0" layoutY="170.0" prefWidth="240.0" />
+        <Label layoutX="30.0" layoutY="150.0" text="E-mail:" />
+        <TextField fx:id="campoEmailCadastro" layoutX="30.0" layoutY="170.0" prefWidth="240.0" />
 
-        <Label layoutX="30.0" layoutY="220.0" text="Cargo:" />
-        <ComboBox fx:id="campoCargo" layoutX="30.0" layoutY="240.0" prefWidth="240.0" promptText="Selecione o Cargo" />
+        <Label layoutX="30.0" layoutY="220.0" text="Senha:" />
+        <PasswordField fx:id="campoSenhaCadastro" layoutX="30.0" layoutY="240.0" prefWidth="240.0" />
 
-        <Button layoutX="150.0" layoutY="300.0" mnemonicParsing="false" onAction="#cadastrarUsuario" prefWidth="100.0" text="Salvar Conta" />
-        <Button layoutX="25.0" layoutY="300.0" mnemonicParsing="false" onAction="#fecharTela" prefWidth="100.0" text="Fechar" fx:id="buttonFechar" />
+        <Label layoutX="30.0" layoutY="290.0" text="Cargo:" />
+        <ComboBox fx:id="campoCargo" layoutX="30.0" layoutY="310.0" prefWidth="240.0" promptText="Selecione o Cargo" />
+
+        <Button layoutX="150.0" layoutY="380.0" mnemonicParsing="false" onAction="#cadastrarUsuario" prefWidth="100.0" text="Salvar Conta" />
+        <Button layoutX="25.0" layoutY="380.0" mnemonicParsing="false" onAction="#fecharTela" prefWidth="100.0" text="Fechar" fx:id="buttonFechar" />
     </children>
 </AnchorPane>
