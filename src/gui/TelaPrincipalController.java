@@ -6,13 +6,11 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import javafx.stage.Window;
 import modelo.Session;
-import modelo.Usuario;
 
 public class TelaPrincipalController {
 
@@ -22,18 +20,15 @@ public class TelaPrincipalController {
     @FXML
     private Button botaoCriarConta;
 
-    private Usuario usuarioLogado;
-
     @FXML
     private Button botaoPedidos;
 
     @FXML
     private Button botaoLogout;
 
-    public void iniciarDados(Usuario u) {
-        this.usuarioLogado = u;
+    public void initialize() {
 
-        if (usuarioLogado.getCargo() != 1) {// Isso daqui vai verificar se a pessoa logada é administração
+        if (Session.getUsuario().getCargo() != 1) {// Isso daqui vai verificar se a pessoa logada é administração
             botaoCriarConta.setVisible(false);// Caso não seja botão na aparece
             botaoCriarConta.setManaged(false);
         }
