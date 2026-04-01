@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.paint.Color?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #c2e5ff;" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #c2e5ff;" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller = "gui.TelaPedidoController">
    <children>
       <ListView fx:id="listaPedidos" layoutX="14.0" layoutY="100.0" prefHeight="246.0" prefWidth="572.0" style="-fx-background-color: #eaf6ff; -fx-background-radius: 10px; -fx-border-radius: 10px;" AnchorPane.bottomAnchor="50.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="100.0">
          <effect>
@@ -159,7 +159,7 @@
       <!-- Botão adicionar pedido -->
       <HBox alignment="BOTTOM_RIGHT" layoutX="400.0" layoutY="300.0" prefHeight="100.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="460.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="300.0">
          <children>
-            <Button fx:id="botaoAdicionarPedido" mnemonicParsing="false" onAction="#adicionarTelaPedido" prefHeight="25.0" prefWidth="111.0" style="-fx-background-color: #c5ffd6; -fx-background-radius: 10px; -fx-border-radius: 10px;" text="adicionar pedido">
+            <Button fx:id="botaoAdicionarPedido" mnemonicParsing="false" prefHeight="25.0" prefWidth="111.0" style="-fx-background-color: #c5ffd6; -fx-background-radius: 10px; -fx-border-radius: 10px;" text="adicionar pedido">
                <effect>
                   <DropShadow height="12.21" offsetY="3.0" radius="7.8025">
                      <color>

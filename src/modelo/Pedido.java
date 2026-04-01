@@ -9,6 +9,7 @@ public class Pedido {
     private String forma_de_pagamento;
     private String motivo;
     private String COD_email;
+    private Usuario usuario;
     
 
     //Constructor vazio
@@ -30,6 +31,8 @@ public class Pedido {
     public String getMotivo() {return motivo;}
     
     public String getCOD_email() {return COD_email;}
+
+    public Usuario getUsuario() {return usuario;}
     
     //Seters
     public void setMotivo(String motivo) {this.motivo = motivo;}
@@ -47,6 +50,8 @@ public class Pedido {
     public void setID_pedido(int iD_pedido) {ID_pedido = iD_pedido;}
 
     public void setCOD_email(String cOD_email) {COD_email = cOD_email;}
+
+    public void setUsuario(Usuario usuario) {this.usuario = usuario;}
 
     @Override //Subscrever o metodo que já exite, para que escreva o nome do cargo em vez do espaço alocado
     public String toString() {

@@ -26,9 +26,8 @@ public class PedidoDAO {
             conectar.close();
         }
     }
-    public List<List<? extends Object>> listarPedidos(){
-        List<Pedido> pedidos = new ArrayList();
-        List<Usuario> usuarios = new ArrayList();
+    public List<Pedido> listarPedidos(){
+        List<Pedido> pedidos = new ArrayList<>();
         Connection conectar = ConnectionFactory.getConnection();
         ResultSet resultado = null;
         String sql = "SELECT p.ID_pedido, p.motivo,p.forma_de_pagamento, p.criado, p.status, p.preço_total, p.COD_email, u.nome FROM pedido p JOIN usuario u ON p.COD_email = u.ID_email;";
@@ -47,15 +46,15 @@ public class PedidoDAO {
                 pedido.setCOD_email(resultado.getString(7));
                 usuario.setNome(resultado.getString(8));
 
+                pedido.setUsuario(usuario);
                 pedidos.add(pedido);
-                usuarios.add(usuario);
             }
             
         } catch(SQLException e){
             e.printStackTrace();
         }
 
-        return List.of(pedidos, usuarios);
+        return pedidos;
 
     }
 

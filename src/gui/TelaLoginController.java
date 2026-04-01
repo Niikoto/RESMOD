@@ -51,10 +51,6 @@ public class TelaLoginController {
                 stage.centerOnScreen();
                 stage.show();
 
-                // Puxando do principal para limitar janelas
-                // Será revisto no futuro.
-                TelaPrincipalController.janela_aberta += 1;
-                System.out.println(TelaPrincipalController.janela_aberta);
 
             } else {
                 exibirAlerta("Erro", "E-mail ou senha incorretos.");

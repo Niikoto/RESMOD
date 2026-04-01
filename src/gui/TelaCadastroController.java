@@ -73,7 +73,6 @@ public class TelaCadastroController {
 
     @FXML
     public void fecharTela(ActionEvent event){ //Metodo para fechar a tela
-        TelaPrincipalController.janela_aberta = 0;
         Stage stage = (Stage) buttonFechar.getScene().getWindow(); 
         stage.close();   
     }
