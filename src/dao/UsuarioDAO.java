@@ -45,6 +45,8 @@ public class UsuarioDAO {
             if (resultado.next()) {
                 // Puxa o número do cargo lá do banco de dados(o treco de 1, 2 3)e salva no nosso objeto
                 u.setCargo(resultado.getInt("COD_cargo"));
+                // setta também o nome do usuário caso ele tenha um.
+                u.setNome(resultado.getString("Nome"));
                 return u; 
             }
 

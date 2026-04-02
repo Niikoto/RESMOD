@@ -6,6 +6,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
@@ -13,6 +14,9 @@ import javafx.stage.Window;
 import modelo.Session;
 
 public class TelaPrincipalController {
+
+    @FXML
+    private Label nomeUsuarioSessao;
 
     @FXML
     private ImageView minhaImagem;
@@ -27,6 +31,16 @@ public class TelaPrincipalController {
     private Button botaoLogout;
 
     public void initialize() {
+
+        // verifica se usuário tem nome
+        if (Session.getUsuario().getNome() != null){
+            // se tiver, puxa o nome
+            nomeUsuarioSessao.setText("Olá, " + Session.getUsuario().getNome());
+        } else{
+            // caso contrário, a mensagem não aparece.
+            nomeUsuarioSessao.setText("");
+        }
+
 
         if (Session.getUsuario().getCargo() != 1) {// Isso daqui vai verificar se a pessoa logada é administração
             botaoCriarConta.setVisible(false);// Caso não seja botão na aparece
