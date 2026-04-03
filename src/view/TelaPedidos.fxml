@@ -159,7 +159,7 @@
       <!-- Botão adicionar pedido -->
       <HBox alignment="BOTTOM_RIGHT" layoutX="400.0" layoutY="300.0" prefHeight="100.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="460.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="300.0">
          <children>
-            <Button fx:id="botaoAdicionarPedido" mnemonicParsing="false" prefHeight="25.0" prefWidth="111.0" style="-fx-background-color: #c5ffd6; -fx-background-radius: 10px; -fx-border-radius: 10px;" text="adicionar pedido">
+            <Button fx:id="botaoAdicionarPedido" onAction="#adicionarTelaPedido" mnemonicParsing="false" prefHeight="25.0" prefWidth="111.0" style="-fx-background-color: #c5ffd6; -fx-background-radius: 10px; -fx-border-radius: 10px;" text="adicionar pedido">
                <effect>
                   <DropShadow height="12.21" offsetY="3.0" radius="7.8025">
                      <color>
