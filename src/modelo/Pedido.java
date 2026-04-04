@@ -53,8 +53,13 @@ public class Pedido {
 
     public void setUsuario(Usuario usuario) {this.usuario = usuario;}
 
-    @Override //Subscrever o metodo que já exite, para que escreva o nome do cargo em vez do espaço alocado
-    public String toString() {
-        return getID_pedido() +" "+ getMotivo() +" "+ getStatus() +" "+ getPreco_total() +" "+ getCriado() +" "+ getForma_de_pagamento();
-    }
+    @Override
+public String toString() {
+    return "#" + getID_pedido() + 
+           " | " + getMotivo() + 
+           " | " + getStatus() + 
+           " | R$" + getPreco_total() + 
+           " | " + getCriado() + 
+           " | " + getForma_de_pagamento();
+}
 }

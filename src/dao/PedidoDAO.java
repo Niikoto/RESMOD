@@ -53,7 +53,6 @@ public class PedidoDAO {
 
                     pedido.setUsuario(usuario);
                     pedidos.add(pedido);
-                    System.out.println("passei aqui");
                 } while (resultado.next());
             }
 
@@ -61,7 +60,6 @@ public class PedidoDAO {
             e.printStackTrace();
         }
 
-        System.out.println("Aqui não tá funcionando");
         return pedidos;
 
     }
