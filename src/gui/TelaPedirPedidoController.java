@@ -18,30 +18,35 @@ public class TelaPedirPedidoController {
     @FXML private Button botaoCadastro;
     private TelaPedidoController paiController;
 
+
     @FXML public void cadastrarPedido(ActionEvent event) {
+        // Pega o usuário na sessão
         Usuario session = Session.getUsuario();
+
+        // Cria um novo pedido e preenche os dados
+        // usamos setters para colocar tudo num lugar só!
         Pedido novoPedido = new Pedido();
         novoPedido.setMotivo(motivoTexto.getText());
         novoPedido.setStatus("Em aberto");
         novoPedido.setCOD_email(session.getId_Email());
+
         try {
-            PedidoDAO dao = new PedidoDAO();
-            dao.cadastrarPedido(novoPedido);
+            // Salva no banco e adiciona na lista da tela pai (a tela de pedidos)
             paiController.adicionarPedido(novoPedido);
-            Stage stage = (Stage) botaoCadastro.getScene().getWindow(); 
-            stage.close();
 
+            // voolta para a tela de pedidos na mesma janela
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/TelaPedidos.fxml"));
-            Parent root = loader.load();  
-
+            Parent root = loader.load();
+            Stage stage = (Stage) botaoCadastro.getScene().getWindow();
             stage.setScene(new Scene(root));
-            stage.show();
 
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
+    // Recebe e guarda a referência da tela pai para poder comunicar com ela
+    // pois são interligadas
     public void setPaiController(TelaPedidoController paiController){
         this.paiController = paiController;
     }
