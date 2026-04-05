@@ -60,6 +60,7 @@ public String toString() {
            " | " + getStatus() + 
            " | R$" + getPreco_total() + 
            " | " + getCriado() + 
-           " | " + getForma_de_pagamento();
+           " | " + getForma_de_pagamento() +
+           " | " + getUsuario().getNome();
 }
 }

@@ -31,7 +31,7 @@ public class PedidoDAO {
         List<Pedido> pedidos = new ArrayList<>();
         Connection conectar = ConnectionFactory.getConnection();
         ResultSet resultado = null;
-        String sql = "SELECT p.ID_pedido, p.motivo,p.forma_de_pagamento, p.criado, p.status, p.preço_total, p.COD_email, u.nome FROM pedido p JOIN usuario u ON p.COD_email = u.ID_email;";
+        String sql = "SELECT p.ID_pedido, p.motivo,p.forma_de_pagamento, DATE_FORMAT(p.criado, '%d/%m/%Y') as 'criado', p.status, p.preço_total, p.COD_email, u.nome FROM pedido p JOIN usuario u ON p.COD_email = u.ID_email;";
 
         try (PreparedStatement comando = conectar.prepareStatement(sql)) {
             resultado = comando.executeQuery();
