@@ -32,9 +32,9 @@ Desenvolver um software de gestão de pedidos de compra que automatize a abertur
 ## 📋 DEFINIÇÕES DE QUALIDADE
 
 🚧 In Progress... 🚧
-### DoR
+### [DoR](./docs/DOR.md)
 
-### DoD
+### [DoD](./docs/DOD.md)
 
 ### [DoR por sprint](./docs/DOR_Sprints.md)
 
@@ -60,7 +60,7 @@ Desenvolver um software de gestão de pedidos de compra que automatize a abertur
 ![IntelliJ IDEA](https://img.shields.io/badge/IntelliJ_IDEA-000000?style=for-the-badge&logo=intellijidea&logoColor=white)
 ![VS Code](https://img.shields.io/badge/VS%20Code-007ACC?style=for-the-badge&logo=visualstudiocode&logoColor=white)
 
-### Estrutura de pastas do projeto
+### [Estrutura de pastas do projeto](./docs/Estrutura%20do%20projeto.md)
 
 ### Estrategias de Branche 
 ---
