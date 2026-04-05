@@ -67,10 +67,7 @@ Desenvolver um software de gestão de pedidos de compra que automatize a abertur
 
 ## 🛠️ Instalação e uso
 
-🚧 In Progress... 🚧
-### Manual de instalação
-
-### Manual de manutenção
+### [Manual de instalação](./docs/Manual_Instalar.md)
 
 ---
 
