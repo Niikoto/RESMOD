@@ -1,19 +1,21 @@
-# Definition of Ready (DOR)
+## Definition of Ready (DOR)
 
-Uma User Story está pronta para entrar na Sprint quando atende aos seguintes critérios:
+### Uma User Story está pronta para entrar na Sprint quando atende aos seguintes critérios:
 
-A User Story está escrita no formato: "Como [usuário], quero [ação], para que [benefício]"
+<ul>
+<li>A User Story está escrita no formato: "Como <b>[usuário]</b>, quero <b>[ação]</b>, para que <b>[benefício]</b>";</li>
 
-Os critérios de aceitação estão definidos e compreendidos pelo time
+<li>Os critérios de aceitação estão definidos e compreendidos pelo time;</li>
 
-A estimativa de esforço foi atribuída pelo time
+<li>A estimativa de esforço foi atribuída pelo time;</li>
 
-A User Story foi priorizada e ranqueada no backlog
+<li>A User Story foi priorizada e ranqueada no backlog;</li>
 
-Dependências técnicas foram identificadas, como banco de dados, integrações e permissões
+<li>Dependências técnicas foram identificadas, como banco de dados, integrações e permissões;</li>
 
-O design ou protótipo da tela está disponível, quando aplicável
+<li>O design ou protótipo da tela está disponível, quando aplicável;</li>
 
-A User Story é pequena o suficiente para ser concluída dentro de uma Sprint
+<li>A User Story é pequena o suficiente para ser concluída dentro de uma Sprint;</li>
 
-O time de desenvolvimento entende o que precisa ser implementado
+<li>O time de desenvolvimento entende o que precisa ser implementado.</li>
+</ul>
