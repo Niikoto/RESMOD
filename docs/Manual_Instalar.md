@@ -37,8 +37,8 @@ Localizados em:
 
 Execute:
 - IntelliDog.sql
-- (Opcional) insert.sql
-- (Opcional) Selects.sql
+- insert.sql
+- Selects.sql
 
 
 
