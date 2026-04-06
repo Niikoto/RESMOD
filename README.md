@@ -74,7 +74,7 @@ Desenvolver um software de gestão de pedidos de compra que automatize a abertur
 ## 📅 Sprints
 
 🚧 In Progress... 🚧
-### Sprint1 (Vídeo de incremento etc)
+### [Sprint1](./docs/video_sprint1.md)
 
 ### Sprint2
 
