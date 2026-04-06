@@ -52,7 +52,7 @@ A documentação foi atualizada, se necessário
 |------|-----------|-----|
 | 1 | Armazenamento de dados do usuário | OK |
 | 2 | Interface com panorama geral | OK |
-| 3 | Abertura de pedido de produto | |
+| 3 | Abertura de pedido de produto | OK |
 | 4 | Cadastro de usuário | OK |
 
 ### Sprint 2 — até 03/05
