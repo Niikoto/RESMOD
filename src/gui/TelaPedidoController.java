@@ -14,12 +14,24 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.control.ListView;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 import modelo.Pedido;
 
 public class TelaPedidoController {
-    @FXML private ListView<Pedido> listaPedidos;
+    @FXML private TableView<Pedido> tablePedido; // tabela
+
+    //colunas da tabela
+    @FXML private TableColumn<Pedido, Integer> idPedido;
+    @FXML private TableColumn<Pedido, String> motivoPedido;
+    @FXML private TableColumn<Pedido, String> formaPagamento;
+    @FXML private TableColumn<Pedido, String> dataCriado;
+    @FXML private TableColumn<Pedido, String> statusPedido;
+    @FXML private TableColumn<Pedido, Float> valorTotal;
+    @FXML private TableColumn<Pedido, String> criadoPor;    
+
     @FXML private Label telaAprovados;
     @FXML private Label telaNegados;
     @FXML private Label telaEmAberto;
@@ -29,11 +41,20 @@ public class TelaPedidoController {
 
     @FXML
     public void initialize() {
+        //referenciando onde cada informação vai ficar nas colunas
+        idPedido.setCellValueFactory(new PropertyValueFactory<>("iD_pedido")); //essa parte vai usar o metodo get nas coisas que estão dentro das aspas no parenteses, a primeira letra ele vai deixar maiuscula
+        motivoPedido.setCellValueFactory(new PropertyValueFactory<>("motivo"));
+        formaPagamento.setCellValueFactory(new PropertyValueFactory<>("Forma_de_pagamento"));
+        dataCriado.setCellValueFactory(new PropertyValueFactory<>("criado"));
+        statusPedido.setCellValueFactory(new PropertyValueFactory<>("status"));
+        valorTotal.setCellValueFactory(new PropertyValueFactory<>("Preco_total"));
+        criadoPor.setCellValueFactory(cellData -> new javafx.beans.property.SimpleStringProperty(cellData.getValue().getUsuario().getNome())); // esse daqui tá diferente pois estamos guarando um objeto do usuario na classe pedido
+        
         // Carrega todos os pedidos do banco e exibe na lista
         PedidoDAO ped = new PedidoDAO();
         List<Pedido> lista = ped.listarPedidos();
-        listaPedidos.setItems(FXCollections.observableArrayList(lista));
-
+        tablePedido.setItems(FXCollections.observableArrayList(lista));
+        
         // Busca os dados do dashboard e exibe nos painéis
         // (MUDAR)
         // (DEPOIS)
@@ -72,7 +93,7 @@ public class TelaPedidoController {
             // é o dao, ele cadastra
             PedidoDAO dao = new PedidoDAO();
             dao.cadastrarPedido(pedido);
-            listaPedidos.getItems().add(pedido);
+            tablePedido.getItems().add(pedido);
         } catch (Exception e) {
             e.printStackTrace();
         }
