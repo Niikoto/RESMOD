@@ -1,92 +1,163 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.chart.BarChart?>
+<?import javafx.scene.chart.CategoryAxis?>
+<?import javafx.scene.chart.NumberAxis?>
+<?import javafx.scene.chart.PieChart?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.image.Image?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
-<?import javafx.scene.text.Font?>
 
-<AnchorPane xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.TelaPrincipalController">
+<AnchorPane prefHeight="750.0" prefWidth="1100.0" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.TelaPrincipalController">
    <children>
-      <BorderPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="500.0" prefWidth="700.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <BorderPane fx:id="painelPrincipal" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+
          <top>
-            <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" style="-fx-background-color: #4287f5;" BorderPane.alignment="CENTER">
-               <BorderPane.margin>
-                  <Insets />
-               </BorderPane.margin>
+            <HBox alignment="CENTER_LEFT" prefHeight="70.0" style="-fx-background-color: white; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.05), 10, 0, 0, 0);" BorderPane.alignment="CENTER">
                <children>
-                  <ImageView fx:id="minhaImagem" fitHeight="100.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@/sources/intelliDog_TM.png" />
-                     </image>
-                     <HBox.margin>
-                        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
-                     </HBox.margin>
-                  </ImageView>
-                  <Label fx:id="nomeUsuarioSessao" alignment="CENTER" contentDisplay="CENTER" text="Olá, USUARIO" textFill="WHITE">
-                     <font>
-                        <Font size="26.0" />
-                     </font>
-                     <HBox.margin>
-                        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
-                     </HBox.margin>
-                  </Label>
+                  <VBox alignment="CENTER_LEFT" prefHeight="70.0" prefWidth="200.0">
+                     <children>
+                        <Label style="-fx-text-fill: #2b59c3; -fx-font-weight: bold; -fx-font-size: 28px;" text="Newe" />
+                        <Label style="-fx-text-fill: #777777; -fx-font-size: 8px; -fx-character-spacing: 2px;" text="LOGÍSTICA INTEGRADA" />
+                     </children>
+                     <padding>
+                        <Insets left="25.0" />
+                     </padding>
+                  </VBox>
+                  <HBox alignment="CENTER_RIGHT" spacing="15.0" HBox.hgrow="ALWAYS">
+                     <children>
+                        <Label style="-fx-font-size: 18px; -fx-text-fill: #333333;" text="🔔" />
+                        <VBox alignment="CENTER_RIGHT">
+                           <children>
+                              <Label fx:id="nomeUsuarioSessao" style="-fx-font-weight: bold; -fx-text-fill: #333333;" text="Usuário" />
+                              <Label style="-fx-text-fill: #888888; -fx-font-size: 11px;" text="Painel de Controle" />
+                           </children>
+                        </VBox>
+                        <ImageView fx:id="minhaImagem" fitHeight="35.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true" />
+                        <Button fx:id="botaoLogout" mnemonicParsing="false" onAction="#fazerLogout" style="-fx-background-color: transparent; -fx-cursor: hand; -fx-text-fill: #666666; -fx-font-size: 18px;" text="🚪" />
+                     </children>
+                     <padding>
+                        <Insets right="25.0" />
+                     </padding>
+                  </HBox>
                </children>
             </HBox>
          </top>
+
          <left>
-            <VBox alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="-Infinity" prefHeight="400.0" prefWidth="181.0" style="-fx-background-color: C8D0E3;" BorderPane.alignment="CENTER">
+            <VBox prefWidth="200.0" style="-fx-background-color: #3b82f6;" BorderPane.alignment="CENTER">
                <children>
-                  <Button fx:id="botaoPedidos" mnemonicParsing="false" onAction="#abrirTelaPedidos" style="-fx-background-color: #2b78e4; -fx-font-weight: Bold;" text="Pedidos" textFill="WHITE">
-                     <padding>
-                        <Insets bottom="5.0" left="22.0" right="22.0" top="5.0" />
-                     </padding>
-                     <VBox.margin>
-                        <Insets bottom="3.0" left="3.0" right="3.0" top="3.0" />
-                     </VBox.margin>
+                  <Button fx:id="botaoDashboard" alignment="BASELINE_LEFT" mnemonicParsing="false" onAction="#abrirTelaDashboard" prefHeight="50.0" prefWidth="200.0" style="-fx-background-color: #2563eb; -fx-text-fill: white; -fx-font-weight: bold; -fx-font-size: 14px;" text=" 📊  Dashboard">
+                     <padding><Insets left="20.0" /></padding>
                   </Button>
-                  <Button mnemonicParsing="false" style="-fx-background-color: #758078; -fx-font-weight: Bold;" text="Produtos" textFill="WHITE">
-                     <VBox.margin>
-                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-                     </VBox.margin>
-                     <padding>
-                        <Insets bottom="5.0" left="22.0" right="22.0" top="5.0" />
-                     </padding>
+                  <Button fx:id="botaoProdutos" alignment="BASELINE_LEFT" mnemonicParsing="false" onAction="#abrirTelaProdutos" prefHeight="45.0" prefWidth="200.0" style="-fx-background-color: transparent; -fx-text-fill: white; -fx-font-size: 14px;" text=" 📦  Produtos">
+                     <padding><Insets left="20.0" /></padding>
                   </Button>
-                  <Button mnemonicParsing="false" style="-fx-background-color: #758078; -fx-font-weight: Bold;" text="Fornecedores" textFill="WHITE">
-                     <VBox.margin>
-                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-                     </VBox.margin>
-                     <padding>
-                        <Insets bottom="5.0" left="25.0" right="25.0" top="5.0" />
-                     </padding>
+                  <Button fx:id="botaoPedidos" alignment="BASELINE_LEFT" mnemonicParsing="false" onAction="#abrirTelaPedidos" prefHeight="45.0" prefWidth="200.0" style="-fx-background-color: transparent; -fx-text-fill: white; -fx-font-size: 14px;" text=" 🛒  Pedidos">
+                     <padding><Insets left="20.0" /></padding>
                   </Button>
-
-                  <Button fx:id="botaoCriarConta" mnemonicParsing="false" onAction="#abrirTelaCadastro" prefHeight="27.0" prefWidth="110.0" style="-fx-background-color: #2b78e4; -fx-text-fill: white; -fx-font-weight: bold;" text="Novo Usuário">
-                     <VBox.margin>
-                        <Insets bottom="3.0" left="3.0" right="3.0" top="3.0" />
-                     </VBox.margin>
-                     <padding>
-                        <Insets bottom="5.0" left="25.0" right="25.0" top="5.0" />
-                     </padding>
+                  <Button fx:id="botaoFornecedores" alignment="BASELINE_LEFT" mnemonicParsing="false" onAction="#abrirTelaFornecedores" prefHeight="45.0" prefWidth="200.0" style="-fx-background-color: transparent; -fx-text-fill: white; -fx-font-size: 14px;" text=" 👤  Fornecedores">
+                     <padding><Insets left="20.0" /></padding>
                   </Button>
-
-                  <Button fx:id="botaoLogout" alignment="CENTER" contentDisplay="CENTER" onAction="#fazerLogout" style="-fx-background-color: WHITE;" text="Sair" textAlignment="CENTER">
-                     <padding>
-                        <Insets bottom="5.0" left="25.0" right="25.0" top="5.0" />
-                     </padding>
-                     <VBox.margin>
-                        <Insets bottom="3.0" left="3.0" right="3.0" top="3.0" />
-                     </VBox.margin>
+                  <Button fx:id="botaoCriarConta" alignment="BASELINE_LEFT" mnemonicParsing="false" onAction="#abrirTelaCadastro" prefHeight="45.0" prefWidth="200.0" style="-fx-background-color: transparent; -fx-text-fill: white; -fx-font-size: 14px;" text=" 👥  Funcionários">
+                     <padding><Insets left="20.0" /></padding>
                   </Button>
+                  <VBox alignment="BOTTOM_CENTER" VBox.vgrow="ALWAYS">
+                     <children>
+                        <Label style="-fx-text-fill: #1e3a8a; -fx-font-weight: bold; -fx-font-size: 18px;" text="REMCO" />
+                        <Label style="-fx-text-fill: #1e3a8a; -fx-font-size: 11px;" text="© 2024" />
+                     </children>
+                     <padding><Insets bottom="25.0" /></padding>
+                  </VBox>
                </children>
             </VBox>
          </left>
+
+         <center>
+            <ScrollPane fitToWidth="true" style="-fx-background-color: #f1f5f9; -fx-background: #f1f5f9;" BorderPane.alignment="CENTER">
+               <content>
+                  <VBox spacing="20.0" style="-fx-padding: 30px;">
+                     <children>
+                        <Label style="-fx-font-size: 26px; -fx-font-weight: bold; -fx-text-fill: #1e293b;" text="Dashboard" />
+
+                        <HBox spacing="20.0">
+                           <children>
+                              <VBox prefHeight="260.0" prefWidth="400.0" style="-fx-background-color: white; -fx-background-radius: 12px; -fx-padding: 20px; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.04), 10, 0, 0, 0);" HBox.hgrow="ALWAYS">
+                                 <children>
+                                    <Label style="-fx-font-weight: bold; -fx-font-size: 16px; -fx-text-fill: #334155;" text="Status de pedidos" />
+                                    <HBox alignment="CENTER" VBox.vgrow="ALWAYS">
+                                       <children>
+                                          <PieChart fx:id="graficoPizza" legendVisible="false" prefHeight="180.0" prefWidth="180.0" />
+                                       </children>
+                                    </HBox>
+                                 </children>
+                              </VBox>
+
+                              <VBox prefHeight="260.0" prefWidth="500.0" style="-fx-background-color: white; -fx-background-radius: 12px; -fx-padding: 20px; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.04), 10, 0, 0, 0);" HBox.hgrow="ALWAYS">
+                                 <children>
+                                    <Label style="-fx-font-weight: bold; -fx-font-size: 16px; -fx-text-fill: #334155;" text="Quantidades de pedidos por setor" />
+                                    <BarChart fx:id="graficoBarras" legendVisible="false" prefHeight="200.0">
+                                       <xAxis>
+                                          <CategoryAxis side="BOTTOM" />
+                                       </xAxis>
+                                       <yAxis>
+                                          <NumberAxis side="LEFT" />
+                                       </yAxis>
+                                    </BarChart>
+                                 </children>
+                              </VBox>
+                           </children>
+                        </HBox>
+
+                        <HBox alignment="CENTER_LEFT" style="-fx-background-color: #e2e8f0; -fx-background-radius: 8px; -fx-padding: 12px 20px;">
+                           <children>
+                              <Label style="-fx-text-fill: #475569; -fx-font-size: 14px;" text="EXEMPLO (Eu tambem não faço ideia do que deveria ter aqui)" />
+                           </children>
+                        </HBox>
+
+                        <VBox style="-fx-background-color: white; -fx-background-radius: 12px; -fx-padding: 25px; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.04), 10, 0, 0, 0);">
+                           <children>
+
+                              <HBox alignment="CENTER_LEFT" spacing="15.0">
+                                 <children>
+                                    <Label style="-fx-font-weight: bold; -fx-font-size: 22px; -fx-text-fill: #1e293b;" text="Atualizações" />
+                                    <Button fx:id="botaoNovaAtualizacao" mnemonicParsing="false" onAction="#alternarPainelAtualizacao" style="-fx-background-color: #f1f5f9; -fx-text-fill: #2563eb; -fx-font-weight: bold; -fx-background-radius: 15px; -fx-cursor: hand;" text="+ Nova Atualização" />
+                                 </children>
+                              </HBox>
+
+                              <VBox fx:id="vboxAdminPost" spacing="10.0" style="-fx-background-color: #f8fafc; -fx-border-color: #e2e8f0; -fx-border-radius: 8px; -fx-background-radius: 8px; -fx-padding: 15px;">
+                                 <VBox.margin><Insets bottom="15.0" top="15.0" /></VBox.margin>
+                                 <children>
+                                    <TextField fx:id="campoTituloAtualizacao" promptText="Título (Ex: Novo Fornecedor...)" style="-fx-background-radius: 5px; -fx-border-color: #cbd5e1; -fx-border-radius: 5px; -fx-background-color: white;" />
+                                    <TextArea fx:id="campoMensagemAtualizacao" prefHeight="60.0" promptText="Detalhes da atualização..." style="-fx-background-radius: 5px; -fx-border-color: #cbd5e1; -fx-border-radius: 5px; -fx-background-color: white;" wrapText="true" />
+                                    <HBox alignment="CENTER_RIGHT">
+                                       <children>
+                                          <Button mnemonicParsing="false" onAction="#postarAtualizacao" style="-fx-background-color: #2b78e4; -fx-text-fill: white; -fx-font-weight: bold; -fx-cursor: hand;" text="Publicar" />
+                                       </children>
+                                    </HBox>
+                                 </children>
+                              </VBox>
+
+
+
+                              <VBox fx:id="vboxAtualizacoes" spacing="0.0" style="-fx-padding: 0;">
+                              </VBox>
+
+                           </children>
+                        </VBox>
+                     </children>
+                  </VBox>
+               </content>
+            </ScrollPane>
+         </center>
       </BorderPane>
    </children>
 </AnchorPane>

@@ -5,176 +5,93 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
-<?import javafx.scene.effect.DropShadow?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
-<?import javafx.scene.paint.Color?>
+<?import javafx.scene.layout.Priority?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.VBox?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="666.0" style="-fx-background-color: #c2e5ff;" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.TelaPedidoController">
+<AnchorPane prefHeight="650.0" prefWidth="950.0" style="-fx-background-color: #f1f5f9;" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.TelaPedidoController">
    <children>
-
-      <!-- HBox dos títulos (labels de texto fixo) -->
-      <HBox alignment="TOP_CENTER" prefHeight="100.0" prefWidth="600.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-         <children>
-            <Label alignment="CENTER" prefHeight="26.0" prefWidth="104.0" style="-fx-background-color: #c5ffd6; -fx-background-radius: 10px; -fx-border-radius: 10px; -fx-alignment: center;" text="aprovados">
-               <effect>
-                  <DropShadow offsetY="3.0">
-                     <color>
-                        <Color red="0.45098039507865906" green="0.5764706134796143" blue="1.0" />
-                     </color>
-                  </DropShadow>
-               </effect>
-               <HBox.margin>
-                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-               </HBox.margin>
-            </Label>
-            <Label alignment="CENTER" prefHeight="26.0" prefWidth="104.0" style="-fx-background-color: #ffdada; -fx-background-radius: 10px; -fx-border-radius: 10px; -fx-alignment: center;" text="negados">
-               <effect>
-                  <DropShadow offsetY="3.0">
-                     <color>
-                        <Color red="0.45098039507865906" green="0.5764706134796143" blue="1.0" />
-                     </color>
-                  </DropShadow>
-               </effect>
-               <HBox.margin>
-                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-               </HBox.margin>
-            </Label>
-            <Label alignment="CENTER" prefHeight="26.0" prefWidth="104.0" style="-fx-background-color: #fdffd2; -fx-background-radius: 10px; -fx-border-radius: 10px; -fx-alignment: center;" text="em aberto">
-               <effect>
-                  <DropShadow offsetY="3.0">
-                     <color>
-                        <Color red="0.45098039507865906" green="0.5764706134796143" blue="1.0" />
-                     </color>
-                  </DropShadow>
-               </effect>
-               <HBox.margin>
-                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-               </HBox.margin>
-            </Label>
-            <Label alignment="CENTER" prefHeight="26.0" prefWidth="104.0" style="-fx-background-color: #f9f9ff; -fx-background-radius: 10px; -fx-border-radius: 10px; -fx-alignment: center;" text="em análise">
-               <effect>
-                  <DropShadow offsetY="3.0">
-                     <color>
-                        <Color red="0.45098039507865906" green="0.5764706134796143" blue="1.0" />
-                     </color>
-                  </DropShadow>
-               </effect>
-               <HBox.margin>
-                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-               </HBox.margin>
-            </Label>
-            <Label alignment="CENTER" prefHeight="26.0" prefWidth="104.0" style="-fx-background-color: #eaf6ff; -fx-background-radius: 10px; -fx-border-radius: 10px; -fx-alignment: center;" text="total">
-               <effect>
-                  <DropShadow offsetY="3.0">
-                     <color>
-                        <Color red="0.45098039507865906" green="0.5764706134796143" blue="1.0" />
-                     </color>
-                  </DropShadow>
-               </effect>
-               <HBox.margin>
-                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-               </HBox.margin>
-            </Label>
-         </children>
-      </HBox>
-
-      <!-- HBox dos valores numéricos -->
-      <HBox alignment="TOP_CENTER" prefHeight="100.0" prefWidth="600.0" AnchorPane.bottomAnchor="300.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-         <children>
-            <Label fx:id="telaAprovados" alignment="CENTER" prefHeight="46.0" prefWidth="104.0" style="-fx-background-color: #c5ffd6; -fx-background-radius: 10px; -fx-border-radius: 10px; -fx-alignment: center;" text="67">
-               <effect>
-                  <DropShadow offsetY="3.0">
-                     <color>
-                        <Color red="0.45098039507865906" green="0.5764706134796143" blue="1.0" />
-                     </color>
-                  </DropShadow>
-               </effect>
-               <HBox.margin>
-                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-               </HBox.margin>
-            </Label>
-            <Label fx:id="telaNegados" alignment="CENTER" prefHeight="46.0" prefWidth="104.0" style="-fx-background-color: #ffdada; -fx-background-radius: 10px; -fx-border-radius: 10px; -fx-alignment: center;" text="67">
-               <effect>
-                  <DropShadow offsetY="3.0">
-                     <color>
-                        <Color red="0.45098039507865906" green="0.5764706134796143" blue="1.0" />
-                     </color>
-                  </DropShadow>
-               </effect>
-               <HBox.margin>
-                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-               </HBox.margin>
-            </Label>
-            <Label fx:id="telaEmAberto" alignment="CENTER" prefHeight="46.0" prefWidth="104.0" style="-fx-background-color: #fdffd2; -fx-background-radius: 10px; -fx-border-radius: 10px; -fx-alignment: center;" text="67">
-               <effect>
-                  <DropShadow offsetY="3.0">
-                     <color>
-                        <Color red="0.45098039507865906" green="0.5764706134796143" blue="1.0" />
-                     </color>
-                  </DropShadow>
-               </effect>
-               <HBox.margin>
-                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-               </HBox.margin>
-            </Label>
-            <Label fx:id="telaEmAnalise" alignment="CENTER" prefHeight="46.0" prefWidth="104.0" style="-fx-background-color: #f9f9ff; -fx-background-radius: 10px; -fx-border-radius: 10px; -fx-alignment: center;" text="67">
-               <effect>
-                  <DropShadow offsetY="3.0">
-                     <color>
-                        <Color red="0.45098039507865906" green="0.5764706134796143" blue="1.0" />
-                     </color>
-                  </DropShadow>
-               </effect>
-               <HBox.margin>
-                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-               </HBox.margin>
-            </Label>
-            <Label fx:id="telaTotal" alignment="CENTER" prefHeight="46.0" prefWidth="104.0" style="-fx-background-color: #eaf6ff; -fx-background-radius: 10px; -fx-border-radius: 10px; -fx-alignment: center;" text="67">
-               <effect>
-                  <DropShadow offsetY="3.0">
-                     <color>
-                        <Color red="0.45098039507865906" green="0.5764706134796143" blue="1.0" />
-                     </color>
-                  </DropShadow>
-               </effect>
-               <HBox.margin>
-                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-               </HBox.margin>
-            </Label>
-         </children>
+      <VBox spacing="25.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <padding>
-            <Insets top="40.0" />
+            <Insets bottom="30.0" left="30.0" right="30.0" top="30.0" />
          </padding>
-      </HBox>
-
-      <!-- Botão adicionar pedido -->
-      <HBox alignment="BOTTOM_RIGHT" layoutX="400.0" layoutY="300.0" prefHeight="100.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="460.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="300.0">
          <children>
-            <Button fx:id="botaoAdicionarPedido" mnemonicParsing="false" onAction="#adicionarTelaPedido" prefHeight="25.0" prefWidth="111.0" style="-fx-background-color: #c5ffd6; -fx-background-radius: 10px; -fx-border-radius: 10px;" text="adicionar pedido">
-               <effect>
-                  <DropShadow height="12.21" offsetY="3.0" radius="7.8025">
-                     <color>
-                        <Color red="0.45098039507865906" green="0.5764706134796143" blue="1.0" />
-                     </color>
-                  </DropShadow>
-               </effect>
-               <HBox.margin>
-                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-               </HBox.margin>
-            </Button>
+
+            <HBox alignment="CENTER_LEFT">
+               <children>
+                  <Label style="-fx-font-size: 26px; -fx-font-weight: bold; -fx-text-fill: #1e293b;" text="Pedidos" />
+                  <Region HBox.hgrow="ALWAYS" />
+                  <Button fx:id="botaoAdicionarPedido" mnemonicParsing="false" onAction="#adicionarTelaPedido" style="-fx-background-color: #49b69b; -fx-text-fill: white; -fx-font-weight: bold; -fx-background-radius: 6px; -fx-cursor: hand; -fx-padding: 10px 20px; -fx-font-size: 14px;" text="+ Novo Pedido" />
+               </children>
+            </HBox>
+
+            <HBox spacing="15.0">
+               <children>
+                  <VBox alignment="CENTER" prefHeight="95.0" style="-fx-background-color: #dcfce7; -fx-background-radius: 12px; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.04), 10, 0, 0, 0);" HBox.hgrow="ALWAYS">
+                     <children>
+                        <Label style="-fx-text-fill: #166534; -fx-font-size: 13px; -fx-font-weight: bold;" text="Aprovados" />
+                        <Label fx:id="telaAprovados" style="-fx-text-fill: #15803d; -fx-font-size: 28px; -fx-font-weight: bold;" text="0" />
+                     </children>
+                  </VBox>
+
+                  <VBox alignment="CENTER" prefHeight="95.0" style="-fx-background-color: #fee2e2; -fx-background-radius: 12px; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.04), 10, 0, 0, 0);" HBox.hgrow="ALWAYS">
+                     <children>
+                        <Label style="-fx-text-fill: #991b1b; -fx-font-size: 13px; -fx-font-weight: bold;" text="Negados" />
+                        <Label fx:id="telaNegados" style="-fx-text-fill: #b91c1c; -fx-font-size: 28px; -fx-font-weight: bold;" text="0" />
+                     </children>
+                  </VBox>
+
+                  <VBox alignment="CENTER" prefHeight="95.0" style="-fx-background-color: #fef9c3; -fx-background-radius: 12px; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.04), 10, 0, 0, 0);" HBox.hgrow="ALWAYS">
+                     <children>
+                        <Label style="-fx-text-fill: #854d0e; -fx-font-size: 13px; -fx-font-weight: bold;" text="Em Aberto" />
+                        <Label fx:id="telaEmAberto" style="-fx-text-fill: #a16207; -fx-font-size: 28px; -fx-font-weight: bold;" text="0" />
+                     </children>
+                  </VBox>
+
+                  <VBox alignment="CENTER" prefHeight="95.0" style="-fx-background-color: #f3f4f6; -fx-background-radius: 12px; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.04), 10, 0, 0, 0);" HBox.hgrow="ALWAYS">
+                     <children>
+                        <Label style="-fx-text-fill: #374151; -fx-font-size: 13px; -fx-font-weight: bold;" text="Em Análise" />
+                        <Label fx:id="telaEmAnalise" style="-fx-text-fill: #4b5563; -fx-font-size: 28px; -fx-font-weight: bold;" text="0" />
+                     </children>
+                  </VBox>
+
+                  <VBox alignment="CENTER" prefHeight="95.0" style="-fx-background-color: #dbeafe; -fx-background-radius: 12px; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.04), 10, 0, 0, 0);" HBox.hgrow="ALWAYS">
+                     <children>
+                        <Label style="-fx-text-fill: #1e40af; -fx-font-size: 13px; -fx-font-weight: bold;" text="Total de Pedidos" />
+                        <Label fx:id="telaTotal" style="-fx-text-fill: #1d4ed8; -fx-font-size: 28px; -fx-font-weight: bold;" text="0" />
+                     </children>
+                  </VBox>
+               </children>
+            </HBox>
+
+            <VBox style="-fx-background-color: white; -fx-background-radius: 12px; -fx-padding: 20px; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.04), 10, 0, 0, 0);" VBox.vgrow="ALWAYS">
+               <children>
+                  <Label style="-fx-font-weight: bold; -fx-font-size: 18px; -fx-text-fill: #1e293b;" text="Pedidos Registados">
+                     <VBox.margin>
+                        <Insets bottom="15.0" />
+                     </VBox.margin>
+                  </Label>
+
+                  <TableView fx:id="tablePedido" prefHeight="300.0" style="-fx-background-color: white; -fx-border-color: #e2e8f0; -fx-border-radius: 6px; -fx-font-size: 13px;" VBox.vgrow="ALWAYS">
+                     <columns>
+                        <TableColumn fx:id="idPedido" prefWidth="80.0" text="N° Pedido" />
+                        <TableColumn fx:id="motivoPedido" prefWidth="180.0" text="Motivo do Pedido" />
+                        <TableColumn fx:id="formaPagamento" prefWidth="140.0" text="Pagamento" />
+                        <TableColumn fx:id="dataCriado" prefWidth="100.0" text="Criado Em" />
+                        <TableColumn fx:id="statusPedido" prefWidth="100.0" text="Status" />
+                        <TableColumn fx:id="valorTotal" prefWidth="100.0" text="Valor Total" />
+                        <TableColumn fx:id="criadoPor" prefWidth="120.0" text="Criado Por" />
+                     </columns>
+                     <columnResizePolicy>
+                        <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+                     </columnResizePolicy>
+                  </TableView>
+               </children>
+            </VBox>
+
          </children>
-      </HBox>
-      <TableView fx:id="tablePedido" layoutX="7.0" layoutY="110.0" prefHeight="250.0" prefWidth="653.0" AnchorPane.bottomAnchor="39.20000000000002" AnchorPane.leftAnchor="6.7999999999999545" AnchorPane.rightAnchor="5.399999999999977" AnchorPane.topAnchor="110.0">
-        <columns>
-          <TableColumn fx:id="idPedido" prefWidth="75.0" text="N° Pedido:" />
-          <TableColumn fx:id="motivoPedido" prefWidth="124.0" text="Motivo do Pedido:" />
-            <TableColumn fx:id="formaPagamento" prefWidth="136.7999267578125" text="Forma de Pagamento:" />
-            <TableColumn fx:id="dataCriado" prefWidth="75.0" text="Criado Em:" />
-            <TableColumn fx:id="statusPedido" prefWidth="75.0" text="Status:" />
-            <TableColumn fx:id="valorTotal" prefWidth="75.0" text="Valor Total:" />
-            <TableColumn fx:id="criadoPor" prefWidth="75.0" text="Criado Por:" />
-        </columns>
-      </TableView>
+      </VBox>
    </children>
 </AnchorPane>

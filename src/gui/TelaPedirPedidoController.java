@@ -1,54 +1,64 @@
 package gui;
 
+import dao.PedidoDAO;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
-import javafx.scene.Scene;
-import javafx.scene.control.Button;
 import javafx.scene.control.TextArea;
-import javafx.stage.Stage;
+import javafx.scene.layout.BorderPane;
 import modelo.Pedido;
-import modelo.Session;
-import modelo.Usuario;
+import modelo.Session; // IMPORTANTE: Para saber quem está a fazer o pedido
 
 public class TelaPedirPedidoController {
-    @FXML private TextArea motivoTexto;
-    @FXML private Button botaoCadastro;
+
+    @FXML private TextArea campoMotivo;
+
+    // A referência para o controller pai
     private TelaPedidoController paiController;
 
+    public void setPaiController(TelaPedidoController paiController) {
+        this.paiController = paiController;
+    }
 
-    @FXML public void cadastrarPedido(ActionEvent event) {
-        // Pega o usuário na sessão
-        Usuario session = Session.getUsuario();
-
-        // Cria um novo pedido e preenche os dados
-        // usamos setters para colocar tudo num lugar só!
-        Pedido novoPedido = new Pedido();
-        novoPedido.setMotivo(motivoTexto.getText());
-        novoPedido.setStatus("Em aberto");
-        novoPedido.setCOD_email(session.getId_Email());
-
+    @FXML
+    public void voltarParaPedidos(ActionEvent event) {
         try {
-            // Salva no banco e adiciona na lista da tela pai (a tela de pedidos)
-            paiController.adicionarPedido(novoPedido);
-
-            // voolta para a tela de pedidos na mesma janela
+            // Carrega a tela com a tabela de pedidos novamente
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/TelaPedidos.fxml"));
             Parent root = loader.load();
-            Stage stage = (Stage) botaoCadastro.getScene().getWindow();
-            stage.setScene(new Scene(root));
 
+            // Procura o BorderPane principal (o chassi da nossa SPA)
+            BorderPane painelPrincipal = (BorderPane) campoMotivo.getScene().lookup("#painelPrincipal");
+
+            if (painelPrincipal != null) {
+                // Coloca a tabela de volta no centro!
+                painelPrincipal.setCenter(root);
+            }
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
-    // Recebe e guarda a referência da tela pai para poder comunicar com ela
-    // pois são interligadas
-    public void setPaiController(TelaPedidoController paiController){
-        this.paiController = paiController;
+    @FXML
+    public void criarPedido(ActionEvent event) {
+        String motivo = campoMotivo.getText();
+
+        if (motivo != null && !motivo.trim().isEmpty()) {
+            Pedido novoPedido = new Pedido();
+            novoPedido.setMotivo(motivo);
+
+            //dados necessarios pegados do banco
+            novoPedido.setStatus("em aberto"); // Status inicial padrão
+            novoPedido.setCOD_email(Session.getUsuario().getId_Email()); // Vincula ao usuário logado
+            novoPedido.setUsuario(Session.getUsuario()); // Previne erros na tabela visual
+
+            if (paiController != null) {
+                paiController.adicionarPedido(novoPedido);
+            }
+
+            // Depois de criar, volta para a tela de pedidos automaticamente
+            voltarParaPedidos(event);
+        }
     }
-
-
 }

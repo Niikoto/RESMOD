@@ -1,26 +1,98 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.DropShadow?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.paint.Color?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="300.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.TelaLoginController">
+<StackPane prefHeight="550.0" prefWidth="800.0" style="-fx-background-color: linear-gradient(to bottom right, #b3d9ff, #e6f2ff);" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.TelaLoginController">
+    <padding>
+        <Insets bottom="30.0" left="30.0" right="30.0" top="30.0" />
+    </padding>
     <children>
-        <Label layoutX="153.0" layoutY="38.0" text="RESMOD">
-            <font>
-                <Font name="System Bold" size="22.0" />
-            </font>
-        </Label>
+        <AnchorPane mouseTransparent="true">
+            <children>
+                <VBox AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0">
+                    <children>
+                        <Label style="-fx-font-weight: bold; -fx-font-size: 18px; -fx-text-fill: #222222;" text="REMCO" />
+                        <Label style="-fx-text-fill: #555555; -fx-font-size: 11px;" text="© 2024" />
+                    </children>
+                </VBox>
+            </children>
+        </AnchorPane>
 
-        <Label layoutX="76.0" layoutY="103.0" text="E-mail:" />
-        <TextField fx:id="campoEmail" layoutX="76.0" layoutY="120.0" prefHeight="25.0" prefWidth="248.0" promptText="exemplo@gmail.com" />
+        <VBox alignment="CENTER_LEFT" fillWidth="true" maxHeight="-Infinity" maxWidth="450.0" spacing="18.0" style="-fx-background-color: white; -fx-background-radius: 20px; -fx-padding: 40px;">
+            <children>
 
-        <Label layoutX="76.0" layoutY="163.0" text="Senha:" />
-        <PasswordField fx:id="campoSenha" layoutX="76.0" layoutY="180.0" prefHeight="25.0" prefWidth="248.0" promptText="Sua senha" />
+                <VBox spacing="0.0">
+                    <children>
+                        <Label style="-fx-text-fill: #2b59c3; -fx-font-weight: bold; -fx-font-size: 40px;" text="Newe">
+                            <font>
+                                <Font name="System Bold" size="40.0" />
+                            </font>
+                        </Label>
+                        <Label style="-fx-text-fill: #777777; -fx-font-size: 10px; -fx-character-spacing: 2.5px;" text="LOGÍSTICA INTEGRADA" />
+                    </children>
+                    <VBox.margin>
+                        <Insets bottom="12.0" />
+                    </VBox.margin>
+                </VBox>
 
-        <Button layoutX="155.0" layoutY="235.0" mnemonicParsing="false" onAction="#fazerLogin" prefHeight="25.0" prefWidth="90.0" text="Entrar" />
+                <VBox spacing="6.0">
+                    <children>
+                        <Label style="-fx-font-weight: bold; -fx-text-fill: #333333; -fx-font-size: 13px;" text="E-mail" />
+                        <TextField fx:id="campoEmail" prefHeight="40.0" promptText="exemplo@gmail.com" style="-fx-background-color: white; -fx-border-color: #2b59c3; -fx-border-radius: 6px; -fx-padding: 10px;" />
+                    </children>
+                </VBox>
+
+                <VBox spacing="6.0">
+                    <children>
+                        <Label style="-fx-font-weight: bold; -fx-text-fill: #333333; -fx-font-size: 13px;" text="Senha" />
+                        <PasswordField fx:id="campoSenha" prefHeight="40.0" promptText="Sua senha" style="-fx-background-color: white; -fx-border-color: #2b59c3; -fx-border-radius: 6px; -fx-padding: 10px;" />
+                    </children>
+                </VBox>
+
+                <VBox alignment="CENTER" fillWidth="true">
+                    <children>
+                        <Button mnemonicParsing="false" onAction="#fazerLogin" prefHeight="35.0" prefWidth="140.0" style="-fx-background-color: #4d79ff; -fx-text-fill: white; -fx-font-weight: bold; -fx-background-radius: 5px; -fx-cursor: hand;" text="Entrar">
+                            <effect>
+                                <DropShadow blurType="GAUSSIAN" height="12.0" radius="5.5" width="12.0">
+                                    <color>
+                                        <Color opacity="0.2" />
+                                    </color>
+                                </DropShadow>
+                            </effect>
+                        </Button>
+                    </children>
+                    <VBox.margin>
+                        <Insets top="10.0" />
+                    </VBox.margin>
+                </VBox>
+
+                <VBox alignment="CENTER" spacing="4.0">
+                    <children>
+                        <Label style="-fx-text-fill: #2b59c3; -fx-font-weight: bold; -fx-font-size: 14px;" text="Primeira vez acessando o sistema?" />
+                        <Label style="-fx-text-fill: #888888; -fx-font-size: 12px;" text="Contatar o diretor da empresa" />
+                    </children>
+                    <VBox.margin>
+                        <Insets top="15.0" />
+                    </VBox.margin>
+                </VBox>
+            </children>
+            <effect>
+                <DropShadow blurType="THREE_PASS_BOX" height="40.0" radius="19.5" width="40.0">
+                    <color>
+                        <Color opacity="0.12" />
+                    </color>
+                </DropShadow>
+            </effect>
+        </VBox>
     </children>
-</AnchorPane>
+</StackPane>

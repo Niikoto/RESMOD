@@ -7,6 +7,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class UsuarioDAO {
 
@@ -15,9 +17,7 @@ public class UsuarioDAO {
     public void cadastrar(Usuario u) throws SQLException {
         String sql = "INSERT INTO usuario(ID_email, Nome, Senha, COD_cargo) VALUES(?, ?, ?, ?)";
 
-
         try(PreparedStatement comando = conectar.prepareStatement(sql)){
-
 
             // 1 = email, pois é o primeiro elemento
             // 2 = nome... e assim va indo
@@ -25,8 +25,10 @@ public class UsuarioDAO {
             comando.setString(2, u.getNome());
             comando.setString(3, u.getSenha());
             comando.setInt   (4, u.getCargo());
+
             //dps de definir o catastro ele vai
             comando.executeUpdate();
+
             //E fechar esta conexão
             conectar.close();
         }
@@ -47,10 +49,39 @@ public class UsuarioDAO {
                 u.setCargo(resultado.getInt("COD_cargo"));
                 // setta também o nome do usuário caso ele tenha um.
                 u.setNome(resultado.getString("Nome"));
-                return u; 
+                return u;
             }
 
             return null; // Se não achou ninguém ele devolve vazio
         }
+    }
+
+    // o cod pra busca de funcionario,
+    public List<Usuario> listar() {
+        List<Usuario> lista = new ArrayList<>();
+        String sql = "SELECT * FROM usuario";
+
+        // aq é so pra ele ver o back pra trazer os funcionario
+        try (Connection conn = ConnectionFactory.getConnection();
+             PreparedStatement comando = conn.prepareStatement(sql);
+             ResultSet resultado = comando.executeQuery()) {
+
+            while (resultado.next()) {
+                Usuario u = new Usuario();
+
+                // Puxa os dados das colunas do banco e salv
+                u.setId_email(resultado.getString("ID_email"));
+                u.setNome(resultado.getString("Nome"));
+                u.setCargo(resultado.getInt("COD_cargo"));
+
+                lista.add(u);
+            }
+
+        } catch (SQLException e) {
+            System.out.println("Erro ao listar os funcionários: " + e.getMessage());
+            e.printStackTrace();
+        }
+
+        return lista;
     }
 }
