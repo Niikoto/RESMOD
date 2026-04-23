@@ -38,9 +38,6 @@ Desenvolver um software de gestão de pedidos de compra que automatize a abertur
 
 ### [DoD](./docs/DOD.md)
 
-### [DoR por sprint](./docs/DOR_Sprints.md)
-
-### DoD por sprint
 ---
 
 ## 🎨 MODELAGEM 
@@ -76,11 +73,11 @@ Desenvolver um software de gestão de pedidos de compra que automatize a abertur
 ## 📅 Sprints
 
 🚧 In Progress... 🚧
-### [Sprint1](./docs/video_sprint1.md)
+### [Sprint 1](./docs/docs_sprint1.md)
 
-### Sprint2
+### [Sprint 2](./docs/docs%20sprint2.md)
 
-### Sprint3
+### Sprint 3
 ---
 
 ## 👨‍💻 Equipe
