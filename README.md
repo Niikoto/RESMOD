@@ -23,6 +23,8 @@ Desenvolver um software de gestão de pedidos de compra que automatize a abertur
 🚧 In Progress... 🚧
 ### [Backlog do produto](./docs/Backlog_produto.md)
 
+### [Backlog da Sprint](./docs/Backlog_Sprint.md)
+
 ### [Planning poker com fibonacci adaptado](./docs/Fibonacci.md)
 
 ### [Cronograma de evolução do projeto](./docs/CronogramaEvolução.md)
