@@ -75,6 +75,6 @@
 </table>
 
 ## Backlog do produto
-[Backlog do produto](./docs/Backlog_produto.md)
+[Backlog do produto](./Backlog_produto.md)
 
 
