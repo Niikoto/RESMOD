@@ -72,8 +72,8 @@
                   </Button>
                   <VBox alignment="BOTTOM_CENTER" VBox.vgrow="ALWAYS">
                      <children>
-                        <Label style="-fx-text-fill: #1e3a8a; -fx-font-weight: bold; -fx-font-size: 18px;" text="REMCO" />
-                        <Label style="-fx-text-fill: #1e3a8a; -fx-font-size: 11px;" text="© 2024" />
+                        <Label style="-fx-text-fill: #1e3a8a; -fx-font-weight: bold; -fx-font-size: 18px;" text="RESMOD" />
+                        <Label style="-fx-text-fill: #1e3a8a; -fx-font-size: 11px;" text="© 2026" />
                      </children>
                      <padding><Insets bottom="25.0" /></padding>
                   </VBox>

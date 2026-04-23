@@ -21,8 +21,8 @@
             <children>
                 <VBox AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0">
                     <children>
-                        <Label style="-fx-font-weight: bold; -fx-font-size: 18px; -fx-text-fill: #222222;" text="REMCO" />
-                        <Label style="-fx-text-fill: #555555; -fx-font-size: 11px;" text="© 2024" />
+                        <Label style="-fx-font-weight: bold; -fx-font-size: 18px; -fx-text-fill: #222222;" text="RESMOD" />
+                        <Label style="-fx-text-fill: #555555; -fx-font-size: 11px;" text="© 2026" />
                     </children>
                 </VBox>
             </children>

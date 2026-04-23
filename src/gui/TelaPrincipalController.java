@@ -66,17 +66,17 @@ public class TelaPrincipalController {
             nomeUsuarioSessao.setText("Olá, " + Session.getUsuario().getNome());
         }
 
-        int meuCargo = Session.getUsuario().getCargo();
+        boolean meuCargo = Session.getCargo().isAdm();
 
-        if (meuCargo != 1) {// Isso daqui vai verificar se a pessoa logada é administração
+        if (!meuCargo) {// Isso daqui vai verificar se a pessoa logada tem permissão de adm
             if (botaoCriarConta != null) {// Caso não seja botão na aparece
                 botaoCriarConta.setVisible(false);
                 botaoCriarConta.setManaged(false);
             }
         }
 
-        // SEGURANÇA: Apenas Cargo 1 (Admin) pode ver o botão de postar atualizações
-        if (meuCargo == 1) {
+        // SEGURANÇA: caso a pessoa tenha acesso adm consegue acessar esses botões
+        if (meuCargo) {
             if (botaoNovaAtualizacao != null) {
                 botaoNovaAtualizacao.setVisible(true);
                 botaoNovaAtualizacao.setManaged(true);
@@ -182,7 +182,7 @@ public class TelaPrincipalController {
     private void carregarAtualizacoes() throws Exception {
         DashboardDAO dao = new DashboardDAO();
         String meuEmail = Session.getUsuario().getId_Email();
-        int meuCargo = Session.getUsuario().getCargo();
+        boolean meuCargo = Session.getCargo().isAdm();
         List<Atualizacao> lista = dao.listarAtualizacoes(meuEmail);
 
         if (vboxAtualizacoes != null) {
@@ -206,8 +206,8 @@ public class TelaPrincipalController {
 
                 header.getChildren().addAll(lblTitulo, spacer);
 
-                // Apenas Cargo 1 pode ver o botão de excluir
-                if (meuCargo == 1) {
+                // Apenas pessoal adm consegue ver ess botõa
+                if (meuCargo) {
 
                     Button btnExcluir = new Button("✖");
                     btnExcluir.setStyle("-fx-background-color: transparent; -fx-text-fill: #ef4444; -fx-cursor: hand; -fx-font-size: 14px; -fx-font-weight: bold; -fx-padding: 0;");
