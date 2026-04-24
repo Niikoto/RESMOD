@@ -48,8 +48,8 @@ CREATE TABLE IF NOT EXISTS `intellidog`.`pedido` (
   `ID_pedido` INT NOT NULL AUTO_INCREMENT,
   `criado` DATETIME NOT NULL,
   `status` VARCHAR(12) NOT NULL,
-  `data_aprovação` DATE NULL,
-  `preço_total` DECIMAL(2) NOT NULL,
+  `data_aprovacao` DATE NULL,
+  `preco_total` DECIMAL(2) NOT NULL,
   `forma_de_pagamento` VARCHAR(10) NULL,
   `motivo` LONGTEXT NULL,
   `COD_email` VARCHAR(60) NOT NULL,
@@ -97,7 +97,7 @@ ENGINE = InnoDB;
 CREATE TABLE IF NOT EXISTS `intellidog`.`fornecedor` (
   `ID_fornecedor` INT NOT NULL AUTO_INCREMENT,
   `nome_fornecedor` VARCHAR(45) NOT NULL,
-  `descrição` LONGTEXT NULL,
+  `descricao` LONGTEXT NULL,
   PRIMARY KEY (`ID_fornecedor`))
 ENGINE = InnoDB;
 
@@ -108,7 +108,7 @@ ENGINE = InnoDB;
 CREATE TABLE IF NOT EXISTS `intellidog`.`produto` (
   `ID_produto` INT NOT NULL AUTO_INCREMENT,
   `nome_produto` VARCHAR(45) NOT NULL,
-  `preço` DECIMAL(2) NOT NULL,
+  `preco` DECIMAL(2) NOT NULL,
   `quantidade` INT NOT NULL,
   `minimo` INT NULL,
   `COD_categoria` INT NOT NULL,
@@ -137,7 +137,7 @@ CREATE TABLE IF NOT EXISTS `intellidog`.`produto_has_pedido` (
   `COD_produto` INT NOT NULL,
   `COD_pedido` INT NOT NULL,
   `quantidade` VARCHAR(45) NOT NULL,
-  `preço_unitario` DECIMAL(2) NOT NULL,
+  `preco_unitario` DECIMAL(2) NOT NULL,
   PRIMARY KEY (`ID_pedpro`),
   INDEX `fk_produto_has_pedido_pedido1_idx` (`COD_pedido` ASC) VISIBLE,
   INDEX `fk_produto_has_pedido_produto1_idx` (`COD_produto` ASC) VISIBLE,
