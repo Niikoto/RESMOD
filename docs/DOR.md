@@ -19,3 +19,5 @@
 
 <li>O time de desenvolvimento entende o que precisa ser implementado.</li>
 </ul>
+
+[Definition of Ready por sprint](./DOR_Sprints.md)

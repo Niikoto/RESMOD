@@ -33,7 +33,6 @@ Desenvolver um software de gestão de pedidos de compra que automatize a abertur
 
 ## 📋 DEFINIÇÕES DE QUALIDADE
 
-🚧 In Progress... 🚧
 ### [DoR](./docs/DOR.md)
 
 ### [DoD](./docs/DOD.md)
@@ -60,8 +59,7 @@ Desenvolver um software de gestão de pedidos de compra que automatize a abertur
 ![VS Code](https://img.shields.io/badge/VS%20Code-007ACC?style=for-the-badge&logo=visualstudiocode&logoColor=white)
 
 ### [Estrutura de pastas do projeto](./docs/Estrutura%20do%20projeto.md)
-
-### Estrategias de Branche 
+ 
 ---
 
 ## 🛠️ Instalação e uso
@@ -75,9 +73,9 @@ Desenvolver um software de gestão de pedidos de compra que automatize a abertur
 🚧 In Progress... 🚧
 ### [Sprint 1](./docs/docs_sprint1.md)
 
-### [Sprint 2](./docs/docs%20sprint2.md)
+### [Sprint 2](./docs/docs_sprint2.md)
 
-### Sprint 3
+### [Sprint 3](./docs/docs_sprint3.md)
 ---
 
 ## 👨‍💻 Equipe
