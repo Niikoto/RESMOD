@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.FlowPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.VBox?>
+
+<ScrollPane fitToWidth="true" style="-fx-background-color: #f1f5f9; -fx-background: #f1f5f9;" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.TelaCadastroController">
+    <content>
+        <VBox spacing="25.0" style="-fx-padding: 30px;">
+            <children>
+
+                <HBox alignment="CENTER_LEFT">
+                    <children>
+                        <Label style="-fx-font-size: 26px; -fx-font-weight: bold; -fx-text-fill: #1e293b;" text="Funcionários" />
+                        <Region HBox.hgrow="ALWAYS" />
+                        <Button mnemonicParsing="false" onAction="#alternarVisibilidadeFormulario" style="-fx-background-color: #49b69b; -fx-text-fill: white; -fx-font-weight: bold; -fx-background-radius: 6px; -fx-padding: 10px 20px; -fx-cursor: hand;" text="+ Novo Funcionário" />
+                    </children>
+                </HBox>
+
+                <VBox fx:id="vboxFormulario" spacing="15.0" style="-fx-background-color: white; -fx-background-radius: 12px; -fx-padding: 25px; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.05), 10, 0, 0, 5);">
+                    <children>
+                        <Label style="-fx-font-weight: bold; -fx-font-size: 18px;" text="Cadastrar Novo Usuário" />
+
+                        <HBox spacing="15.0">
+                            <children>
+                                <VBox spacing="5.0" HBox.hgrow="ALWAYS">
+                                    <children>
+                                        <Label text="Nome:" />
+                                        <TextField fx:id="campoNomeCadastro" promptText="Nome completo" />
+                                    </children>
+                                </VBox>
+                                <VBox spacing="5.0" HBox.hgrow="ALWAYS">
+                                    <children>
+                                        <Label text="E-mail:" />
+                                        <TextField fx:id="campoEmailCadastro" promptText="email@empresa.com" />
+                                    </children>
+                                </VBox>
+                            </children>
+                        </HBox>
+
+                        <HBox spacing="15.0">
+                            <children>
+                                <VBox spacing="5.0" HBox.hgrow="ALWAYS">
+                                    <children>
+                                        <Label text="Senha:" />
+                                        <PasswordField fx:id="campoSenhaCadastro" />
+                                    </children>
+                                </VBox>
+                                <VBox spacing="5.0" HBox.hgrow="ALWAYS">
+                                    <children>
+                                        <Label text="Cargo:" />
+                                        <ComboBox fx:id="campoCargo" maxWidth="1.7976931348623157E308" promptText="Selecione o Cargo" />
+                                    </children>
+                                </VBox>
+                            </children>
+                        </HBox>
+
+                        <HBox alignment="CENTER_RIGHT" spacing="10.0">
+                            <children>
+                                <Button mnemonicParsing="false" onAction="#alternarVisibilidadeFormulario" style="-fx-background-color: transparent; -fx-text-fill: #64748b;" text="Cancelar" />
+                                <Button mnemonicParsing="false" onAction="#cadastrarUsuario" style="-fx-background-color: #49b69b; -fx-text-fill: white; -fx-font-weight: bold;" text="Salvar Conta" />
+                            </children>
+                        </HBox>
+                    </children>
+                </VBox>
+
+                <TextField fx:id="campoPesquisa" promptText="🔍 Pesquisar funcionários..." style="-fx-background-radius: 20px; -fx-border-color: #cbd5e1; -fx-border-radius: 20px; -fx-padding: 10px 20px;" />
+
+                <FlowPane fx:id="painelFuncionarios" hgap="20.0" vgap="20.0" />
+
+            </children>
+        </VBox>
+    </content>
+</ScrollPane>

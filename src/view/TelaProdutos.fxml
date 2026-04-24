@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.TableColumn?>
@@ -20,9 +22,70 @@
                     <children>
                         <Label style="-fx-font-size: 26px; -fx-font-weight: bold; -fx-text-fill: #1e293b;" text="Produtos" />
                         <Region HBox.hgrow="ALWAYS" />
-                        <Button mnemonicParsing="false" style="-fx-background-color: #49b69b; -fx-text-fill: white; -fx-font-weight: bold; -fx-background-radius: 6px; -fx-padding: 10px 20px; -fx-cursor: hand;" text="+ Cadastrar Produto" />
+                        <Button mnemonicParsing="false" onAction="#alterarVisibilidade" style="-fx-background-color: #49b69b; -fx-text-fill: white; -fx-font-weight: bold; -fx-background-radius: 6px; -fx-padding: 10px 20px; -fx-cursor: hand;" text="+ Cadastrar Produto" />
                     </children>
                 </HBox>
+            <VBox fx:id="vBoxCadProd" spacing="15.0" style="-fx-padding: 25px; -fx-background-radius: 12px; -fx-background-color: white; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.05), 10, 0, 0, 5);" VBox.vgrow="SOMETIMES">
+               <children>
+                  <Label style="-fx-font-weight: bold; -fx-font-size: 18px;" text="Cadastrar Novo Produto" />
+                  <HBox spacing="15.0" VBox.vgrow="NEVER">
+                     <children>
+                        <VBox spacing="5.0" HBox.hgrow="SOMETIMES">
+                           <children>
+                              <Label text="Nome do Produto:" />
+                              <TextField fx:id="txtNomeProd" promptText="Produto" />
+                           </children>
+                        </VBox>
+                        <VBox spacing="5.0" HBox.hgrow="SOMETIMES">
+                           <children>
+                              <Label text="Preço:" />
+                              <TextField fx:id="txtPreco" promptText="Apenas numeros aqui" />
+                           </children>
+                        </VBox>
+                        <VBox spacing="5.0" HBox.hgrow="SOMETIMES">
+                           <children>
+                              <Label text="Quantidade:" />
+                              <TextField fx:id="txtQuant" />
+                           </children>
+                        </VBox>
+                     </children>
+                  </HBox>
+                  <HBox spacing="15.0">
+                     <children>
+                        <VBox spacing="5.0" HBox.hgrow="SOMETIMES">
+                           <children>
+                              <Label text="Minimo no Estoque:" />
+                              <TextField fx:id="txtMinEs" promptText="Apenas numeros aqui" />
+                           </children>
+                        </VBox>
+                        <VBox spacing="5.0" HBox.hgrow="SOMETIMES">
+                           <children>
+                              <Label text="Categoria:" />
+                              <ComboBox fx:id="comboCat" promptText="Selecione a Categoria do Produto" />
+                           </children>
+                        </VBox>
+                        <VBox spacing="5.0" HBox.hgrow="SOMETIMES">
+                           <children>
+                              <Label text="Fornecedor:" />
+                              <ComboBox fx:id="comboFor" promptText="Selecione o Fornecedor do Produto" />
+                           </children>
+                        </VBox>
+                     </children>
+                  </HBox>
+                  <HBox alignment="BOTTOM_RIGHT">
+                     <children>
+                        <VBox>
+                           <children>
+                              <Button fx:id="buttonEnviar" alignment="BOTTOM_RIGHT" contentDisplay="CENTER" mnemonicParsing="false" onAction="#enviarProd" style="-fx-background-color: #49b69b; -fx-text-fill: white; -fx-font-weight: bold;" text="Salvar Produto" />
+                           </children>
+                        </VBox>
+                     </children>
+                  </HBox>
+               </children>
+               <cursor>
+                  <Cursor fx:constant="DEFAULT" />
+               </cursor>
+            </VBox>
 
                 <HBox spacing="20.0">
                     <children>

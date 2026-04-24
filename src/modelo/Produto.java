@@ -3,7 +3,7 @@ package modelo;
 public class Produto {
     private int ID_produto;
     private String nome_produto;
-    private float preço;
+    private float preco;
     private int quantidade;
     private int minimo;
     private int COD_categoria;
@@ -17,7 +17,7 @@ public class Produto {
 
     public String getNome_produto() {return nome_produto;}
 
-    public float getPreço() {return preço;}
+    public float getPreco() {return preco;}
 
     public int getQuantidade() {return quantidade;}
 
@@ -33,7 +33,7 @@ public class Produto {
     //Seters
     public void setNome_produto(String nome_produto) {this.nome_produto = nome_produto;}
 
-    public void setPreço(float preço) {this.preço = preço;}
+    public void setPreco(float preco) {this.preco = preco;}
 
     public void setQuantidade(int quantidade) {this.quantidade = quantidade;}
 

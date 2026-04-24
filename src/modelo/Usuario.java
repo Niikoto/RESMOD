@@ -30,7 +30,7 @@ public class Usuario {
         System.out.println(getSenha());
         System.out.println(getCargo());
     }
-     @Override //Subscrever o metodo que já exite, para que escreva o nome do cargo em vez do espaço alocado
+    @Override //Subscrever o metodo que já exite, para que escreva o nome do cargo em vez do espaço alocado
     public String toString() {
         return getNome();
     }
