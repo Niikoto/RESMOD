@@ -13,8 +13,8 @@ insert into cargo(tipo,adm) values("funcionario",0);
 -- Usuario
 -- -------------------------------
 insert into usuario(ID_email,Nome,Senha,COD_Cargo) values("diretor@gmail.com", "Diretor",123,1);
-insert into usuario(ID_email,Nome,Senha,COD_Cargo) values("compras@gmail.com", "Compras",123,0);
-insert into usuario(ID_email,Nome,Senha,COD_Cargo) values("funcionario@gmail.com", "funcionario",123,0);
+insert into usuario(ID_email,Nome,Senha,COD_Cargo) values("compras@gmail.com", "Compras",123,2);
+insert into usuario(ID_email,Nome,Senha,COD_Cargo) values("funcionario@gmail.com", "funcionario",123,3);
 
 -- -------------------------------
 -- Fornecedores
