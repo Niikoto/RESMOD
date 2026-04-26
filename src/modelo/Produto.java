@@ -7,7 +7,7 @@ public class Produto {
     private int quantidade;
     private int minimo;
     private int COD_categoria;
-    private int COD_fornecedor;
+    private String COD_CNPJ;
 
     //Constructor vazio
     public Produto(){}
@@ -25,7 +25,7 @@ public class Produto {
 
     public int getCOD_categoria() {return COD_categoria;}
 
-    public int getCOD_fornecedor() {return COD_fornecedor;}
+    public String getCOD_CNPJ() {return COD_CNPJ;}
 
     public void setID_produto(int iD_produto) {ID_produto = iD_produto;}
 
@@ -41,5 +41,5 @@ public class Produto {
 
     public void setCOD_categoria(int cOD_categoria) {COD_categoria = cOD_categoria;}
 
-    public void setCOD_fornecedor(int cOD_fornecedor) {COD_fornecedor = cOD_fornecedor;}
+    public void setCOD_CNPJ(String COD_CNPJ) {COD_CNPJ = COD_CNPJ;}
 }

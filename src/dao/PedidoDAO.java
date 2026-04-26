@@ -15,7 +15,7 @@ public class PedidoDAO {
     Connection conectar = ConnectionFactory.getConnection();
 
     public void cadastrarPedido(Pedido p) throws SQLException {
-        String sql = "INSERT INTO pedido(criado, `status`, motivo, preço_total, COD_email) VALUES(NOW(), ?, ?, 0, ?);";
+        String sql = "INSERT INTO pedido(criado, `status`, motivo, preco_total, COD_email) VALUES(NOW(), ?, ?, 0, ?);";
 
         try (PreparedStatement comando = conectar.prepareStatement(sql)) {
             comando.setString(1, p.getStatus());
@@ -31,7 +31,7 @@ public class PedidoDAO {
         List<Pedido> pedidos = new ArrayList<>();
         Connection conectar = ConnectionFactory.getConnection();
         ResultSet resultado = null;
-        String sql = "SELECT p.ID_pedido, p.motivo,p.forma_de_pagamento, DATE_FORMAT(p.criado, '%d/%m/%Y') as 'criado', p.status, p.preço_total, p.COD_email, u.nome FROM pedido p JOIN usuario u ON p.COD_email = u.ID_email;";
+        String sql = "SELECT p.ID_pedido, p.motivo,p.forma_de_pagamento, DATE_FORMAT(p.criado, '%d/%m/%Y') as 'criado', p.status, p.preco_total, p.COD_email, u.nome FROM pedido p JOIN usuario u ON p.COD_email = u.ID_email;";
 
         try (PreparedStatement comando = conectar.prepareStatement(sql)) {
             resultado = comando.executeQuery();

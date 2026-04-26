@@ -1,27 +1,33 @@
 package modelo;
 
 public class Fornecedor {
-    private int ID_fornecedor;
+    private String CNPJ;
     private String nome_fornecedor;
     private String descricao;
+    private String estado;
+    private String municipio;
+    private String telefone;
 
     //Constructor vazio
     public Fornecedor() {}
 
-
     //Geters
-    public int getID_fornecedor() {return ID_fornecedor;}
-
+    public String getCNPJ() {return CNPJ;}
     public String getNome_fornecedor() {return nome_fornecedor;}
-
     public String getDescricao() {return descricao;}
+    public String getEstado() {return estado;}
+    public String getMunicipio() {return municipio;}
+    public String getTelefone() {return telefone;}
 
     //Seters
-    public void setID_fornecedor(int iD_fornecedor) {ID_fornecedor = iD_fornecedor;}
-
-    public void setNome_fornecedor(String nome_fornecedor) {this.nome_fornecedor = nome_fornecedor;}
-
+    public void setCNPJ(String CNPJ) {
+        this.CNPJ = CNPJ;}
+    public void setNome_fornecedor(String nome_fornecedor) {
+        this.nome_fornecedor = nome_fornecedor;}
     public void setDescricao(String descricao) {this.descricao = descricao;}
+    public void setEstado(String estado) {this.estado = estado;}
+    public void setMunicipio(String municipio) {this.municipio = municipio;}
+    public void setTelefone(String telefone) {this.telefone = telefone;}
 
     @Override
     public String toString(){
