@@ -20,10 +20,8 @@ public class Fornecedor {
     public String getTelefone() {return telefone;}
 
     //Seters
-    public void setCNPJ(String CNPJ) {
-        this.CNPJ = CNPJ;}
-    public void setNome_fornecedor(String nome_fornecedor) {
-        this.nome_fornecedor = nome_fornecedor;}
+    public void setCNPJ(String CNPJ) {this.CNPJ = CNPJ;}
+    public void setNome_fornecedor(String nome_fornecedor) {this.nome_fornecedor = nome_fornecedor;}
     public void setDescricao(String descricao) {this.descricao = descricao;}
     public void setEstado(String estado) {this.estado = estado;}
     public void setMunicipio(String municipio) {this.municipio = municipio;}

@@ -37,8 +37,8 @@ public class FornecedorDAO {
 
             while (resultado.next()) {
                 Fornecedor fornecedor = new Fornecedor();
-                fornecedor.setCNPJ(resultado.getString(1));
-                fornecedor.setNome_fornecedor(resultado.getString(2));
+                fornecedor.setCNPJ(resultado.getString("CNPJ"));
+                fornecedor.setNome_fornecedor(resultado.getString("nome_fornecedor"));
 
                 fornecedores.add(fornecedor);
             }

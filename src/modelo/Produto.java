@@ -39,7 +39,7 @@ public class Produto {
 
     public void setMinimo(int minimo) {this.minimo = minimo;}
 
-    public void setCOD_categoria(int cOD_categoria) {COD_categoria = cOD_categoria;}
+    public void setCOD_categoria(int cOD_categoria) {this.COD_categoria = cOD_categoria;}
 
-    public void setCOD_CNPJ(String COD_CNPJ) {COD_CNPJ = COD_CNPJ;}
+    public void setCOD_CNPJ(String COD_CNPJ) {this.COD_CNPJ = COD_CNPJ;}
 }
