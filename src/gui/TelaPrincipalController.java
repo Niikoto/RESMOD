@@ -161,11 +161,11 @@ public class TelaPrincipalController {
 
         if (graficoBarras != null) {
             XYChart.Series<String, Number> series = new XYChart.Series<>();
-            series.getData().add(new XYChart.Data<>("Setor 1", 8));
-            series.getData().add(new XYChart.Data<>("Setor 2", 12));
-            series.getData().add(new XYChart.Data<>("Setor 3", 21));
-            series.getData().add(new XYChart.Data<>("Setor 4", 22));
-            series.getData().add(new XYChart.Data<>("Setor 5", 30));
+            series.getData().add(new XYChart.Data<>("Cargo 1", 8));
+            series.getData().add(new XYChart.Data<>("Cargo 2", 12));
+            series.getData().add(new XYChart.Data<>("Cargo 3", 21));
+            series.getData().add(new XYChart.Data<>("Cargo 4", 22));
+            series.getData().add(new XYChart.Data<>("Cargo 5", 30));
             graficoBarras.getData().add(series);
         }
     }

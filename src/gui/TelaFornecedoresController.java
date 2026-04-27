@@ -5,6 +5,7 @@ import java.sql.SQLException;
 import dao.FornecedorDAO;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
@@ -69,8 +70,27 @@ public class TelaFornecedoresController {
         FornecedorDAO dao = new FornecedorDAO();
         try {
             dao.cadastrarFornecedores(fornecedor);
+            txtCnpj.clear();
+            txtNome.clear();
+            txtDescricao.clear();
+            txtEstado.clear();
+            txtMunicipio.clear();
+            txtTelefone.clear();
+
+            hboxCad.setVisible(false);
+            hboxCad.setManaged(false);
+
+            exibirAlerta("Sucesso", "Fornecedor Cadastrado com sucesso");
         }catch(SQLException e){
             e.printStackTrace();
+            exibirAlerta("Erro", "Não foi possivel cadastrar o fornecedordie");
         }
+    }
+    private void exibirAlerta(String titulo, String mensagem) {
+        Alert alerta = new Alert(Alert.AlertType.INFORMATION);
+        alerta.setTitle(titulo);
+        alerta.setHeaderText(null);
+        alerta.setContentText(mensagem);
+        alerta.showAndWait();
     }
 }
