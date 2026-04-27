@@ -1,4 +1,4 @@
-package dashboard;
+package modelo;
 
 public class DashboardData {
 

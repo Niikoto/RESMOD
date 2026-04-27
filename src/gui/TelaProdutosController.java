@@ -84,6 +84,9 @@ public class TelaProdutosController {
             e.printStackTrace();
         }
 
+        // ARRUMAR AQUI
+        // PERDÃO FAMILIA
+        // :(
         p.setQuantidade(Integer.parseInt(txtQuant.getText()));
         p.setMinimo(Integer.parseInt(txtMinEs.getText()));
         Categoria catEscolhida = comboCat.getValue();
@@ -91,7 +94,7 @@ public class TelaProdutosController {
 
         if (catEscolhida != null && forEscolhido != null) {
             p.setCOD_categoria(catEscolhida.getID_categoria());
-            p.setCOD_fornecedor(forEscolhido.getID_fornecedor());
+            p.setCOD_CNPJ(forEscolhido.getCNPJ());
         } else {
             return;
         }

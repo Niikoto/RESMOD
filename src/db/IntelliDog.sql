@@ -90,15 +90,17 @@ CREATE TABLE IF NOT EXISTS `intellidog`.`categoria` (
   PRIMARY KEY (`ID_categoria`))
 ENGINE = InnoDB;
 
-
 -- -----------------------------------------------------
 -- Table `intellidog`.`fornecedor`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `intellidog`.`fornecedor` (
-  `ID_fornecedor` INT NOT NULL AUTO_INCREMENT,
+  `CNPJ` VARCHAR(14) NOT NULL,
   `nome_fornecedor` VARCHAR(45) NOT NULL,
   `descricao` LONGTEXT NULL,
-  PRIMARY KEY (`ID_fornecedor`))
+  `estado` VARCHAR(2) NOT NULL,
+  `municipio` VARCHAR(50) NOT NULL,
+  `telefone` VARCHAR(12) NOT NULL,
+  PRIMARY KEY (`CNPJ`))
 ENGINE = InnoDB;
 
 
@@ -112,22 +114,21 @@ CREATE TABLE IF NOT EXISTS `intellidog`.`produto` (
   `quantidade` INT NOT NULL,
   `minimo` INT NULL,
   `COD_categoria` INT NOT NULL,
-  `COD_fornecedor` INT NOT NULL,
+  `COD_CNPJ` VARCHAR(14) NOT NULL,
   PRIMARY KEY (`ID_produto`),
   INDEX `fk_produto_categoria1_idx` (`COD_categoria` ASC) VISIBLE,
-  INDEX `fk_produto_fornecedor1_idx` (`COD_fornecedor` ASC) VISIBLE,
+  INDEX `fk_produto_fornecedor1_idx` (`COD_CNPJ` ASC) VISIBLE,
   CONSTRAINT `fk_produto_categoria1`
     FOREIGN KEY (`COD_categoria`)
     REFERENCES `intellidog`.`categoria` (`ID_categoria`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_produto_fornecedor1`
-    FOREIGN KEY (`COD_fornecedor`)
-    REFERENCES `intellidog`.`fornecedor` (`ID_fornecedor`)
+    FOREIGN KEY (`COD_CNPJ`)
+    REFERENCES `intellidog`.`fornecedor` (`CNPJ`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
-
 
 -- -----------------------------------------------------
 -- Table `intellidog`.`produto_has_pedido`

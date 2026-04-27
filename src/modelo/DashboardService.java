@@ -1,6 +1,7 @@
-package dashboard;
+package modelo;
 
 import dao.DashboardDAO;
+import dao.PedidoDAO;
 
 public class DashboardService {
 
@@ -10,18 +11,23 @@ public class DashboardService {
 
         DashboardData data = new DashboardData();
 
+        PedidoDAO pedDao = new PedidoDAO();
+
         try {
 
+            
             // TOTAL DE USUÁRIOS
             data.setTotalUsuarios(dao.contarUsuarios());
             data.setTotalAdmins(dao.contarPorCargo(1));
             data.setTotalGerentes(dao.contarPorCargo(2));
             data.setTotalComuns(dao.contarPorCargo(3));
             // TOTAL NA TELA DE PEDIDOS
-            data.setTotalAprovados(dao.contarPorStatus("aprovado"));
-            data.setTotalNegados(dao.contarPorStatus("negado"));
-            data.setTotalEmAberto(dao.contarPorStatus("em aberto"));
-            data.setTotalEmAnalise(dao.contarPorStatus("em análise"));
+            DashboardData dataped = pedDao.contarPedidos();
+
+            data.setTotalAprovados(dataped.getTotalAprovados());
+            data.setTotalNegados(dataped.getTotalNegados());
+            data.setTotalEmAberto(dataped.getTotalEmAberto());
+            data.setTotalEmAnalise(dataped.getTotalEmAnalise());
 
 
         } catch (Exception e) {

@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import factory.ConnectionFactory;
+import modelo.DashboardData;
 import modelo.Pedido;
 import modelo.Usuario;
 
@@ -15,7 +16,7 @@ public class PedidoDAO {
     Connection conectar = ConnectionFactory.getConnection();
 
     public void cadastrarPedido(Pedido p) throws SQLException {
-        String sql = "INSERT INTO pedido(criado, `status`, motivo, preço_total, COD_email) VALUES(NOW(), ?, ?, 0, ?);";
+        String sql = "INSERT INTO pedido(criado, `status`, motivo, preco_total, COD_email) VALUES(NOW(), ?, ?, 0, ?);";
 
         try (PreparedStatement comando = conectar.prepareStatement(sql)) {
             comando.setString(1, p.getStatus());
@@ -31,7 +32,7 @@ public class PedidoDAO {
         List<Pedido> pedidos = new ArrayList<>();
         Connection conectar = ConnectionFactory.getConnection();
         ResultSet resultado = null;
-        String sql = "SELECT p.ID_pedido, p.motivo,p.forma_de_pagamento, DATE_FORMAT(p.criado, '%d/%m/%Y') as 'criado', p.status, p.preço_total, p.COD_email, u.nome FROM pedido p JOIN usuario u ON p.COD_email = u.ID_email;";
+        String sql = "SELECT p.ID_pedido, p.motivo,p.forma_de_pagamento, DATE_FORMAT(p.criado, '%d/%m/%Y') as 'criado', p.status, p.preco_total, p.COD_email, u.nome FROM pedido p JOIN usuario u ON p.COD_email = u.ID_email;";
 
         try (PreparedStatement comando = conectar.prepareStatement(sql)) {
             resultado = comando.executeQuery();
@@ -61,6 +62,32 @@ public class PedidoDAO {
         }
 
         return pedidos;
+
+    }
+
+    public DashboardData contarPedidos() {
+        String sql = "select count(case when status = 'em aberto' then 1 end) as emAberto, count(case when status = 'em analise' then 1 end) as emAnalise, count(case when status = 'aprovado' then 1 end) as aprovado, count(case when status = 'negado' then 1 end) as negado from pedido;";
+
+        ResultSet resultado = null;
+
+        DashboardData dashData = new DashboardData();
+
+        try (PreparedStatement comando = conectar.prepareStatement(sql)) {
+            resultado = comando.executeQuery();
+
+
+            if (resultado.next()) {
+                dashData.setTotalEmAberto(resultado.getInt("emAberto"));
+                dashData.setTotalEmAnalise(resultado.getInt("emAnalise"));
+                dashData.setTotalAprovados(resultado.getInt("aprovado"));
+                dashData.setTotalNegados(resultado.getInt("negado"));
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return dashData;
 
     }
 

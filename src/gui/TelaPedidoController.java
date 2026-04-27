@@ -4,8 +4,6 @@ import java.io.IOException;
 import java.util.List;
 
 import dao.PedidoDAO;
-import dashboard.DashboardData;
-import dashboard.DashboardService;
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -21,6 +19,8 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.text.Text; // Importação adicionada para a célula expansível
 import javafx.stage.Stage;
+import modelo.DashboardData;
+import modelo.DashboardService;
 import modelo.Pedido;
 
 public class TelaPedidoController {

@@ -9,7 +9,6 @@
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.Priority?>
 <?import javafx.scene.layout.Region?>
 <?import javafx.scene.layout.VBox?>
 
@@ -55,13 +54,13 @@
 
                         <HBox alignment="BOTTOM_LEFT" spacing="15.0">
                             <children>
-                                <VBox spacing="5.0" prefWidth="200.0">
+                                <VBox prefWidth="200.0" spacing="5.0">
                                     <children>
                                         <Label style="-fx-text-fill: #475569; -fx-font-size: 13px; -fx-font-weight: bold;" text="Estado" />
                                         <ComboBox maxWidth="1.7976931348623157E308" promptText="Selecione" style="-fx-background-radius: 6px; -fx-border-color: #cbd5e1; -fx-border-radius: 6px; -fx-background-color: white;" />
                                     </children>
                                 </VBox>
-                                <VBox spacing="5.0" prefWidth="200.0">
+                                <VBox prefWidth="200.0" spacing="5.0">
                                     <children>
                                         <Label style="-fx-text-fill: #475569; -fx-font-size: 13px; -fx-font-weight: bold;" text="Município" />
                                         <ComboBox maxWidth="1.7976931348623157E308" promptText="Selecione" style="-fx-background-radius: 6px; -fx-border-color: #cbd5e1; -fx-border-radius: 6px; -fx-background-color: white;" />
@@ -84,9 +83,69 @@
                             <children>
                                 <Label style="-fx-font-weight: bold; -fx-font-size: 18px; -fx-text-fill: #1e293b;" text="Todos os Registros" />
                                 <Region HBox.hgrow="ALWAYS" />
-                                <Button mnemonicParsing="false" style="-fx-background-color: #49b69b; -fx-text-fill: white; -fx-font-weight: bold; -fx-background-radius: 6px; -fx-cursor: hand; -fx-padding: 8px 15px;" text="+ Adicionar Fornecedor" />
+                                <Button fx:id="buttonAdicionar" mnemonicParsing="false" onAction="#visivel" style="-fx-background-color: #49b69b; -fx-text-fill: white; -fx-font-weight: bold; -fx-background-radius: 6px; -fx-cursor: hand; -fx-padding: 8px 15px;" text="+ Adicionar Fornecedor" />
                             </children>
                         </HBox>
+                  <HBox fx:id="hboxCad" spacing="15.0" VBox.vgrow="SOMETIMES">
+                     <children>
+                        <VBox prefHeight="200.0" prefWidth="100.0" HBox.hgrow="SOMETIMES">
+                           <children>
+                              <HBox spacing="15.0">
+                                 <children>
+                                    <VBox spacing="4.0" HBox.hgrow="SOMETIMES">
+                                       <children>
+                                          <Label style="-fx-text-fill: #475569; -fx-font-size: 13px; -fx-font-weight: bold;" text="CNPJ" />
+                                          <TextField fx:id="txtCnpj" />
+                                       </children>
+                                    </VBox>
+                                    <VBox HBox.hgrow="SOMETIMES">
+                                       <children>
+                                          <Label style="-fx-text-fill: #475569; -fx-font-size: 13px; -fx-font-weight: bold;" text="Nome" />
+                                          <TextField fx:id="txtNome" />
+                                       </children>
+                                    </VBox>
+                                    <VBox HBox.hgrow="SOMETIMES">
+                                       <children>
+                                          <Label style="-fx-text-fill: #475569; -fx-font-weight: bold; -fx-font-size: 13px;" text="Descrição" />
+                                          <TextField fx:id="txtDescricao" />
+                                       </children>
+                                    </VBox>
+                                    <VBox HBox.hgrow="SOMETIMES">
+                                       <children>
+                                          <Label style="-fx-text-fill: #475569; -fx-font-weight: bold; -fx-font-size: 13;" text="Estado" />
+                                          <TextField fx:id="txtEstado" />
+                                       </children>
+                                    </VBox>
+                                 </children>
+                              </HBox>
+                              <HBox spacing="15.0" VBox.vgrow="SOMETIMES">
+                                 <children>
+                                    <VBox spacing="4.0" HBox.hgrow="SOMETIMES">
+                                       <children>
+                                          <Label style="-fx-text-fill: #475569; -fx-font-weight: bold; -fx-font-size: 13px;" text="Município" />
+                                          <TextField fx:id="txtMunicipio" />
+                                       </children>
+                                    </VBox>
+                                    <VBox spacing="4.0" HBox.hgrow="SOMETIMES">
+                                       <children>
+                                          <Label style="-fx-text-fill: #475569; -fx-font-size: 13px; -fx-font-weight: bold;" text="Telefone" />
+                                          <TextField fx:id="txtTelefone" />
+                                          <VBox alignment="CENTER_RIGHT" spacing="15.0">
+                                             <children>
+                                                <Button fx:id="buttonEnviar" mnemonicParsing="false" onAction="#enviarFornecedor" style="-fx-background-color: #49b69b; -fx-text-fill: white; -fx-font-weight: bold; -fx-background-radius: 6px; -fx-padding: 8px 15px; -fx-cursor: hand;" text="Salvar" />
+                                             </children>
+                                             <padding>
+                                                <Insets top="10.0" />
+                                             </padding>
+                                          </VBox>
+                                       </children>
+                                    </VBox>
+                                 </children>
+                              </HBox>
+                           </children>
+                        </VBox>
+                     </children>
+                  </HBox>
 
                         <TableView fx:id="tabelaFornecedores" prefHeight="300.0" style="-fx-border-color: #e2e8f0; -fx-border-radius: 6px; -fx-background-color: white;" VBox.vgrow="ALWAYS">
 
