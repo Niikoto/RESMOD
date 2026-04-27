@@ -35,4 +35,24 @@ public class CategoriaDAO {
 
         return categorias;
     }
+
+    public void cadastrarCategoria(Categoria categoria) {
+        String sql = "insert into categoria(categoria) values(?)";
+        try (PreparedStatement comando = connection.prepareStatement(sql)) {
+            comando.setString(1, categoria.getNomeCatetegoria());
+            comando.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void deletarCategoria(int idCategoria) {
+        String sql = "delete from categoria where ID_categoria = ?";
+        try (PreparedStatement comando = connection.prepareStatement(sql)) {
+            comando.setInt(1, idCategoria);
+            comando.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
 }

@@ -40,6 +40,9 @@ public class TelaProdutosController {
 
     @FXML
     VBox vBoxCadProd;
+    @FXML private VBox vboxNovaCategoria;
+
+    @FXML private TextField txtNovaCategoria;
 
     private CategoriaDAO catDao = new CategoriaDAO();
     private FornecedorDAO forDao = new FornecedorDAO();
@@ -118,5 +121,51 @@ public class TelaProdutosController {
         alerta.setHeaderText(null);
         alerta.setContentText(mensagem);
         alerta.showAndWait();
+    }
+
+    @FXML
+    public void alternarNovaCategoria() {
+        boolean visivel = vboxNovaCategoria.isVisible();
+        vboxNovaCategoria.setVisible(!visivel);
+        vboxNovaCategoria.setManaged(!visivel);
+        if (visivel) txtNovaCategoria.clear();
+    }
+
+    @FXML
+    public void salvarNovaCategoria() {
+        String nome = txtNovaCategoria.getText().trim();
+        if (nome.isEmpty()) {
+            exibirAlerta("Aviso", "Digite um nome para a categoria.");
+            return;
+        }
+
+        Categoria nova = new Categoria();
+        nova.setNomeCatetegoria(nome);
+        catDao = new CategoriaDAO(); // nova conexão
+        catDao.cadastrarCategoria(nova);
+
+        alternarNovaCategoria();
+        recarregarCategorias();
+        exibirAlerta("Sucesso", "Categoria \"" + nome + "\" cadastrada!");
+    }
+
+    @FXML
+    public void removerCategoria() {
+        Categoria selecionada = comboCat.getValue();
+        if (selecionada == null) {
+            exibirAlerta("Aviso", "Selecione uma categoria para remover.");
+            return;
+        }
+
+        catDao = new CategoriaDAO();
+        catDao.deletarCategoria(selecionada.getID_categoria());
+        comboCat.setValue(null);
+        recarregarCategorias();
+        exibirAlerta("Sucesso", "Categoria removida!");
+    }
+
+    private void recarregarCategorias() {
+        catDao = new CategoriaDAO();
+        comboCat.setItems(FXCollections.observableArrayList(catDao.listarCategoria()));
     }
 }

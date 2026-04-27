@@ -39,13 +39,13 @@
                         <VBox spacing="5.0" HBox.hgrow="SOMETIMES">
                            <children>
                               <Label text="Preço:" />
-                              <TextField fx:id="txtPreco" promptText="Apenas numeros aqui" />
+                              <TextField fx:id="txtPreco" promptText="Apenas números aqui" />
                            </children>
                         </VBox>
                         <VBox spacing="5.0" HBox.hgrow="SOMETIMES">
                            <children>
                               <Label text="Quantidade:" />
-                              <TextField fx:id="txtQuant" />
+                              <TextField fx:id="txtQuant" promptText="Apenas números aqui"/>
                            </children>
                         </VBox>
                      </children>
@@ -55,15 +55,37 @@
                         <VBox spacing="5.0" HBox.hgrow="SOMETIMES">
                            <children>
                               <Label text="Minimo no Estoque:" />
-                              <TextField fx:id="txtMinEs" promptText="Apenas numeros aqui" />
+                              <TextField fx:id="txtMinEs" promptText="Apenas números aqui" />
                            </children>
                         </VBox>
-                        <VBox spacing="5.0" HBox.hgrow="SOMETIMES">
-                           <children>
-                              <Label text="Categoria:" />
-                              <ComboBox fx:id="comboCat" promptText="Selecione a Categoria do Produto" />
-                           </children>
-                        </VBox>
+                         <VBox spacing="5.0" HBox.hgrow="SOMETIMES">
+                             <children>
+                                 <Label text="Categoria:" />
+                                 <HBox spacing="5.0" alignment="CENTER_LEFT">
+                                     <children>
+                                         <ComboBox fx:id="comboCat" promptText="Selecione a Categoria do Produto" HBox.hgrow="ALWAYS" maxWidth="1.7976931348623157E308" />
+                                         <Button text="+" onAction="#alternarNovaCategoria"
+                                                 style="-fx-background-color: #49b69b; -fx-text-fill: white; -fx-font-weight: bold; -fx-background-radius: 6px; -fx-padding: 6px 12px; -fx-cursor: hand;" />
+                                     </children>
+                                 </HBox>
+                                 <VBox fx:id="vboxNovaCategoria" spacing="8.0" style="-fx-background-color: #f8fafc; -fx-border-color: #cbd5e1; -fx-border-radius: 6px; -fx-background-radius: 6px; -fx-padding: 10px;" managed="false" visible="false">
+                                     <children>
+                                         <Label text="Nova Categoria:" style="-fx-font-weight: bold; -fx-font-size: 12px;" />
+                                         <TextField fx:id="txtNovaCategoria" promptText="Nome da categoria" />
+                                         <HBox spacing="8.0" alignment="CENTER_RIGHT">
+                                             <children>
+                                                 <Button text="Cancelar" onAction="#alternarNovaCategoria"
+                                                         style="-fx-background-color: transparent; -fx-text-fill: #64748b;" />
+                                                 <Button text="Salvar" onAction="#salvarNovaCategoria"
+                                                         style="-fx-background-color: #49b69b; -fx-text-fill: white; -fx-font-weight: bold; -fx-background-radius: 6px; -fx-padding: 6px 14px;" />
+                                                 <Button text="−" onAction="#removerCategoria"
+                                                         style="-fx-background-color: #ef4444; -fx-text-fill: white; -fx-font-weight: bold; -fx-background-radius: 6px; -fx-padding: 6px 12px; -fx-cursor: hand;" />
+                                             </children>
+                                         </HBox>
+                                     </children>
+                                 </VBox>
+                             </children>
+                         </VBox>
                         <VBox spacing="5.0" HBox.hgrow="SOMETIMES">
                            <children>
                               <Label text="Fornecedor:" />

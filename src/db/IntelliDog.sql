@@ -86,7 +86,7 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `intellidog`.`categoria` (
   `ID_categoria` INT NOT NULL AUTO_INCREMENT,
-  `categoria` VARCHAR(20) NOT NULL,
+  `categoria` VARCHAR(60) NOT NULL,
   PRIMARY KEY (`ID_categoria`))
 ENGINE = InnoDB;
 
