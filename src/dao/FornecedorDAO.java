@@ -14,7 +14,7 @@ public class FornecedorDAO {
     Connection connection = ConnectionFactory.getConnection();
 
     public void cadastrarFornecedores(Fornecedor f) throws SQLException{
-        String sql = "INSERT INTO fornecedor (CPNJ, nome_fornecedor, descricao, estado, municipio, telefone) VALUES(?,?,?,?,?,?)";
+        String sql = "INSERT INTO fornecedor (CNPJ, nome_fornecedor, descricao, estado, municipio, telefone) VALUES(?,?,?,?,?,?)";
         try(PreparedStatement ps = connection.prepareStatement(sql)){
                 ps.setString(1,f.getCNPJ());
                 ps.setString(2,f.getNome_fornecedor());
