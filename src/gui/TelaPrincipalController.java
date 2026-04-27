@@ -1,8 +1,6 @@
 package gui;
 
 import dao.DashboardDAO;
-import dashboard.DashboardData;
-import dashboard.DashboardService;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -31,35 +29,53 @@ import javafx.stage.Screen;
 import javafx.stage.Stage;
 import javafx.stage.Window;
 import modelo.Atualizacao;
+import modelo.DashboardData;
+import modelo.DashboardService;
 import modelo.Session;
 import java.util.List;
 
 public class TelaPrincipalController {
 
-    @FXML private BorderPane painelPrincipal;
+    @FXML
+    private BorderPane painelPrincipal;
     private Node painelDashboardOriginal;
 
-    @FXML private Label nomeUsuarioSessao;
-    @FXML private ImageView minhaImagem;
-    @FXML private Button botaoLogout;
+    @FXML
+    private Label nomeUsuarioSessao;
+    @FXML
+    private ImageView minhaImagem;
+    @FXML
+    private Button botaoLogout;
 
     // Botões do Menu Lateral
-    @FXML private Button botaoDashboard;
-    @FXML private Button botaoProdutos;
-    @FXML private Button botaoPedidos;
-    @FXML private Button botaoFornecedores;
-    @FXML private Button botaoCriarConta;
+    @FXML
+    private Button botaoDashboard;
+    @FXML
+    private Button botaoProdutos;
+    @FXML
+    private Button botaoPedidos;
+    @FXML
+    private Button botaoFornecedores;
+    @FXML
+    private Button botaoCriarConta;
 
     // Elementos das Atualizações
-    @FXML private VBox vboxAtualizacoes;
-    @FXML private VBox vboxAdminPost;
-    @FXML private Button botaoNovaAtualizacao;
-    @FXML private TextField campoTituloAtualizacao;
-    @FXML private TextArea campoMensagemAtualizacao;
+    @FXML
+    private VBox vboxAtualizacoes;
+    @FXML
+    private VBox vboxAdminPost;
+    @FXML
+    private Button botaoNovaAtualizacao;
+    @FXML
+    private TextField campoTituloAtualizacao;
+    @FXML
+    private TextArea campoMensagemAtualizacao;
 
     // Elementos dos Gráficos
-    @FXML private PieChart graficoPizza;
-    @FXML private BarChart<String, Number> graficoBarras;
+    @FXML
+    private PieChart graficoPizza;
+    @FXML
+    private BarChart<String, Number> graficoBarras;
 
     public void initialize() {
         if (Session.getUsuario() != null && Session.getUsuario().getNome() != null) {
@@ -127,18 +143,25 @@ public class TelaPrincipalController {
         String estiloInativo = "-fx-background-color: transparent; -fx-text-fill: white; -fx-font-size: 14px;";
         String estiloAtivo = "-fx-background-color: #2563eb; -fx-text-fill: white; -fx-font-weight: bold; -fx-font-size: 14px;";
 
-        if (botaoDashboard != null) botaoDashboard.setStyle(estiloInativo);
-        if (botaoProdutos != null) botaoProdutos.setStyle(estiloInativo);
-        if (botaoPedidos != null) botaoPedidos.setStyle(estiloInativo);
-        if (botaoFornecedores != null) botaoFornecedores.setStyle(estiloInativo);
-        if (botaoCriarConta != null) botaoCriarConta.setStyle(estiloInativo);
+        if (botaoDashboard != null)
+            botaoDashboard.setStyle(estiloInativo);
+        if (botaoProdutos != null)
+            botaoProdutos.setStyle(estiloInativo);
+        if (botaoPedidos != null)
+            botaoPedidos.setStyle(estiloInativo);
+        if (botaoFornecedores != null)
+            botaoFornecedores.setStyle(estiloInativo);
+        if (botaoCriarConta != null)
+            botaoCriarConta.setStyle(estiloInativo);
 
-        if (botaoAtivo != null) botaoAtivo.setStyle(estiloAtivo);
+        if (botaoAtivo != null)
+            botaoAtivo.setStyle(estiloAtivo);
     }
+
+    DashboardService service = new DashboardService();
 
     private void carregarGraficos() {
         if (graficoPizza != null) {
-            DashboardService service = new DashboardService();
             DashboardData dados = service.getDados();
 
             ObservableList<PieChart.Data> pieData = FXCollections.observableArrayList();
@@ -147,14 +170,20 @@ public class TelaPrincipalController {
                 pieData.addAll(
                         new PieChart.Data("Aprovados (Exemplo)", 41),
                         new PieChart.Data("Em aberto (Exemplo)", 24),
-                        new PieChart.Data("Negados (Exemplo)", 11)
-                );
+                        new PieChart.Data("Negados (Exemplo)", 11));
             } else {
-                pieData.addAll(
-                        new PieChart.Data("Aprovados", dados.getTotalAprovados()),
-                        new PieChart.Data("Em aberto", dados.getTotalEmAberto() + dados.getTotalEmAnalise()),
-                        new PieChart.Data("Negados", dados.getTotalNegados())
-                );
+                if (dados.getTotalAprovados() > 0) {
+                    pieData.add(
+                            new PieChart.Data("Aprovados: " + dados.getTotalAprovados(), dados.getTotalAprovados()));
+
+                }
+                if (dados.getTotalEmAberto() > 0 || dados.getTotalEmAnalise() > 0) {
+                    int totalAbertoAnalise = dados.getTotalEmAberto() + dados.getTotalEmAnalise();
+                    pieData.add(new PieChart.Data("Em aberto: " + totalAbertoAnalise, dados.getTotalEmAberto() + dados.getTotalEmAnalise()));
+                }
+                if (dados.getTotalNegados() > 0) {
+                    pieData.add(new PieChart.Data("Negados: " + dados.getTotalNegados(), dados.getTotalNegados()));
+                }
             }
             graficoPizza.setData(pieData);
         }
@@ -193,7 +222,8 @@ public class TelaPrincipalController {
                 card.setPadding(new Insets(12));
 
                 String corFundo = a.isLida() ? "#f8fafc" : "#ffe8cc";
-                card.setStyle("-fx-background-color: " + corFundo + "; -fx-border-color: #e2e8f0; -fx-border-radius: 6px; -fx-background-radius: 6px; -fx-cursor: hand;");
+                card.setStyle("-fx-background-color: " + corFundo
+                        + "; -fx-border-color: #e2e8f0; -fx-border-radius: 6px; -fx-background-radius: 6px; -fx-cursor: hand;");
 
                 HBox header = new HBox();
                 header.setAlignment(Pos.CENTER_LEFT);
@@ -210,7 +240,8 @@ public class TelaPrincipalController {
                 if (meuCargo) {
 
                     Button btnExcluir = new Button("✖");
-                    btnExcluir.setStyle("-fx-background-color: transparent; -fx-text-fill: #ef4444; -fx-cursor: hand; -fx-font-size: 14px; -fx-font-weight: bold; -fx-padding: 0;");
+                    btnExcluir.setStyle(
+                            "-fx-background-color: transparent; -fx-text-fill: #ef4444; -fx-cursor: hand; -fx-font-size: 14px; -fx-font-weight: bold; -fx-padding: 0;");
 
                     btnExcluir.setOnAction(event -> {
                         try {
@@ -242,8 +273,11 @@ public class TelaPrincipalController {
                         try {
                             dao.marcarComoLida(a.getId(), meuEmail);
                             a.setLida(true);
-                            card.setStyle("-fx-background-color: #f8fafc; -fx-border-color: #e2e8f0; -fx-border-radius: 6px; -fx-background-radius: 6px; -fx-cursor: hand;");
-                        } catch (Exception ex) { ex.printStackTrace(); }
+                            card.setStyle(
+                                    "-fx-background-color: #f8fafc; -fx-border-color: #e2e8f0; -fx-border-radius: 6px; -fx-background-radius: 6px; -fx-cursor: hand;");
+                        } catch (Exception ex) {
+                            ex.printStackTrace();
+                        }
                     }
                 });
 
@@ -287,7 +321,9 @@ public class TelaPrincipalController {
             Parent root = FXMLLoader.load(getClass().getResource("/view/TelaPedidos.fxml"));
             painelPrincipal.setCenter(root);
             atualizarMenuLateral(botaoPedidos); // Fica Azul
-        } catch (Exception e) { e.printStackTrace(); }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     @FXML
@@ -296,7 +332,9 @@ public class TelaPrincipalController {
             Parent root = FXMLLoader.load(getClass().getResource("/view/TelaCadastro.fxml"));
             painelPrincipal.setCenter(root);
             atualizarMenuLateral(botaoCriarConta); // Fica Azul
-        } catch (Exception e) { e.printStackTrace(); }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     @FXML
@@ -305,7 +343,9 @@ public class TelaPrincipalController {
             Parent root = FXMLLoader.load(getClass().getResource("/view/TelaProdutos.fxml"));
             painelPrincipal.setCenter(root);
             atualizarMenuLateral(botaoProdutos); // fic azul
-        } catch (Exception e) { e.printStackTrace(); }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     @FXML
@@ -314,7 +354,9 @@ public class TelaPrincipalController {
             Parent root = FXMLLoader.load(getClass().getResource("/view/TelaFornecedores.fxml"));
             painelPrincipal.setCenter(root);
             atualizarMenuLateral(botaoFornecedores); // fica azul
-        } catch (Exception e) { e.printStackTrace(); }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     @FXML
@@ -331,6 +373,8 @@ public class TelaPrincipalController {
                     ((Stage) window).close();
                 }
             }
-        } catch (Exception e) { e.printStackTrace(); }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 }

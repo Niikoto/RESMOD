@@ -95,7 +95,7 @@
                                     <Label style="-fx-font-weight: bold; -fx-font-size: 16px; -fx-text-fill: #334155;" text="Status de pedidos" />
                                     <HBox alignment="CENTER" VBox.vgrow="ALWAYS">
                                        <children>
-                                          <PieChart fx:id="graficoPizza" legendVisible="false" prefHeight="180.0" prefWidth="180.0" />
+                                          <PieChart fx:id="graficoPizza" legendVisible="false" />
                                        </children>
                                     </HBox>
                                  </children>
