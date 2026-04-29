@@ -2,18 +2,19 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.Priority?>
-<?import javafx.scene.layout.Region?>
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 
 <StackPane prefHeight="650.0" prefWidth="900.0" style="-fx-background-color: #f1f5f9;" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.TelaPedirPedidoController">
    <children>
 
-      <VBox maxHeight="-Infinity" maxWidth="600.0" spacing="20.0" style="-fx-background-color: white; -fx-background-radius: 12px; -fx-padding: 35px; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.05), 15, 0, 0, 5);">
+      <VBox maxHeight="-Infinity" maxWidth="700.0" spacing="20.0" style="-fx-background-color: white; -fx-background-radius: 12px; -fx-padding: 35px; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.05), 15, 0, 0, 5);">
          <children>
 
             <HBox alignment="CENTER_LEFT" spacing="15.0">
@@ -27,21 +28,78 @@
                </VBox.margin>
             </HBox>
 
-            <VBox spacing="8.0">
+            <VBox prefHeight="140.0" prefWidth="530.0" spacing="8.0">
                <children>
                   <Label style="-fx-font-weight: bold; -fx-text-fill: #475569; -fx-font-size: 14px;" text="Motivo do Pedido" />
                   <TextArea fx:id="campoMotivo" prefHeight="200.0" promptText="Descreva detalhadamente o motivo deste pedido..." style="-fx-background-radius: 6px; -fx-border-color: #cbd5e1; -fx-border-radius: 6px; -fx-background-color: white; -fx-font-size: 14px;" wrapText="true" />
                </children>
             </VBox>
-
-            <HBox alignment="CENTER_RIGHT" spacing="15.0">
+            <HBox VBox.vgrow="SOMETIMES">
                <children>
-                  <Button mnemonicParsing="false" onAction="#voltarParaPedidos" style="-fx-background-color: transparent; -fx-text-fill: #64748b; -fx-font-weight: bold; -fx-cursor: hand;" text="Cancelar" />
-                  <Button mnemonicParsing="false" onAction="#criarPedido" style="-fx-background-color: #49b69b; -fx-text-fill: white; -fx-font-weight: bold; -fx-background-radius: 6px; -fx-cursor: hand; -fx-padding: 10px 30px;" text="Criar Pedido" />
+                  <VBox HBox.hgrow="SOMETIMES">
+                     <children>
+                        <Label style="-fx-font-weight: bold; -fx-text-fill: #475569; -fx-font-size: 14px;" text="1° Forma de pagamento" />
+                        <ComboBox fx:id="comBoxForUm" promptText="Forma de pagamento" VBox.vgrow="SOMETIMES" />
+                     </children>
+                  </VBox>
+                  <VBox>
+                     <children>
+                        <Label style="-fx-font-weight: bold; -fx-text-fill: #475569; -fx-font-size: 14px;" text="2° Forma de pagamento" />
+                        <ComboBox fx:id="comBoxForDois" promptText="Forma de pagamento" VBox.vgrow="SOMETIMES" />
+                     </children>
+                  </VBox>
+                  <VBox HBox.hgrow="SOMETIMES">
+                     <children>
+            
+                                    <HBox fx:id="hBoxButton" alignment="CENTER_RIGHT" spacing="15.0">
+                           <children>
+                              <Button mnemonicParsing="false" onAction="#voltarParaPedidos" style="-fx-background-color: transparent; -fx-text-fill: #64748b; -fx-font-weight: bold; -fx-cursor: hand;" text="Cancelar" />
+                              <Button mnemonicParsing="false" onAction="#criarPedido" style="-fx-background-color: #49b69b; -fx-text-fill: white; -fx-font-weight: bold; -fx-background-radius: 6px; -fx-cursor: hand; -fx-padding: 10px 30px;" text="Criar Pedido" />
+                           </children>
+                           <VBox.margin>
+                              <Insets top="15.0" />
+                           </VBox.margin>
+                        </HBox>
+                     </children>
+                  </VBox>
                </children>
-               <VBox.margin>
-                  <Insets top="15.0" />
-               </VBox.margin>
+               <padding>
+                  <Insets bottom="15.0" />
+               </padding>
+            </HBox>
+            <HBox fx:id="hBoxProPed" VBox.vgrow="SOMETIMES">
+               <children>
+                  <VBox spacing="15.0" HBox.hgrow="SOMETIMES">
+                     <children>
+                        <HBox spacing="15.0">
+                           <children>
+                              <VBox spacing="15.0" HBox.hgrow="SOMETIMES">
+                                 <children>
+                                    <Label style="-fx-text-fill: #475569; -fx-font-weight: bold; -fx-font-size: 14px;" text="Produtos dentro do Pedido" />
+                                 </children>
+                              </VBox>
+                              <VBox spacing="15.0">
+                                 <children>
+                                    <Button mnemonicParsing="false" style="-fx-background-color: #49b69b; -fx-text-fill: white; -fx-font-weight: bold; -fx-background-radius: 6px; -fx-cursor: hand; -fx-padding: 10px 30px;" text="+ Adicionar Produto" />
+                                 </children>
+                              </VBox>
+                           </children>
+                        </HBox>
+                        <TableView fx:id="tableProPed">
+                          <columns>
+                            <TableColumn minWidth="-1.0" prefWidth="-1.0" text="ID_Produto" />
+                            <TableColumn prefWidth="75.0" text="Nome do produto" />
+                              <TableColumn prefWidth="75.0" text="Preço do produto" />
+                              <TableColumn prefWidth="75.0" text="Quantidade" />
+                              <TableColumn prefWidth="75.0" text="Preço total do produto" />
+                          </columns>
+                           <columnResizePolicy>
+                              <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+                           </columnResizePolicy>
+                        </TableView>
+                     </children>
+                  </VBox>
+               </children>
             </HBox>
 
          </children>

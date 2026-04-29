@@ -7,6 +7,7 @@ public class Pedido {
     private String data_aprovacao;
     private float preco_total;
     private String forma_de_pagamento;
+    private String segunda_forma_de_pagamento;
     private String motivo;
     private String COD_email;
     private Usuario usuario;
@@ -28,6 +29,8 @@ public class Pedido {
     
     public String getForma_de_pagamento() {return forma_de_pagamento;}
     
+    public String getSegunda_forma_de_pagamento() {return segunda_forma_de_pagamento;}
+
     public String getMotivo() {return motivo;}
     
     public String getCOD_email() {return COD_email;}
@@ -38,6 +41,8 @@ public class Pedido {
     public void setMotivo(String motivo) {this.motivo = motivo;}
 
     public void setForma_de_pagamento(String forma_de_pagamento) {this.forma_de_pagamento = forma_de_pagamento;}
+
+    public void setSegunda_forma_de_pagamento(String segunda_forma_de_pagamento) {this.segunda_forma_de_pagamento = segunda_forma_de_pagamento;}
 
     public void setPreco_total(float preco_total) {this.preco_total = preco_total;}
 
