@@ -2,7 +2,7 @@ package modelo;
 
 public class Categoria {
     private int ID_categoria;
-    private String nomeCatetegoria;
+    private String nomeCategoria;
 
     //Constructor vazio
     public Categoria(){}
@@ -10,15 +10,15 @@ public class Categoria {
     //geters
     public int getID_categoria() {return ID_categoria;}
 
-    public String getNomeCatetegoria() {return nomeCatetegoria;}
+    public String getNomeCategoria() {return nomeCategoria;}
 
     //Seters
-    public void setNomeCatetegoria(String nomeCatetegoria) {this.nomeCatetegoria = nomeCatetegoria;}
+    public void setNomeCategoria(String nomeCatetegoria) {this.nomeCategoria = nomeCatetegoria;}
 
     public void setID_categoria(int iD_categoria) {ID_categoria = iD_categoria;}
 
     @Override
     public String toString(){
-        return getNomeCatetegoria();
+        return getNomeCategoria();
     }
 }

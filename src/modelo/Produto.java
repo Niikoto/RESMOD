@@ -8,6 +8,8 @@ public class Produto {
     private int minimo;
     private int COD_categoria;
     private String COD_CNPJ;
+    private Categoria categoria;
+    private Fornecedor fornecedor;
 
     //Constructor vazio
     public Produto(){}
@@ -29,6 +31,10 @@ public class Produto {
 
     public void setID_produto(int iD_produto) {ID_produto = iD_produto;}
 
+    public Categoria getCategoria() {return categoria;}
+
+    public Fornecedor getFornecedor() {return fornecedor;}
+
 
     //Seters
     public void setNome_produto(String nome_produto) {this.nome_produto = nome_produto;}
@@ -42,4 +48,8 @@ public class Produto {
     public void setCOD_categoria(int cOD_categoria) {this.COD_categoria = cOD_categoria;}
 
     public void setCOD_CNPJ(String COD_CNPJ) {this.COD_CNPJ = COD_CNPJ;}
+
+    public void setCategoria(Categoria categoria) {this.categoria = categoria;}
+
+    public void setFornecedor(Fornecedor fornecedor) {this.fornecedor = fornecedor;}
 }

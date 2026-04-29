@@ -2,10 +2,16 @@ package dao;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 import factory.ConnectionFactory;
+import modelo.Categoria;
+import modelo.Fornecedor;
 import modelo.Produto;
+
 
 public class ProdutoDAO {
     Connection connetion = ConnectionFactory.getConnection();
@@ -24,4 +30,45 @@ public class ProdutoDAO {
             comando.executeUpdate();
         }
     }
+
+    public List<Produto> listarProduto() {
+        List<Produto> produtos = new ArrayList<>();
+        Connection conectar = ConnectionFactory.getConnection();
+        ResultSet resultado = null;
+        String sql = "SELECT p.ID_produto, p.nome_produto,p.preco, p.quantidade, f.nome_fornecedor, c.categoria FROM produto p JOIN categoria c ON p.COD_categoria = c.ID_categoria JOIN fornecedor f ON p.COD_CNPJ = f.CNPJ;";
+
+        try (PreparedStatement comando = conectar.prepareStatement(sql)) {
+            resultado = comando.executeQuery();
+
+            if (!resultado.next()) {
+                return produtos;
+            } else {
+                do {
+                    Produto produto = new Produto();
+                    Fornecedor fornecedor = new Fornecedor();
+                    Categoria categoria = new Categoria();
+                    produto.setID_produto(resultado.getInt(1));
+                    produto.setNome_produto(resultado.getString(2));
+                    produto.setPreco(resultado.getFloat(3));
+                    produto.setQuantidade(resultado.getInt(4));
+                    categoria.setNomeCategoria(resultado.getString(5));
+                    fornecedor.setNome_fornecedor(resultado.getString(6));
+
+                    produto.setCategoria(categoria);
+                    produto.setFornecedor(fornecedor);
+                    produtos.add(produto);
+
+                } while (resultado.next());
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return produtos;
+
+    }
+
 }
+
+

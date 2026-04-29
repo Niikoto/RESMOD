@@ -2,18 +2,20 @@ package gui;
 
 import java.text.NumberFormat;
 import java.text.ParseException;
+import java.util.List;
 import java.util.Locale;
 
+import com.mysql.cj.xdevapi.Column;
 import dao.CategoriaDAO;
 import dao.FornecedorDAO;
 import dao.ProdutoDAO;
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Alert;
-import javafx.scene.control.ComboBox;
+import javafx.scene.control.*;
 import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.VBox;
 import modelo.Categoria;
 import modelo.Fornecedor;
@@ -22,7 +24,7 @@ import modelo.Produto;
 public class TelaProdutosController {
 
     @FXML
-    private TableView<?> tabelaProdutos;
+    private TableView<Produto> tabelaProdutos;
 
     @FXML
     private TextField txtNomeProd;
@@ -44,17 +46,36 @@ public class TelaProdutosController {
 
     @FXML private TextField txtNovaCategoria;
 
+    @FXML private TableColumn<Produto, Integer>columnId ;
+    @FXML private TableColumn<Produto, String>columnNome;
+    @FXML private TableColumn<Produto, Integer> columnQuantidade;
+    @FXML private TableColumn<Produto, Float> columnPreco;
+    @FXML private TableColumn<Produto, String> columnCategoria;
+    @FXML private TableColumn<Produto, String> columnFornecedor;
+
     private CategoriaDAO catDao = new CategoriaDAO();
     private FornecedorDAO forDao = new FornecedorDAO();
 
     @FXML
     public void initialize() {
+        columnId.setCellValueFactory(new PropertyValueFactory<>("ID_produto")); //essa parte vai usar o metodo get nas coisas que estão dentro das aspas no parenteses, a primeira letra ele vai deixar maiuscula
+        columnNome.setCellValueFactory(new PropertyValueFactory<>("nome_produto"));
+        columnPreco.setCellValueFactory(new PropertyValueFactory<>("preco"));
+        columnQuantidade.setCellValueFactory(new PropertyValueFactory<>("quantidade"));
+        columnCategoria.setCellValueFactory(cellData -> new javafx.beans.property.SimpleStringProperty(cellData.getValue().getCategoria().getNomeCategoria()));
+        columnFornecedor.setCellValueFactory(cellData -> new javafx.beans.property.SimpleStringProperty(cellData.getValue().getFornecedor().getNome_fornecedor()));
+
+        ProdutoDAO dao = new ProdutoDAO();
+        List<Produto> lista = dao.listarProduto();
+        tabelaProdutos.setItems(FXCollections.observableArrayList(lista));
+
         comboCat.setItems(FXCollections.observableArrayList(catDao.listarCategoria()));
         comboFor.setItems(FXCollections.observableArrayList(forDao.listarFornecedores()));
         // Aqui vais adicionar depois o código para carregar os produtos na tabela
         // tabelaProdutos.setPlaceholder(new Label("Nenhum produto encontrado"));
         vBoxCadProd.setVisible(false);
         vBoxCadProd.setManaged(false);
+
 
     }
 
@@ -143,7 +164,7 @@ public class TelaProdutosController {
         }
 
         Categoria nova = new Categoria();
-        nova.setNomeCatetegoria(nome);
+        nova.setNomeCategoria(nome);
         catDao = new CategoriaDAO(); // nova conexão
         catDao.cadastrarCategoria(nova);
 

@@ -24,7 +24,7 @@ public class CategoriaDAO {
             while (resutado.next()) {
                 Categoria categoria = new Categoria();
                 categoria.setID_categoria(resutado.getInt(1));
-                categoria.setNomeCatetegoria(resutado.getString(2));
+                categoria.setNomeCategoria(resutado.getString(2));
 
                 categorias.add(categoria);
             }
@@ -39,7 +39,7 @@ public class CategoriaDAO {
     public void cadastrarCategoria(Categoria categoria) {
         String sql = "insert into categoria(categoria) values(?)";
         try (PreparedStatement comando = connection.prepareStatement(sql)) {
-            comando.setString(1, categoria.getNomeCatetegoria());
+            comando.setString(1, categoria.getNomeCategoria());
             comando.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
