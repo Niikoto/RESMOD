@@ -9,10 +9,7 @@
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" name="lib" level="project" />
     <orderEntry type="library" name="mysql-connector-j-9.6" level="project" />
-<<<<<<< HEAD
     <orderEntry type="library" name="mysql-connector-j-9.6.0" level="project" />
-=======
     <orderEntry type="library" name="mysql-connector-j-9.7.0" level="project" />
->>>>>>> 2dc019f139ffbb91964f909f760d72b588a676df
   </component>
 </module>
