@@ -7,6 +7,7 @@ public class Produto_has_pedido {
     private int quantidade;
     private float preco_unitario;
     private Produto produto;
+    private Fornecedor fornecedor;
     
     //Constructor vazio
     public Produto_has_pedido() {}
@@ -22,7 +23,9 @@ public class Produto_has_pedido {
     
     public int getCOD_pedido() {return COD_pedido;}
 
-    public Produto geProduto(){return produto;}
+    public Produto getProduto(){return produto;}
+
+    public Fornecedor getFornecedor(){return fornecedor;}
 
     //Seters
     public void setCOD_produto(int COD_produto) {this.COD_produto = COD_produto;}
@@ -36,4 +39,6 @@ public class Produto_has_pedido {
     public void setPreco_unitario(float preco_unitario) {this.preco_unitario = preco_unitario;}
 
     public void setProduto(Produto produto){this.produto = produto;}
+
+    public void setFornecedor(Fornecedor fornecedor){this.fornecedor = fornecedor;}
 }

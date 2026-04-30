@@ -52,4 +52,9 @@ public class Produto {
     public void setCategoria(Categoria categoria) {this.categoria = categoria;}
 
     public void setFornecedor(Fornecedor fornecedor) {this.fornecedor = fornecedor;}
+
+    @Override
+    public String toString(){
+        return getNome_produto() + " | " + getFornecedor();
+    }
 }
