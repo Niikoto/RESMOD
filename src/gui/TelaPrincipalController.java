@@ -87,7 +87,6 @@ public class TelaPrincipalController {
         }
 
         boolean meuCargo = Session.getCargo().isAdm();
-        DashboardDAO dashDao = new DashboardDAO();
 
         if (!meuCargo) {// Isso daqui vai verificar se a pessoa logada tem permissão de adm
             if (botaoCriarConta != null) {// Caso não seja botão na aparece

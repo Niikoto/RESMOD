@@ -117,6 +117,12 @@
                   </VBox>
                </children>
             </HBox>
+            <HBox alignment="TOP_RIGHT" prefHeight="100.0" prefWidth="200.0">
+               <children>
+                  <Label text="Valor total do pedido: " />
+                  <Label fx:id="labelTotal" text="0" />
+               </children>
+            </HBox>
 
          </children>
       </VBox>

@@ -3,6 +3,8 @@ package gui;
 import java.sql.SQLException;
 import java.util.List;
 
+import javafx.scene.control.Label;
+import dao.PedidoDAO;
 import dao.ProdutoDAO;
 import dao.Produto_has_pedidoDAO;
 import javafx.collections.FXCollections;
@@ -65,14 +67,17 @@ public class TelaPedirPedidoController {
     @FXML
     private Button btnCadProd;
 
+    @FXML
+    private Label labelTotal;
+
     private String valorCombo1Anterior = null;
     private String valorCombo2Anterior = null;
 
     private int idPed;
 
-    ProdutoDAO daoProd = new ProdutoDAO();
+    private float totalPedido;
 
-    
+    ProdutoDAO daoProd = new ProdutoDAO();
 
     @FXML
     public void initialize() {
@@ -114,7 +119,7 @@ public class TelaPedirPedidoController {
 
         comboProd.setItems(FXCollections.observableArrayList(daoProd.listarProdutos()));
 
-        comboProd.setOnAction(e ->{
+        comboProd.setOnAction(e -> {
             if (comboProd.getValue() != null) {
                 txtQuant.setDisable(false);
             }
@@ -222,6 +227,7 @@ public class TelaPedirPedidoController {
     public void enviarProdPed(ActionEvent event) {
         Produto_has_pedido p = new Produto_has_pedido();
         Produto_has_pedidoDAO dao = new Produto_has_pedidoDAO();
+        PedidoDAO daoPedido = new PedidoDAO();
 
         p.setQuantidade(Integer.parseInt(txtQuant.getText()));
         p.setCOD_produto(comboProd.getValue().getID_produto());
@@ -232,9 +238,19 @@ public class TelaPedirPedidoController {
 
             List<Produto_has_pedido> list = dao.listarProdutosPedidos(idPed);
             tableProPed.setItems(FXCollections.observableArrayList(list));
+
+            for (Produto_has_pedido item : list) {
+                totalPedido = totalPedido + item.getPreco_unitario();
+            }
+
+            daoPedido.upDatePrecoTotal(idPed, totalPedido);
+            labelTotal.setText(String.format("Total: R$ %.2f", totalPedido));
+            
         } catch (SQLException e) {
             e.printStackTrace();
         }
+
+        totalPedido = 0;
 
         txtQuant.clear();
         txtPreco.clear();
