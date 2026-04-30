@@ -12,9 +12,7 @@ import javafx.geometry.Rectangle2D;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.chart.BarChart;
-import javafx.scene.chart.PieChart;
-import javafx.scene.chart.XYChart;
+import javafx.scene.chart.*;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
@@ -77,12 +75,19 @@ public class TelaPrincipalController {
     @FXML
     private BarChart<String, Number> graficoBarras;
 
+    @FXML
+    private CategoryAxis xAxis;
+
+    @FXML
+    private NumberAxis yAxis;
+
     public void initialize() {
         if (Session.getUsuario() != null && Session.getUsuario().getNome() != null) {
             nomeUsuarioSessao.setText("Olá, " + Session.getUsuario().getNome());
         }
 
         boolean meuCargo = Session.getCargo().isAdm();
+        DashboardDAO dashDao = new DashboardDAO();
 
         if (!meuCargo) {// Isso daqui vai verificar se a pessoa logada tem permissão de adm
             if (botaoCriarConta != null) {// Caso não seja botão na aparece
@@ -160,9 +165,10 @@ public class TelaPrincipalController {
 
     DashboardService service = new DashboardService();
 
-    private void carregarGraficos() {
+    public void carregarGraficos() {
         if (graficoPizza != null) {
             DashboardData dados = service.getDados();
+
 
             ObservableList<PieChart.Data> pieData = FXCollections.observableArrayList();
 
@@ -189,13 +195,25 @@ public class TelaPrincipalController {
         }
 
         if (graficoBarras != null) {
-            XYChart.Series<String, Number> series = new XYChart.Series<>();
-            series.getData().add(new XYChart.Data<>("Cargo 1", 8));
-            series.getData().add(new XYChart.Data<>("Cargo 2", 12));
-            series.getData().add(new XYChart.Data<>("Cargo 3", 21));
-            series.getData().add(new XYChart.Data<>("Cargo 4", 22));
-            series.getData().add(new XYChart.Data<>("Cargo 5", 30));
-            graficoBarras.getData().add(series);
+            try {
+                DashboardDAO dao = new DashboardDAO();
+                List<DashboardData> dados = dao.contarPedidosPorCargo();
+
+                XYChart.Series<String, Number> serie = new XYChart.Series<>();
+                serie.setName("Pedidos por Cargo");
+
+                for (DashboardData item : dados) {
+                    serie.getData().add(
+                            new XYChart.Data<>(item.getNome_cargo(), item.getQuantidade_pedido())
+                    );
+                }
+
+                graficoBarras.getData().clear();
+                graficoBarras.getData().add(serie);
+
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         }
     }
 

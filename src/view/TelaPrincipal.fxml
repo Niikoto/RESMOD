@@ -103,13 +103,13 @@
 
                               <VBox prefHeight="260.0" prefWidth="500.0" style="-fx-background-color: white; -fx-background-radius: 12px; -fx-padding: 20px; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.04), 10, 0, 0, 0);" HBox.hgrow="ALWAYS">
                                  <children>
-                                    <Label style="-fx-font-weight: bold; -fx-font-size: 16px; -fx-text-fill: #334155;" text="Quantidades de pedidos por setor" />
+                                    <Label style="-fx-font-weight: bold; -fx-font-size: 16px; -fx-text-fill: #334155;" text="Quantidades de pedidos por cargo" />
                                     <BarChart fx:id="graficoBarras" legendVisible="false" prefHeight="200.0">
                                        <xAxis>
-                                          <CategoryAxis side="BOTTOM" />
+                                          <CategoryAxis fx:id="xAxis" label="Cargo"  side="BOTTOM" />
                                        </xAxis>
                                        <yAxis>
-                                          <NumberAxis side="LEFT" />
+                                          <NumberAxis fx:id="yAxis" label="Quantidade de Pedidos" side="LEFT" />
                                        </yAxis>
                                     </BarChart>
                                  </children>
