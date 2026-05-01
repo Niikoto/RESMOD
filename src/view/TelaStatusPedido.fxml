@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+
+<StackPane prefHeight="650.0" prefWidth="900.0" style="-fx-background-color: #f1f5f9;" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.TelaStatusPedidoController">
+   <children>
+
+      <VBox maxHeight="-Infinity" maxWidth="750.0" spacing="20.0" style="-fx-background-color: white; -fx-background-radius: 12px; -fx-padding: 35px; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.05), 15, 0, 0, 5);">
+         <children>
+
+            <HBox alignment="CENTER_LEFT" spacing="15.0">
+               <children>
+                  <Button mnemonicParsing="false" onAction="#voltarParaPedidos" style="-fx-background-color: #e2e8f0; -fx-text-fill: #475569; -fx-font-weight: bold; -fx-background-radius: 6px; -fx-cursor: hand; -fx-padding: 6px 12px;" text="&lt; Voltar" />
+
+                  <Label style="-fx-font-size: 22px; -fx-font-weight: bold; -fx-text-fill: #1e293b;" text="Definir Status" />
+               </children>
+               <VBox.margin>
+                  <Insets bottom="10.0" />
+               </VBox.margin>
+            </HBox>
+
+            <VBox prefHeight="140.0" prefWidth="530.0" spacing="8.0">
+               <children>
+                  <Label style="-fx-font-weight: bold; -fx-text-fill: #475569; -fx-font-size: 14px;" text="Pedido(s) Selecionado(s)" />
+                  <TableView fx:id="tablePedido" prefHeight="300.0" style="-fx-background-color: white; -fx-border-color: #e2e8f0; -fx-border-radius: 6px; -fx-font-size: 13px;">
+                     <columns>
+                        <TableColumn fx:id="idPedido" prefWidth="80.0" text="N° Pedido" />
+                        <TableColumn fx:id="motivoPedido" prefWidth="180.0" text="Motivo do Pedido" />
+                        <TableColumn fx:id="formaPagamento" prefWidth="140.0" text="Pagamento" />
+                        <TableColumn fx:id="dataCriado" prefWidth="100.0" text="Criado Em" />
+                        <TableColumn fx:id="statusPedido" prefWidth="100.0" text="Status" />
+                        <TableColumn fx:id="valorTotal" prefWidth="100.0" text="Valor Total" />
+                        <TableColumn fx:id="criadoPor" prefWidth="120.0" text="Criado Por" />
+                     </columns>
+                     <columnResizePolicy>
+                        <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+                     </columnResizePolicy>
+                  </TableView>
+               </children>
+            </VBox>
+            <HBox>
+               <children>
+                  <VBox HBox.hgrow="SOMETIMES">
+                     <children>
+                        <Label style="-fx-font-weight: bold; -fx-text-fill: #475569; -fx-font-size: 14px;" text="Editar motivo" />
+                        <TextArea fx:id="editar_motivo" prefHeight="106.0" prefWidth="864.0" promptText="(Opcional)" />
+                     </children>
+                  </VBox>
+                  <VBox />
+                  <VBox HBox.hgrow="SOMETIMES">
+                     <children>
+                        <HBox fx:id="hBoxButton1" alignment="CENTER_RIGHT" spacing="15.0">
+                           <VBox.margin>
+                              <Insets top="15.0" />
+                           </VBox.margin>
+                        </HBox>
+                     </children>
+                  </VBox>
+               </children>
+               <padding>
+                  <Insets bottom="15.0" />
+               </padding>
+            </HBox>
+            <HBox VBox.vgrow="SOMETIMES">
+               <children>
+                  <VBox HBox.hgrow="SOMETIMES">
+                     <children>
+                        <Label style="-fx-font-weight: bold; -fx-text-fill: #475569; -fx-font-size: 14px;" text="Status do Pedido" />
+                        <ComboBox fx:id="comBoxForUm" promptText="Status" VBox.vgrow="SOMETIMES" />
+                     </children>
+                  </VBox>
+                  <VBox />
+                  <VBox HBox.hgrow="SOMETIMES">
+                     <children>
+            
+                                    <HBox fx:id="hBoxButton" alignment="CENTER_RIGHT" spacing="15.0">
+                           <children>
+                              <Button mnemonicParsing="false" onAction="#voltarParaPedidos" style="-fx-background-color: transparent; -fx-text-fill: #64748b; -fx-font-weight: bold; -fx-cursor: hand;" text="Cancelar" />
+                              <Button mnemonicParsing="false" onAction="#definirNovoStatus" style="-fx-background-color: #49b69b; -fx-text-fill: white; -fx-font-weight: bold; -fx-background-radius: 6px; -fx-cursor: hand; -fx-padding: 10px 30px;" text="Definir Novo Status" />
+                           </children>
+                           <VBox.margin>
+                              <Insets top="15.0" />
+                           </VBox.margin>
+                        </HBox>
+                     </children>
+                  </VBox>
+               </children>
+               <padding>
+                  <Insets bottom="15.0" />
+               </padding>
+            </HBox>
+            <HBox fx:id="hBoxProPed" VBox.vgrow="SOMETIMES" />
+
+         </children>
+      </VBox>
+   </children>
+</StackPane>

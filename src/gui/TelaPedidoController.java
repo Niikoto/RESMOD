@@ -17,11 +17,13 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.BorderPane;
-import javafx.scene.text.Text; // Importação adicionada para a célula expansível
+import javafx.scene.text.Text;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 import modelo.DashboardData;
 import modelo.DashboardService;
 import modelo.Pedido;
+import modelo.Session;
 
 public class TelaPedidoController {
     @FXML
@@ -57,57 +59,44 @@ public class TelaPedidoController {
 
     @FXML
     public void initialize() {
-        idPedido.setCellValueFactory(new PropertyValueFactory<>("iD_pedido")); // essa parte vai usar o metodo get nas
-                                                                               // coisas que estão dentro das aspas no
-                                                                               // parenteses, a primeira letra ele vai
-                                                                               // deixar maiuscula
+        idPedido.setCellValueFactory(new PropertyValueFactory<>("iD_pedido"));
         formaPagamento.setCellValueFactory(new PropertyValueFactory<>("Forma_de_pagamento"));
         dataCriado.setCellValueFactory(new PropertyValueFactory<>("criado"));
         statusPedido.setCellValueFactory(new PropertyValueFactory<>("status"));
         valorTotal.setCellValueFactory(new PropertyValueFactory<>("Preco_total"));
         criadoPor.setCellValueFactory(
-                cellData -> new javafx.beans.property.SimpleStringProperty(cellData.getValue().getUsuario().getNome())); // esse
-                                                                                                                         // daqui
-                                                                                                                         // tá
-                                                                                                                         // diferente
-                                                                                                                         // pois
-                                                                                                                         // estamos
-                                                                                                                         // guarando
-                                                                                                                         // um
-                                                                                                                         // objeto
-                                                                                                                         // do
-                                                                                                                         // usuario
-                                                                                                                         // na
-                                                                                                                         // classe
-                                                                                                                         // pedido
+                cellData -> new javafx.beans.property.SimpleStringProperty(cellData.getValue().getUsuario().getNome()));
 
-        // codigo da linha da tabela expandir quando clica
         motivoPedido.setCellValueFactory(new PropertyValueFactory<>("motivo"));
         motivoPedido.setCellFactory(coluna -> new TableCell<Pedido, String>() {
             private final Text textoExpandido = new Text();
 
             {
-                // Configura o Text para quebrar a linha
                 textoExpandido.wrappingWidthProperty().bind(coluna.widthProperty().subtract(10));
 
                 this.setOnMouseClicked(event -> {
+                    if (event.getClickCount() == 2) {
+                        Pedido pedidoSelecionado = getTableView().getSelectionModel().getSelectedItem();
+                        if (pedidoSelecionado != null) {
+                            abrirPopupStatus(pedidoSelecionado);
+                        }
+                        return;
+                    }
+
                     if (!isEmpty() && getItem() != null) {
-                        // Se estiver com o texto longo visível, esconde. Se não, mostra.
                         if (this.getGraphic() == textoExpandido) {
                             this.setGraphic(null);
                             this.setText(getItem());
                         } else {
                             textoExpandido.setText(getItem());
                             this.setGraphic(textoExpandido);
-                            this.setText(null); // Remove o texto original
+                            this.setText(null);
                         }
-                        // Recalcula apenas as alturas das linhas, sem reiniciar a tabela
                         getTableView().requestLayout();
                     }
                 });
 
                 this.setOnMouseExited(event -> {
-                    // Ao tirar a setinha do mause, se estiver expandido, volta a encolher
                     if (!isEmpty() && this.getGraphic() == textoExpandido) {
                         this.setGraphic(null);
                         this.setText(getItem());
@@ -125,14 +114,51 @@ public class TelaPedidoController {
                     setGraphic(null);
                     setText(null);
                 } else {
-                    // Por padroa, sempre que a tabela for recarregada, fica no modo encolhido
                     setGraphic(null);
                     setText(item);
                 }
             }
         });
 
+        // DIRETOR CLICA DUAS VEZES PARA SELECIONAR PEDIDO
+        tablePedido.setOnMouseClicked(event -> {
+            if (event.getClickCount() == 2) {
+                Pedido pedidoSelecionado = tablePedido.getSelectionModel().getSelectedItem();
+                if (pedidoSelecionado != null) {
+                    abrirPopupStatus(pedidoSelecionado);
+                }
+            }
+        });
+
         atualizarTabelaEDashboard();
+    }
+
+    // PARA ABRIR A TELA DE CONFIRMAR SE O DIRETOR
+    // QUER ANALISAR O PEDIDO
+    private void abrirPopupStatus(Pedido pedido) {
+        if (Session.getCargo().isAdm()){
+            try {
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/TelaStatusPedido.fxml"));
+                Parent root = loader.load();
+
+                TelaStatusPedidoController statusController = loader.getController();
+                statusController.setPedido(pedido);
+                statusController.setPaiController(this);
+
+                Stage popup = new Stage();
+                popup.initModality(Modality.APPLICATION_MODAL);
+                popup.initOwner(tablePedido.getScene().getWindow());
+                popup.setTitle("Definir Status do Pedido #" + pedido.getID_pedido());
+                popup.setScene(new Scene(root));
+                popup.showAndWait();
+
+                atualizarTabelaEDashboard();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        } else {
+            System.out.println("NÃO É ADM");
+        }
     }
 
     public void atualizarTabelaEDashboard() {

@@ -111,4 +111,18 @@ public class PedidoDAO {
             e.printStackTrace();
         }
     }
+
+    public void updateStatus(int idPedido, String novoStatus, String novoMotivo) {
+        String sql = "UPDATE pedido SET status = ?, motivo = ? WHERE ID_pedido = ?;";
+
+        try (PreparedStatement comando = conectar.prepareStatement(sql)) {
+            comando.setString(1, novoStatus);
+            comando.setString(2, novoMotivo);
+            comando.setInt(3, idPedido);
+            comando.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
 }
