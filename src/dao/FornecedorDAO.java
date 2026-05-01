@@ -13,16 +13,15 @@ import modelo.Fornecedor;
 public class FornecedorDAO {
     Connection connection = ConnectionFactory.getConnection();
 
-    public void cadastrarFornecedores(Fornecedor f) throws SQLException{
-        String sql = "INSERT INTO fornecedor (CNPJ, nome_fornecedor, descricao, estado, municipio, telefone) VALUES(?,?,?,?,?,?)";
-        try(PreparedStatement ps = connection.prepareStatement(sql)){
-                ps.setString(1,f.getCNPJ());
-                ps.setString(2,f.getNome_fornecedor());
-                ps.setString(3,f.getDescricao());
-                ps.setString(4,f.getEstado());
-                ps.setString(5,f.getMunicipio());
-                ps.setString(6,f.getTelefone());
-                ps.executeUpdate();
+    public void cadastrarFornecedores(Fornecedor f) throws SQLException {
+        String sql = "INSERT INTO fornecedor (`CNPJ`, nome_fornecedor, descricao, estado, telefone) VALUES(?,?,?,?,?)";
+        try (PreparedStatement ps = connection.prepareStatement(sql)) {
+            ps.setString(1, f.getCNPJ());
+            ps.setString(2, f.getNome_fornecedor());
+            ps.setString(3, f.getDescricao());
+            ps.setString(4, f.getEstado());
+            ps.setString(5, f.getTelefone());
+            ps.executeUpdate();
         }
     }
 

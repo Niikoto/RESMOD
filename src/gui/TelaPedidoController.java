@@ -24,33 +24,64 @@ import modelo.DashboardService;
 import modelo.Pedido;
 
 public class TelaPedidoController {
-    @FXML private TableView<Pedido> tablePedido;
+    @FXML
+    private TableView<Pedido> tablePedido;
 
-    @FXML private TableColumn<Pedido, Integer> idPedido;
-    @FXML private TableColumn<Pedido, String> motivoPedido;
-    @FXML private TableColumn<Pedido, String> formaPagamento;
-    @FXML private TableColumn<Pedido, String> dataCriado;
-    @FXML private TableColumn<Pedido, String> statusPedido;
-    @FXML private TableColumn<Pedido, Float> valorTotal;
-    @FXML private TableColumn<Pedido, String> criadoPor;
+    @FXML
+    private TableColumn<Pedido, Integer> idPedido;
+    @FXML
+    private TableColumn<Pedido, String> motivoPedido;
+    @FXML
+    private TableColumn<Pedido, String> formaPagamento;
+    @FXML
+    private TableColumn<Pedido, String> dataCriado;
+    @FXML
+    private TableColumn<Pedido, String> statusPedido;
+    @FXML
+    private TableColumn<Pedido, Float> valorTotal;
+    @FXML
+    private TableColumn<Pedido, String> criadoPor;
 
-    @FXML private Label telaAprovados;
-    @FXML private Label telaNegados;
-    @FXML private Label telaEmAberto;
-    @FXML private Label telaEmAnalise;
-    @FXML private Label telaTotal;
-    @FXML private Button botaoAdicionarPedido;
+    @FXML
+    private Label telaAprovados;
+    @FXML
+    private Label telaNegados;
+    @FXML
+    private Label telaEmAberto;
+    @FXML
+    private Label telaEmAnalise;
+    @FXML
+    private Label telaTotal;
+    @FXML
+    private Button botaoAdicionarPedido;
 
     @FXML
     public void initialize() {
-        idPedido.setCellValueFactory(new PropertyValueFactory<>("iD_pedido")); //essa parte vai usar o metodo get nas coisas que estão dentro das aspas no parenteses, a primeira letra ele vai deixar maiuscula
+        idPedido.setCellValueFactory(new PropertyValueFactory<>("iD_pedido")); // essa parte vai usar o metodo get nas
+                                                                               // coisas que estão dentro das aspas no
+                                                                               // parenteses, a primeira letra ele vai
+                                                                               // deixar maiuscula
         formaPagamento.setCellValueFactory(new PropertyValueFactory<>("Forma_de_pagamento"));
         dataCriado.setCellValueFactory(new PropertyValueFactory<>("criado"));
         statusPedido.setCellValueFactory(new PropertyValueFactory<>("status"));
         valorTotal.setCellValueFactory(new PropertyValueFactory<>("Preco_total"));
-        criadoPor.setCellValueFactory(cellData -> new javafx.beans.property.SimpleStringProperty(cellData.getValue().getUsuario().getNome())); // esse daqui tá diferente pois estamos guarando um objeto do usuario na classe pedido
+        criadoPor.setCellValueFactory(
+                cellData -> new javafx.beans.property.SimpleStringProperty(cellData.getValue().getUsuario().getNome())); // esse
+                                                                                                                         // daqui
+                                                                                                                         // tá
+                                                                                                                         // diferente
+                                                                                                                         // pois
+                                                                                                                         // estamos
+                                                                                                                         // guarando
+                                                                                                                         // um
+                                                                                                                         // objeto
+                                                                                                                         // do
+                                                                                                                         // usuario
+                                                                                                                         // na
+                                                                                                                         // classe
+                                                                                                                         // pedido
 
-        //codigo da linha da tabela expandir quando clica
+        // codigo da linha da tabela expandir quando clica
         motivoPedido.setCellValueFactory(new PropertyValueFactory<>("motivo"));
         motivoPedido.setCellFactory(coluna -> new TableCell<Pedido, String>() {
             private final Text textoExpandido = new Text();
@@ -142,13 +173,17 @@ public class TelaPedidoController {
         }
     }
 
-    public void adicionarPedido(Pedido pedido) {
+    public int adicionarPedido(Pedido pedido) {
+        int idGerado = 0;
+
         try {
             PedidoDAO dao = new PedidoDAO();
-            dao.cadastrarPedido(pedido);
+            idGerado = dao.cadastrarPedido(pedido);
             atualizarTabelaEDashboard();
         } catch (Exception e) {
             e.printStackTrace();
         }
+
+        return idGerado;
     }
 }

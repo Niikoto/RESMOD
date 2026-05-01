@@ -27,20 +27,8 @@
                             <children>
                                 <VBox spacing="5.0" HBox.hgrow="ALWAYS">
                                     <children>
-                                        <Label style="-fx-text-fill: #475569; -fx-font-size: 13px; -fx-font-weight: bold;" text="Código (ID)" />
-                                        <TextField promptText="Ex.: 00123" style="-fx-background-radius: 6px; -fx-border-color: #cbd5e1; -fx-border-radius: 6px; -fx-background-color: white; -fx-padding: 8px;" />
-                                    </children>
-                                </VBox>
-                                <VBox spacing="5.0" HBox.hgrow="ALWAYS">
-                                    <children>
                                         <Label style="-fx-text-fill: #475569; -fx-font-size: 13px; -fx-font-weight: bold;" text="Nome" />
                                         <TextField promptText="Nome do fornecedor" style="-fx-background-radius: 6px; -fx-border-color: #cbd5e1; -fx-border-radius: 6px; -fx-background-color: white; -fx-padding: 8px;" />
-                                    </children>
-                                </VBox>
-                                <VBox spacing="5.0" HBox.hgrow="ALWAYS">
-                                    <children>
-                                        <Label style="-fx-text-fill: #475569; -fx-font-size: 13px; -fx-font-weight: bold;" text="CPF" />
-                                        <TextField promptText="000.000.000-00" style="-fx-background-radius: 6px; -fx-border-color: #cbd5e1; -fx-border-radius: 6px; -fx-background-color: white; -fx-padding: 8px;" />
                                     </children>
                                 </VBox>
                                 <VBox spacing="5.0" HBox.hgrow="ALWAYS">
@@ -57,13 +45,7 @@
                                 <VBox prefWidth="200.0" spacing="5.0">
                                     <children>
                                         <Label style="-fx-text-fill: #475569; -fx-font-size: 13px; -fx-font-weight: bold;" text="Estado" />
-                                        <ComboBox maxWidth="1.7976931348623157E308" promptText="Selecione" style="-fx-background-radius: 6px; -fx-border-color: #cbd5e1; -fx-border-radius: 6px; -fx-background-color: white;" />
-                                    </children>
-                                </VBox>
-                                <VBox prefWidth="200.0" spacing="5.0">
-                                    <children>
-                                        <Label style="-fx-text-fill: #475569; -fx-font-size: 13px; -fx-font-weight: bold;" text="Município" />
-                                        <ComboBox maxWidth="1.7976931348623157E308" promptText="Selecione" style="-fx-background-radius: 6px; -fx-border-color: #cbd5e1; -fx-border-radius: 6px; -fx-background-color: white;" />
+                                        <ComboBox fx:id="comboPesquisaEstado" maxWidth="1.7976931348623157E308" promptText="Selecione" style="-fx-background-radius: 6px; -fx-border-color: #cbd5e1; -fx-border-radius: 6px; -fx-background-color: white;" />
                                     </children>
                                 </VBox>
 
@@ -110,22 +92,16 @@
                                           <TextField fx:id="txtDescricao" />
                                        </children>
                                     </VBox>
-                                    <VBox HBox.hgrow="SOMETIMES">
-                                       <children>
-                                          <Label style="-fx-text-fill: #475569; -fx-font-weight: bold; -fx-font-size: 13;" text="Estado" />
-                                          <TextField fx:id="txtEstado" />
-                                       </children>
-                                    </VBox>
+                                     <VBox HBox.hgrow="SOMETIMES">
+                                         <children>
+                                             <Label style="-fx-text-fill: #475569; -fx-font-weight: bold; -fx-font-size: 13px;" text="Estado" />
+                                             <ComboBox fx:id="txtEstado" maxWidth="1.7976931348623157E308" promptText="Selecione o Estado" />
+                                         </children>
+                                     </VBox>
                                  </children>
                               </HBox>
                               <HBox spacing="15.0" VBox.vgrow="SOMETIMES">
                                  <children>
-                                    <VBox spacing="4.0" HBox.hgrow="SOMETIMES">
-                                       <children>
-                                          <Label style="-fx-text-fill: #475569; -fx-font-weight: bold; -fx-font-size: 13px;" text="Município" />
-                                          <TextField fx:id="txtMunicipio" />
-                                       </children>
-                                    </VBox>
                                     <VBox spacing="4.0" HBox.hgrow="SOMETIMES">
                                        <children>
                                           <Label style="-fx-text-fill: #475569; -fx-font-size: 13px; -fx-font-weight: bold;" text="Telefone" />
@@ -159,12 +135,9 @@
                             </placeholder>
 
                             <columns>
-                                <TableColumn prefWidth="60.0" text="ID" />
                                 <TableColumn prefWidth="150.0" text="NOME" />
-                                <TableColumn prefWidth="120.0" text="CPF" />
                                 <TableColumn prefWidth="120.0" text="CNPJ" />
                                 <TableColumn prefWidth="100.0" text="ESTADO" />
-                                <TableColumn prefWidth="150.0" text="MUNICÍPIO" />
                                 <TableColumn prefWidth="120.0" text="TELEFONE" />
                             </columns>
                             <columnResizePolicy>

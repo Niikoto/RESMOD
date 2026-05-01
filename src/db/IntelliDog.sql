@@ -99,7 +99,6 @@ CREATE TABLE IF NOT EXISTS `intellidog`.`fornecedor` (
   `nome_fornecedor` VARCHAR(45) NOT NULL,
   `descricao` LONGTEXT NULL,
   `estado` VARCHAR(2) NOT NULL,
-  `municipio` VARCHAR(50) NOT NULL,
   `telefone` VARCHAR(12) NOT NULL,
   PRIMARY KEY (`CNPJ`))
 ENGINE = InnoDB;

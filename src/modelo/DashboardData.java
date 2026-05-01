@@ -14,6 +14,15 @@ public class DashboardData {
     private int totalGerentes;
     private int totalComuns;
 
+    private String nome_cargo;
+    private int quantidade_pedido;
+
+    public String getNome_cargo() {return nome_cargo;}
+    public void setNome_cargo(String nome_cargo) {this.nome_cargo = nome_cargo;}
+
+    public int getQuantidade_pedido() {return quantidade_pedido;}
+    public void setQuantidade_pedido(int quantidade_pedido) {this.quantidade_pedido = quantidade_pedido;}
+
     public int getTotalUsuarios() { return totalUsuarios; }
     public void setTotalUsuarios(int totalUsuarios) { this.totalUsuarios = totalUsuarios; }
 

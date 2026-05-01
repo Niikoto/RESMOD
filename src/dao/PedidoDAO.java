@@ -10,16 +10,17 @@ import java.util.List;
 import factory.ConnectionFactory;
 import modelo.DashboardData;
 import modelo.Pedido;
-import modelo.Session;
 import modelo.Usuario;
 
 public class PedidoDAO {
     Connection conectar = ConnectionFactory.getConnection();
 
-    public void cadastrarPedido(Pedido p) throws SQLException {
+    public int cadastrarPedido(Pedido p) throws SQLException {
         String sql = "INSERT INTO pedido(criado, `status`, motivo, preco_total, forma_de_pagamento, segunda_forma_de_pagamento, COD_email) VALUES(NOW(), ?, ?, 0, ?, ?, ?);";
 
-        try (PreparedStatement comando = conectar.prepareStatement(sql)) {
+        int idPed = 0;
+
+        try (PreparedStatement comando = conectar.prepareStatement(sql, PreparedStatement.RETURN_GENERATED_KEYS)) {
             comando.setString(1, p.getStatus());
             comando.setString(2, p.getMotivo());
             comando.setString(3, p.getForma_de_pagamento());
@@ -27,7 +28,13 @@ public class PedidoDAO {
             comando.setString(5, p.getCOD_email());
 
             comando.executeUpdate();
-            conectar.close();
+
+            ResultSet resultado = comando.getGeneratedKeys();
+            if (resultado.next()) {
+                return idPed = resultado.getInt(1);
+            }
+
+            return idPed;
         }
     }
 
@@ -35,7 +42,7 @@ public class PedidoDAO {
         List<Pedido> pedidos = new ArrayList<>();
         Connection conectar = ConnectionFactory.getConnection();
         ResultSet resultado = null;
-        String sql = "SELECT p.ID_pedido, p.motivo,p.forma_de_pagamento, DATE_FORMAT(p.criado, '%d/%m/%Y') as 'criado', p.status, p.preco_total, p.COD_email, u.nome FROM pedido p JOIN usuario u ON p.COD_email = u.ID_email;";
+        String sql = "SELECT p.ID_pedido, p.motivo,p.forma_de_pagamento, DATE_FORMAT(p.criado, '%d/%m/%Y') as 'criado', p.status, p.preco_total, p.COD_email, u.nome FROM pedido p JOIN usuario u ON p.COD_email = u.ID_email order by p.ID_pedido desc;";
 
         try (PreparedStatement comando = conectar.prepareStatement(sql)) {
             resultado = comando.executeQuery();
@@ -78,7 +85,6 @@ public class PedidoDAO {
         try (PreparedStatement comando = conectar.prepareStatement(sql)) {
             resultado = comando.executeQuery();
 
-
             if (resultado.next()) {
                 dashData.setTotalEmAberto(resultado.getInt("emAberto"));
                 dashData.setTotalEmAnalise(resultado.getInt("emAnalise"));
@@ -94,18 +100,15 @@ public class PedidoDAO {
 
     }
 
-    public int trazerCodPed(){
-        int numPed = 0;
-        String sql = "select ID_pedido from pedido where COD_email = ? order by ID_pedido desc limit 1;";
+    public void upDatePrecoTotal(int id, float valorTotal){
+        String sql = "update pedido set preco_total = ? where ID_pedido = ?;";
 
         try(PreparedStatement comando = conectar.prepareStatement(sql)) {
-            comando.setString(1, Session.getUsuario().getId_Email());
-            numPed = comando.executeUpdate();
+            comando.setFloat(1, valorTotal);
+            comando.setInt(2, id);
+            comando.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
         }
-
-        return numPed;
     }
-
 }

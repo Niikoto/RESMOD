@@ -2,6 +2,9 @@ package dao;
 
 import factory.ConnectionFactory;
 import modelo.Atualizacao;
+import modelo.Cargo;
+import modelo.DashboardData;
+
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -76,6 +79,25 @@ public class DashboardDAO {
             }
         }
         return lista;
+    }
+
+    public List<DashboardData> contarPedidosPorCargo() throws Exception {
+        List<DashboardData> lista = new ArrayList<>();
+        Connection conn = ConnectionFactory.getConnection();
+        String sql = "SELECT c.tipo, COUNT(u.COD_cargo) FROM pedido p JOIN usuario u ON p.COD_email = u.ID_email JOIN cargo c ON u.COD_cargo = c.ID_cargo GROUP BY c.tipo ORDER BY COUNT(u.COD_cargo) DESC LIMIT 5;";
+        try(PreparedStatement ps = conn.prepareStatement(sql)){
+            ResultSet rs = ps.executeQuery();
+            if (!rs.next()){
+                return lista;
+            } else {
+                do{
+                    DashboardData info_temp = new DashboardData();
+                    info_temp.setNome_cargo(rs.getString(1));
+                    info_temp.setQuantidade_pedido(rs.getInt(2));
+                    lista.add(info_temp);
+                } while (rs.next());
+            }
+        } return lista;
     }
 
     public void marcarComoLida(int idAtualizacao, String emailUsuario) throws Exception {
