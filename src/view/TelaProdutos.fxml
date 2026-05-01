@@ -122,7 +122,7 @@
 
                                 <Region VBox.vgrow="ALWAYS" />
 
-                                <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" style="-fx-background-color: #3b82f6; -fx-text-fill: white; -fx-font-weight: bold; -fx-background-radius: 6px; -fx-padding: 10px; -fx-cursor: hand;" text="Gerenciar Estoque ➔" />
+                                <Button fx:id="gerenciarEst" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#botaoEstoque" style="-fx-background-color: #3b82f6; -fx-text-fill: white; -fx-font-weight: bold; -fx-background-radius: 6px; -fx-padding: 10px; -fx-cursor: hand;" text="Gerenciar Estoque ➔" />
                             </children>
                         </VBox>
 

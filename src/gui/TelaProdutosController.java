@@ -12,14 +12,21 @@ import dao.ProdutoDAO;
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.VBox;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
 import modelo.Categoria;
 import modelo.Fornecedor;
 import modelo.Produto;
+
+import javax.swing.*;
 
 public class TelaProdutosController {
 
@@ -192,4 +199,41 @@ public class TelaProdutosController {
         catDao = new CategoriaDAO();
         comboCat.setItems(FXCollections.observableArrayList(catDao.listarCategoria()));
     }
+
+    // Botão do produto para gerencia de estoque
+    @FXML
+    private void botaoEstoque() {
+        Produto produto = tabelaProdutos.getSelectionModel().getSelectedItem();
+
+        if (produto == null) {
+            System.out.println("Selecione um produto!");
+            return;
+        }
+
+        modalEstoque(produto);
+    }
+
+    // modal do estoque
+    private void modalEstoque(Produto produto) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/TelaEditEstoqueProduto.fxml"));
+            Parent root = loader.load();
+
+            TelaEstoqueController controller = loader.getController();
+            controller.setProdutos(produto);
+
+            Stage modal = new Stage();
+            modal.initModality(Modality.APPLICATION_MODAL);
+            modal.setScene(new Scene(root));
+            modal.setTitle("Editar Produto");
+
+            modal.showAndWait();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+
+
 }
