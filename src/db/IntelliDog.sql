@@ -175,6 +175,41 @@ CREATE TABLE IF NOT EXISTS `intellidog`.`entrada_saida` (
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
+-- -----------------------------------------------------
+-- Table `intellidog`.`atualizacao`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `intellidog`.`atualizacao` (
+  `ID_atualizacao` INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  `titulo` VARCHAR(45) NOT NULL,
+  `mensagem` LONGTEXT NOT NULL,
+  `data_hora` DATETIME)
+ENGINE = InnoDB;
+
+-- -----------------------------------------------------
+-- Table `intellidog`.`atualizacao_lida`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS intellidog.atualizacao_lida (
+  ID_atualizacao_lida INT NOT NULL PRIMARY KEY,
+  ID_atualizacao INT NOT NULL,
+  COD_email VARCHAR(45) NOT NULL,
+
+  INDEX fk_atualizacao_lida_idx (COD_email ASC) VISIBLE,
+  INDEX fk_atualizacao_idx (ID_atualizacao ASC) VISIBLE,
+
+  CONSTRAINT fk_atualizacao_lida1
+    FOREIGN KEY (COD_email)
+    REFERENCES intellidog.usuario (ID_email)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+
+  CONSTRAINT fk_atualizacao_lida2
+    FOREIGN KEY (ID_atualizacao)
+    REFERENCES intellidog.atualizacao (ID_atualizacao)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION
+)
+ENGINE = InnoDB;
+
 
 SET SQL_MODE=@OLD_SQL_MODE;
 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;

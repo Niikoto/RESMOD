@@ -48,7 +48,7 @@ public class DashboardDAO {
     // aq é o novo metodo pra add as atualizaçao na tela, que tava no desing do figma
 
     public void inserirAtualizacao(String titulo, String mensagem) throws Exception {
-        String sql = "INSERT INTO atualizacao (titulo, mensagem) VALUES (?, ?)";
+        String sql = "INSERT INTO atualizacao (titulo, mensagem, data_hora) VALUES (?, ?, now())";
         try (Connection conn = ConnectionFactory.getConnection();
              PreparedStatement stmt = conn.prepareStatement(sql)) {
             stmt.setString(1, titulo);
@@ -60,7 +60,7 @@ public class DashboardDAO {
     public List<Atualizacao> listarAtualizacoes(String emailUsuarioLogado) throws Exception {
         List<Atualizacao> lista = new ArrayList<>();
         String sql = "SELECT a.ID_atualizacao, a.titulo, a.mensagem, DATE_FORMAT(a.data_hora, '%d/%m %H:%i') as data, " +
-                "(SELECT COUNT(*) FROM atualizacao_lida al WHERE al.ID_atualizacao = a.ID_atualizacao AND al.ID_email = ?) as foi_lida " +
+                "(SELECT COUNT(*) FROM atualizacao_lida al WHERE al.ID_atualizacao = a.ID_atualizacao AND al.COD_email = ?) as foi_lida " +
                 "FROM atualizacao a ORDER BY a.data_hora DESC LIMIT 10";
 
         try (Connection conn = ConnectionFactory.getConnection();
@@ -101,7 +101,7 @@ public class DashboardDAO {
     }
 
     public void marcarComoLida(int idAtualizacao, String emailUsuario) throws Exception {
-        String sql = "INSERT IGNORE INTO atualizacao_lida (ID_atualizacao, ID_email) VALUES (?, ?)";
+        String sql = "INSERT IGNORE INTO atualizacao_lida (ID_atualizacao, COD_email) VALUES (?, ?)";
         try (Connection conn = ConnectionFactory.getConnection();
              PreparedStatement stmt = conn.prepareStatement(sql)) {
             stmt.setInt(1, idAtualizacao);
