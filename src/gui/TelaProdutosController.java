@@ -16,8 +16,6 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TableColumn;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
@@ -60,6 +58,8 @@ public class TelaProdutosController {
     @FXML private TableColumn<Produto, String> columnCategoria;
     @FXML private TableColumn<Produto, String> columnFornecedor;
 
+    @FXML private TextField txtNomePes;
+
     private CategoriaDAO catDao = new CategoriaDAO();
     private FornecedorDAO forDao = new FornecedorDAO();
 
@@ -73,17 +73,20 @@ public class TelaProdutosController {
         columnFornecedor.setCellValueFactory(cellData -> new javafx.beans.property.SimpleStringProperty(cellData.getValue().getFornecedor().getNome_fornecedor()));
 
         ProdutoDAO dao = new ProdutoDAO();
-        List<Produto> lista = dao.listarProduto();
+        List<Produto> lista = dao.listarProduto("");
         tabelaProdutos.setItems(FXCollections.observableArrayList(lista));
 
         comboCat.setItems(FXCollections.observableArrayList(catDao.listarCategoria()));
-        comboFor.setItems(FXCollections.observableArrayList(forDao.listarFornecedores()));
+        comboFor.setItems(FXCollections.observableArrayList(forDao.listarFornecedor()));
         // Aqui vais adicionar depois o código para carregar os produtos na tabela
         // tabelaProdutos.setPlaceholder(new Label("Nenhum produto encontrado"));
         vBoxCadProd.setVisible(false);
         vBoxCadProd.setManaged(false);
 
-
+        txtNomePes.setOnAction(e -> {
+            List<Produto> list = dao.listarProduto(txtNomePes.getText());
+            tabelaProdutos.setItems(FXCollections.observableArrayList(list));
+        });
     }
 
     @FXML
@@ -140,6 +143,9 @@ public class TelaProdutosController {
             exibirAlerta("Sucesso", "Produto cadastro");
             vBoxCadProd.setVisible(false);
             vBoxCadProd.setManaged(false);
+
+            List<Produto> lista = prodDao.listarProduto("");
+            tabelaProdutos.setItems(FXCollections.observableArrayList(lista));
         } catch (Exception e) {
             e.printStackTrace();
             exibirAlerta("Erro", "Não foi possivel cadastrar o produto");

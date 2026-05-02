@@ -31,13 +31,14 @@ public class ProdutoDAO {
         }
     }
 
-    public List<Produto> listarProduto() {
+    public List<Produto> listarProduto(String nome) {
         List<Produto> produtos = new ArrayList<>();
         Connection conectar = ConnectionFactory.getConnection();
         ResultSet resultado = null;
-        String sql = "SELECT p.ID_produto, p.nome_produto,p.preco, p.quantidade, f.nome_fornecedor, c.categoria FROM produto p JOIN categoria c ON p.COD_categoria = c.ID_categoria JOIN fornecedor f ON p.COD_CNPJ = f.CNPJ;";
+        String sql = "SELECT p.ID_produto, p.nome_produto,p.preco, p.quantidade, f.nome_fornecedor, c.categoria FROM produto p JOIN categoria c ON p.COD_categoria = c.ID_categoria JOIN fornecedor f ON p.COD_CNPJ = f.CNPJ where p.nome_produto like ?;";
 
         try (PreparedStatement comando = conectar.prepareStatement(sql)) {
+            comando.setString(1, "%" + nome + "%");
             resultado = comando.executeQuery();
 
             if (!resultado.next()) {

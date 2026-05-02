@@ -60,4 +60,31 @@ public class FornecedorDAO {
 
         return fornecedores;
     }
+
+    public List<Fornecedor> listarFornecedor() {
+        List<Fornecedor> fornecedores = new ArrayList<>();
+        ResultSet resultado = null;
+
+        String sql = "select CNPJ, nome_fornecedor from fornecedor;";
+
+        try (PreparedStatement comando = connection.prepareStatement(sql)) {
+            resultado = comando.executeQuery();
+
+            if (!resultado.next()) {
+                return fornecedores;
+            }else{
+                do{
+                    Fornecedor fornecedor = new Fornecedor();
+                    fornecedor.setCNPJ(resultado.getString("CNPJ"));
+                    fornecedor.setNome_fornecedor(resultado.getString("nome_fornecedor"));
+    
+                    fornecedores.add(fornecedor);
+                }while (resultado.next());
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return fornecedores;
+    }
 }
