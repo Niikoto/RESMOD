@@ -7,6 +7,8 @@ public class Fornecedor {
     private String estado;
     private String municipio;
     private String telefone;
+    private String rua;
+    private int numero;
 
     //Constructor vazio
     public Fornecedor() {}
@@ -18,6 +20,8 @@ public class Fornecedor {
     public String getEstado() {return estado;}
     public String getMunicipio() {return municipio;}
     public String getTelefone() {return telefone;}
+    public int getNumero() {return numero;}
+    public String getRua() {return rua;}
 
     //Seters
     public void setCNPJ(String CNPJ) {this.CNPJ = CNPJ;}
@@ -26,6 +30,9 @@ public class Fornecedor {
     public void setEstado(String estado) {this.estado = estado;}
     public void setMunicipio(String municipio) {this.municipio = municipio;}
     public void setTelefone(String telefone) {this.telefone = telefone;}
+    public void setRua(String rua) {this.rua = rua;}
+    public void setNumero(int numero) {this.numero = numero;}
+
 
     @Override
     public String toString(){
