@@ -92,6 +92,7 @@ public class TelaFornecedoresController {
 
         try {
             dao.cadastrarFornecedores(fornecedor);
+
             txtCnpj.clear();
             txtNome.clear();
             txtDescricao.clear();
@@ -100,6 +101,7 @@ public class TelaFornecedoresController {
             hboxCad.setVisible(false);
             hboxCad.setManaged(false);
             exibirAlerta("Sucesso", "Fornecedor cadastrado com sucesso!");
+            iniciarPesquisa();
         } catch (SQLException e) {
             e.printStackTrace();
             exibirAlerta("Erro", "Detalhes: " + e.getMessage());
@@ -116,6 +118,10 @@ public class TelaFornecedoresController {
 
     @FXML
     public void btnPesquisar(ActionEvent event){
+        iniciarPesquisa();
+    }
+
+    public void iniciarPesquisa(){
         Fornecedor fornecedor = new Fornecedor();
         FornecedorDAO dao = new FornecedorDAO();
 

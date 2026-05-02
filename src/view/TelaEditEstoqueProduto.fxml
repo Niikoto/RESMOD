@@ -1,56 +1,46 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
-
+<?import java.lang.String?>
 <?import javafx.collections.FXCollections?>
-<AnchorPane prefWidth="600" prefHeight="400"
-            xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="gui.TelaEstoqueController">
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<AnchorPane nodeOrientation="LEFT_TO_RIGHT" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #f1f5f9; -fx-background: #f1f5f9;" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.TelaEstoqueController">
 
     <children>
 
-        <VBox spacing="15"
-              AnchorPane.topAnchor="20"
-              AnchorPane.leftAnchor="20"
-              AnchorPane.rightAnchor="20">
+              <VBox layoutX="120.0" layoutY="83.0" prefHeight="234.0" prefWidth="358.0" spacing="15" style="-fx-padding: 25; -fx-background-radius: 12px; -fx-background-color: white; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.05), 10, 0, 0, 5);">
 
-            <!-- Título -->
-            <Label text="Gerenciar Estoque"
-                   style="-fx-font-size: 18px; -fx-font-weight: bold;" />
+                        <!-- Título -->
+            <Label style="-fx-font-size: 18px; -fx-font-weight: bold;" text="Gerenciar Estoque" />
 
-            <!-- Nome -->
-            <Label fx:id="nomeField"
-                   text="Carregador"
-                   style="-fx-font-size: 14px;" />
+                  <!-- Nome -->
+            <Label fx:id="nomeField" style="-fx-font-size: 14px;" text="Carregador" />
 
-            <TextField fx:id="quantidadeField"
-                       promptText="Insira a quantidade"
-                       style="-fx-background-radius: 10;" />
+                  <TextField fx:id="quantidadeField" promptText="Insira a quantidade" style="-fx-background-radius: 5px;" />
 
-            <!-- Controle -->
-            <ComboBox fx:id="tipoOperacaoBox"
-                      promptText="Entrada ou saída">
+                           <!-- Controle -->
+            <ComboBox fx:id="tipoOperacaoBox" promptText="Entrada ou saída" VBox.vgrow="SOMETIMES">
                 <items>
                     <FXCollections fx:factory="observableArrayList">
-                        <String fx:value="Entrada"/>
-                        <String fx:value="Saída"/>
+                        <String fx:value="Entrada" />
+                        <String fx:value="Saída" />
                     </FXCollections>
                 </items>
             </ComboBox>
 
-            <!-- Botão -->
-            <HBox spacing="10">
-                <Button text="Cancelar" onAction="#cancelar"/>
-                <Button text="Enviar" onAction="#enviar"
-                        style="-fx-background-color: lightgreen;"/>
+                  <!-- Botão -->
+            <HBox nodeOrientation="RIGHT_TO_LEFT" spacing="10" VBox.vgrow="SOMETIMES">
+                <Button onAction="#enviar" style="-fx-background-color: #49b69b; -fx-text-fill: white; -fx-font-weight: bold;" text="Enviar" HBox.hgrow="SOMETIMES" />
+                <Button onAction="#cancelar" text="Cancelar" HBox.hgrow="SOMETIMES" />
             </HBox>
 
-        </VBox>
+              </VBox>
 
     </children>
 </AnchorPane>

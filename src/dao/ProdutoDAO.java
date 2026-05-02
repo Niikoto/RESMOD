@@ -98,4 +98,17 @@ public class ProdutoDAO {
         }
         return produtos;
     }
+
+    public void upDateEstoque(Produto p){
+        String sql = "update produto set quantidade = ? where ID_produto = ?;";
+
+        try(PreparedStatement comando = connetion.prepareStatement(sql)) {
+            comando.setInt(1, p.getQuantidade());
+            comando.setInt(2, p.getID_produto());
+
+            comando.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
 }

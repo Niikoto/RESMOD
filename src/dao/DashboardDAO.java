@@ -2,7 +2,6 @@ package dao;
 
 import factory.ConnectionFactory;
 import modelo.Atualizacao;
-import modelo.Cargo;
 import modelo.DashboardData;
 
 import java.sql.*;

@@ -5,7 +5,6 @@ import java.text.ParseException;
 import java.util.List;
 import java.util.Locale;
 
-import com.mysql.cj.xdevapi.Column;
 import dao.CategoriaDAO;
 import dao.FornecedorDAO;
 import dao.ProdutoDAO;
@@ -23,8 +22,6 @@ import javafx.stage.Stage;
 import modelo.Categoria;
 import modelo.Fornecedor;
 import modelo.Produto;
-
-import javax.swing.*;
 
 public class TelaProdutosController {
 
@@ -227,6 +224,7 @@ public class TelaProdutosController {
 
             TelaEstoqueController controller = loader.getController();
             controller.setProdutos(produto);
+            controller.setAtualizar(this);
 
             Stage modal = new Stage();
             modal.initModality(Modality.APPLICATION_MODAL);
@@ -240,6 +238,11 @@ public class TelaProdutosController {
         }
     }
 
+    public void atualizarTela(){
+        ProdutoDAO daoProd = new ProdutoDAO();
 
+        List<Produto> list = daoProd.listarProduto("");
+        tabelaProdutos.setItems(FXCollections.observableArrayList(list));
+    }
 
 }
