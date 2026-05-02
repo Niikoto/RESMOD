@@ -52,4 +52,16 @@ public class CargoDAO {
 
         return car;//retorna o objeto com informações cadastradas
     }
+
+    public void cadastrarCargo(Cargo c)throws SQLException{
+        Connection conexao = ConnectionFactory.getConnection();
+        String sql = "insert into cargo(tipo,adm) values(?, ?);";
+
+        try(PreparedStatement comando = conexao.prepareStatement(sql)) {
+            comando.setString(1, c.getTipo());
+            comando.setBoolean(2, c.isAdm());
+
+            comando.executeUpdate();
+        }
+    }
 }

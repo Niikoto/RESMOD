@@ -17,12 +17,18 @@ import java.util.List;
 public class TelaCadastroController {
     @FXML private TextField campoNomeCadastro;
     @FXML private TextField campoEmailCadastro;
-    @FXML private PasswordField campoSenhaCadastro;
-    @FXML private ComboBox<Cargo> campoCargo;
+    @FXML private TextField txtCargo;
     @FXML private TextField campoPesquisa; // A barra de pesquisa
+    
+    @FXML private PasswordField campoSenhaCadastro;
+
+    @FXML private ComboBox<String> comboAdm;
+    @FXML private ComboBox<Cargo> campoCargo;
 
     @FXML private FlowPane painelFuncionarios; // Onde os cards serão desenhados
+
     @FXML private VBox vboxFormulario; // O formulário de cadastro
+    @FXML private VBox vboxCargo;
 
     private CargoDAO car = new CargoDAO();
     private UsuarioDAO dao = new UsuarioDAO();
@@ -37,12 +43,17 @@ public class TelaCadastroController {
         vboxFormulario.setVisible(false);
         vboxFormulario.setManaged(false);
 
+        vboxCargo.setVisible(false);
+        vboxCargo.setManaged(false);
+
         carregarListaFuncionarios();
 
         // Adiciona um "ouvinte" à barra de pesquisa. Sempre que o texto muda, ele filtra.
         campoPesquisa.textProperty().addListener((observavel, valorAntigo, valorNovo) -> {
             filtrarFuncionarios(valorNovo);
         });
+
+        comboAdm.getItems().addAll("sim","não");
     }
 
     public void carregarListaFuncionarios() {
@@ -95,6 +106,11 @@ public class TelaCadastroController {
     }
 
     @FXML
+    public void alternarVisibilidadeCargo() {
+        disabilitar();
+    }
+
+    @FXML
     public void cadastrarUsuario(ActionEvent event) {
         Usuario u = new Usuario();
         u.setId_email(campoEmailCadastro.getText());
@@ -134,5 +150,35 @@ public class TelaCadastroController {
         alerta.setHeaderText(null);
         alerta.setContentText(mensagem);
         alerta.showAndWait();
+    }
+
+    @FXML
+    public void enviarCadastroCargo(ActionEvent event){
+        Cargo cargo = new Cargo();
+        CargoDAO dao = new CargoDAO();
+
+        cargo.setTipo(txtCargo.getText());
+        if (comboAdm.getValue().equals("sim")) {
+            cargo.setAdm(true);
+        }else{
+            cargo.setAdm(false);
+        }
+
+        try {            
+            dao.cadastrarCargo(cargo);
+
+            disabilitar();
+
+            campoCargo.setItems(FXCollections.observableArrayList(car.listarCargo()));
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void disabilitar(){
+        boolean visivel = !vboxCargo.isVisible();
+
+        vboxCargo.setVisible(visivel);
+        vboxCargo.setManaged(visivel);
     }
 }
