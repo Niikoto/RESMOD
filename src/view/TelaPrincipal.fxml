@@ -119,7 +119,7 @@
 
                         <HBox alignment="CENTER_LEFT" style="-fx-background-color: #e2e8f0; -fx-background-radius: 8px; -fx-padding: 12px 20px;">
                            <children>
-                              <Label style="-fx-text-fill: #475569; -fx-font-size: 14px;" text="EXEMPLO (Eu tambem não faço ideia do que deveria ter aqui)" />
+                              <Label style="-fx-text-fill: #475569; -fx-font-size: 14px;" text="EXEMPLO ... (Em progresso)" />
                            </children>
                         </HBox>
 

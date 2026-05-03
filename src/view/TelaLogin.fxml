@@ -79,7 +79,7 @@
                 <VBox alignment="CENTER" spacing="4.0">
                     <children>
                         <Label style="-fx-text-fill: #2b59c3; -fx-font-weight: bold; -fx-font-size: 14px;" text="Primeira vez acessando o sistema?" />
-                        <Label style="-fx-text-fill: #888888; -fx-font-size: 12px;" text="Contatar o diretor da empresa" />
+                        <Label style="-fx-text-fill: #888888; -fx-font-size: 12px;" text="Contate o diretor da empresa" />
                     </children>
                     <VBox.margin>
                         <Insets top="15.0" />

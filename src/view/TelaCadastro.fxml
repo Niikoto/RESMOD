@@ -91,7 +91,7 @@
                         <VBox spacing="5.0" HBox.hgrow="ALWAYS">
                            <children>
                               <Label text="Nome do Cargo:" />
-                              <TextField fx:id="txtCargo" promptText="Ex: Diretor, funcionario" />
+                              <TextField fx:id="txtCargo" promptText="Ex: Diretor, funcionário" />
                            </children>
                         </VBox>
                      </children>
@@ -101,7 +101,7 @@
                         <VBox spacing="5.0" HBox.hgrow="ALWAYS">
                            <children>
                               <Label text="Administrador:" />
-                              <ComboBox fx:id="comboAdm" maxWidth="1.7976931348623157E308" promptText="Esse cagor tem poder administrativo?" />
+                              <ComboBox fx:id="comboAdm" maxWidth="1.7976931348623157E308" promptText="Este cargo tem poder administrativo?" />
                            </children>
                         </VBox>
                      </children>
