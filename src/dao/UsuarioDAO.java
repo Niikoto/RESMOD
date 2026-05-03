@@ -30,7 +30,6 @@ public class UsuarioDAO {
             comando.executeUpdate();
 
             //E fechar esta conexão
-            conectar.close();
         }
     }
 
