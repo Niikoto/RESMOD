@@ -23,7 +23,6 @@ import javafx.stage.Stage;
 import modelo.DashboardData;
 import modelo.DashboardService;
 import modelo.Pedido;
-import modelo.Session;
 
 public class TelaPedidoController {
     @FXML

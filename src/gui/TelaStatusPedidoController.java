@@ -21,32 +21,52 @@ import java.util.List;
 
 public class TelaStatusPedidoController {
 
-    @FXML private Label pedido_selecionado;
+    @FXML
+    private Label pedido_selecionado;
 
-    @FXML private ComboBox<String> comBoxForUm;
-    @FXML private HBox hBoxButton;
-    @FXML private HBox hBoxProPed;
-    @FXML private TextArea editar_motivo;
+    @FXML
+    private ComboBox<String> comBoxForUm;
+    @FXML
+    private HBox hBoxButton;
+    @FXML
+    private HBox hBoxProPed;
+    @FXML
+    private TextArea editar_motivo;
 
-    @FXML private TableView<Produto_has_pedido> tableProPed;
+    @FXML
+    private TableView<Produto_has_pedido> tableProPed;
 
-    @FXML private TableColumn<Produto_has_pedido, Integer> colIdProd;
-    @FXML private TableColumn<Produto_has_pedido, String> colNomeProd;
-    @FXML private TableColumn<Produto_has_pedido, Float> colPrecoProd;
-    @FXML private TableColumn<Produto_has_pedido, String> colFor;
-    @FXML private TableColumn<Produto_has_pedido, Integer> colQua;
-    @FXML private TableColumn<Produto_has_pedido, Float> colPrecoTotal;
+    @FXML
+    private TableColumn<Produto_has_pedido, Integer> colIdProd;
+    @FXML
+    private TableColumn<Produto_has_pedido, String> colNomeProd;
+    @FXML
+    private TableColumn<Produto_has_pedido, Float> colPrecoProd;
+    @FXML
+    private TableColumn<Produto_has_pedido, String> colFor;
+    @FXML
+    private TableColumn<Produto_has_pedido, Integer> colQua;
+    @FXML
+    private TableColumn<Produto_has_pedido, Float> colPrecoTotal;
 
-    @FXML private VBox vBox_editar_motivo;
-    @FXML private HBox hBox_status_pedido;
-    @FXML private HBox hBox_add_prod;
+    @FXML
+    private VBox vBox_editar_motivo;
+    @FXML
+    private HBox hBox_status_pedido;
+    @FXML
+    private HBox hBox_add_prod;
 
-    @FXML private ComboBox<Produto> comboProd;
-    @FXML private Button btnCadProd;
-    @FXML private TextField txtQuant;
-    @FXML private TextField txtPreco;
+    @FXML
+    private ComboBox<Produto> comboProd;
+    @FXML
+    private Button btnCadProd;
+    @FXML
+    private TextField txtQuant;
+    @FXML
+    private TextField txtPreco;
 
-    @FXML private Label labelTotal;
+    @FXML
+    private Label labelTotal;
 
     private TelaPedidoController paiController;
     private Pedido pedidoAtual;
@@ -97,13 +117,16 @@ public class TelaStatusPedidoController {
         comBoxForUm.setItems(FXCollections.observableArrayList("em analise", "aprovado", "negado"));
     }
 
-    public Pedido getPedido(Pedido pedido){return pedido;}
+    public Pedido getPedido(Pedido pedido) {
+        return pedido;
+    }
 
     public void setPedido(Pedido pedido) {
         this.pedidoAtual = pedido;
         idPed = pedido.getID_pedido();
         pedido_selecionado.setText(String.valueOf(pedido.getID_pedido()));
-        if((pedido.getCOD_email().equals(Session.getUsuario().getId_Email()) && !pedido.getStatus().equals("em analise")) || Session.getCargo().isAdm()) {
+        
+        if ((pedido.getCOD_email().equals(Session.getUsuario().getId_Email()) && !pedido.getStatus().equals("em analise") && !pedido.getStatus().equals("aprovado") && !pedido.getStatus().equals("negado"))     || Session.getCargo().isAdm()) {
             editar_motivo.setText(pedido.getMotivo());
             vBox_editar_motivo.setVisible(true);
             vBox_editar_motivo.setManaged(true);
@@ -111,15 +134,16 @@ public class TelaStatusPedidoController {
             hBox_status_pedido.setManaged(true);
             hBox_add_prod.setManaged(true);
             hBox_add_prod.setVisible(true);
-        } else {
-            System.out.println("ERRO");
         }
+
         Produto_has_pedidoDAO dao = new Produto_has_pedidoDAO();
         List<Produto_has_pedido> list = dao.listarProdutosPedidos(Integer.parseInt(pedido_selecionado.getText()));
         tableProPed.setItems(FXCollections.observableArrayList(list));
     }
 
-    public void setPaiController(TelaPedidoController pai) {this.paiController = pai;}
+    public void setPaiController(TelaPedidoController pai) {
+        this.paiController = pai;
+    }
 
     @FXML
     public void voltarParaPedidos(ActionEvent event) {
@@ -131,7 +155,9 @@ public class TelaStatusPedidoController {
     public void definirNovoStatus(ActionEvent event) {
         String novoStatus = comBoxForUm.getValue();
 
-        if (novoStatus == null || novoStatus.isEmpty()) {return;}
+        if (novoStatus == null || novoStatus.isEmpty()) {
+            return;
+        }
 
         PedidoDAO dao = new PedidoDAO();
         dao.updateStatus(pedidoAtual.getID_pedido(), novoStatus, editar_motivo.getText());
