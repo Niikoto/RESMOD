@@ -7,14 +7,16 @@
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
-<StackPane prefHeight="650.0" prefWidth="900.0" style="-fx-background-color: #f1f5f9;" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.TelaStatusPedidoController">
+<StackPane prefHeight="835.0" prefWidth="900.0" style="-fx-background-color: #f1f5f9;" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.TelaStatusPedidoController">
    <children>
 
-      <VBox maxHeight="-Infinity" maxWidth="750.0" spacing="20.0" style="-fx-background-color: white; -fx-background-radius: 12px; -fx-padding: 35px; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.05), 15, 0, 0, 5);">
+      <VBox maxHeight="-Infinity" maxWidth="750.0" prefWidth="750.0" spacing="20.0" style="-fx-background-color: white; -fx-background-radius: 12px; -fx-padding: 35px; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.05), 15, 0, 0, 5);">
          <children>
 
             <HBox alignment="CENTER_LEFT" spacing="15.0">
@@ -28,18 +30,26 @@
                </VBox.margin>
             </HBox>
 
-            <VBox prefHeight="140.0" prefWidth="530.0" spacing="8.0">
+            <VBox prefHeight="332.0" prefWidth="680.0" spacing="8.0">
                <children>
-                  <Label style="-fx-font-weight: bold; -fx-text-fill: #475569; -fx-font-size: 14px;" text="Pedido(s) Selecionado(s)" />
-                  <TableView fx:id="tablePedido" prefHeight="300.0" style="-fx-background-color: white; -fx-border-color: #e2e8f0; -fx-border-radius: 6px; -fx-font-size: 13px;">
+                  <Label style="-fx-font-weight: bold; -fx-text-fill: #475569; -fx-font-size: 14px;" text="Nº do pedido selecionado" />
+                  <Label fx:id="pedido_selecionado" style="-fx-font-weight: bold;" text="PEDIDO_SELECIONADO">
+                     <VBox.margin>
+                        <Insets />
+                     </VBox.margin>
+                     <font>
+                        <Font size="19.0" />
+                     </font>
+                  </Label>
+                  <Label style="-fx-font-weight: bold; -fx-text-fill: #475569; -fx-font-size: 14px;" text="Produtos atrelados ao pedido" />
+                  <TableView fx:id="tableProPed">
                      <columns>
-                        <TableColumn fx:id="idPedido" prefWidth="80.0" text="N° Pedido" />
-                        <TableColumn fx:id="motivoPedido" prefWidth="180.0" text="Motivo do Pedido" />
-                        <TableColumn fx:id="formaPagamento" prefWidth="140.0" text="Pagamento" />
-                        <TableColumn fx:id="dataCriado" prefWidth="100.0" text="Criado Em" />
-                        <TableColumn fx:id="statusPedido" prefWidth="100.0" text="Status" />
-                        <TableColumn fx:id="valorTotal" prefWidth="100.0" text="Valor Total" />
-                        <TableColumn fx:id="criadoPor" prefWidth="120.0" text="Criado Por" />
+                        <TableColumn fx:id="colIdProd" minWidth="-1.0" prefWidth="66.399993121624" text="ID_Produto" />
+                        <TableColumn fx:id="colNomeProd" prefWidth="119.199951171875" text="Nome do produto" />
+                        <TableColumn fx:id="colPrecoProd" prefWidth="110.40005493164062" text="Preço do produto" />
+                        <TableColumn fx:id="colFor" prefWidth="75.0" text="Fornedor" />
+                        <TableColumn fx:id="colQua" prefWidth="83.20001220703125" text="Quantidade" />
+                        <TableColumn fx:id="colPrecoTotal" prefWidth="134.39996337890625" text="Preço total do produto" />
                      </columns>
                      <columnResizePolicy>
                         <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
@@ -47,22 +57,40 @@
                   </TableView>
                </children>
             </VBox>
-            <HBox>
+            <Label style="-fx-font-weight: bold; -fx-text-fill: #475569; -fx-font-size: 14px;" text="Adicionar produto ao pedido" />
+            <HBox fx:id="hBox_add_prod" spacing="15.0">
                <children>
                   <VBox HBox.hgrow="SOMETIMES">
                      <children>
-                        <Label style="-fx-font-weight: bold; -fx-text-fill: #475569; -fx-font-size: 14px;" text="Editar motivo" />
-                        <TextArea fx:id="editar_motivo" prefHeight="106.0" prefWidth="864.0" promptText="(Opcional)" />
+                        <Label text="Produto" />
+                        <ComboBox fx:id="comboProd" prefWidth="150.0" promptText="Selecione um produto" />
                      </children>
                   </VBox>
-                  <VBox />
+                  <VBox>
+                     <children>
+                        <Label text="Quantidade" />
+                        <TextField fx:id="txtQuant" promptText="Insira uma quantidade" />
+                     </children>
+                  </VBox>
                   <VBox HBox.hgrow="SOMETIMES">
                      <children>
-                        <HBox fx:id="hBoxButton1" alignment="CENTER_RIGHT" spacing="15.0">
-                           <VBox.margin>
-                              <Insets top="15.0" />
-                           </VBox.margin>
-                        </HBox>
+                        <Label text="Preço" />
+                        <TextField fx:id="txtPreco" promptText="Mexa depois de inserir quantidade" />
+                     </children>
+                  </VBox>
+                  <VBox spacing="15.0">
+                     <children>
+                        <Button fx:id="btnCadProd" mnemonicParsing="false" onAction="#enviarProdPed" style="-fx-background-color: #49b69b; -fx-text-fill: white; -fx-font-weight: bold; -fx-background-radius: 6px; -fx-cursor: hand; -fx-padding: 10px 30px;" text="+ Adicionar Produto" />
+                     </children>
+                  </VBox>
+               </children>
+            </HBox>
+            <HBox>
+               <children>
+                  <VBox fx:id="vBox_editar_motivo" HBox.hgrow="SOMETIMES">
+                     <children>
+                        <Label style="-fx-font-weight: bold; -fx-text-fill: #475569; -fx-font-size: 14px;" text="Editar motivo" />
+                        <TextArea fx:id="editar_motivo" prefHeight="106.0" prefWidth="864.0" promptText="(Opcional)" />
                      </children>
                   </VBox>
                </children>
@@ -70,7 +98,7 @@
                   <Insets bottom="15.0" />
                </padding>
             </HBox>
-            <HBox VBox.vgrow="SOMETIMES">
+            <HBox fx:id="hBox_status_pedido" VBox.vgrow="SOMETIMES">
                <children>
                   <VBox HBox.hgrow="SOMETIMES">
                      <children>
@@ -78,7 +106,6 @@
                         <ComboBox fx:id="comBoxForUm" promptText="Status" VBox.vgrow="SOMETIMES" />
                      </children>
                   </VBox>
-                  <VBox />
                   <VBox HBox.hgrow="SOMETIMES">
                      <children>
             
@@ -98,7 +125,11 @@
                   <Insets bottom="15.0" />
                </padding>
             </HBox>
-            <HBox fx:id="hBoxProPed" VBox.vgrow="SOMETIMES" />
+            <HBox fx:id="hBoxProPed" alignment="TOP_RIGHT" VBox.vgrow="SOMETIMES">
+               <children>
+                  <Label text="Valor total do pedido: " />
+                  <Label fx:id="labelTotal" text="0" />
+               </children></HBox>
 
          </children>
       </VBox>

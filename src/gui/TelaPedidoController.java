@@ -136,7 +136,6 @@ public class TelaPedidoController {
     // PARA ABRIR A TELA DE CONFIRMAR SE O DIRETOR
     // QUER ANALISAR O PEDIDO
     private void abrirPopupStatus(Pedido pedido) {
-        if (Session.getCargo().isAdm()){
             try {
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/TelaStatusPedido.fxml"));
                 Parent root = loader.load();
@@ -156,9 +155,6 @@ public class TelaPedidoController {
             } catch (IOException e) {
                 e.printStackTrace();
             }
-        } else {
-            System.out.println("NÃO É ADM");
-        }
     }
 
     public void atualizarTabelaEDashboard() {
