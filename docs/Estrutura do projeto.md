@@ -32,13 +32,13 @@ src/
 │   ├── Produto_has_pedido.java
 │   ├── Session.java
 │   └── Usuario.java
-├── sources/
+├── resources.sources/
 │   ├── IntelliDog_TM.png
 │   └── intellidog.png
 ├── testes/
 │   ├── teste.txt
 │   └── testepedidos.txt
-└── view/
+└── resources.view/
     ├── TelaCadastro.fxml
     ├── TelaLogin.fxml
     └── TelaPrincipal.fxml

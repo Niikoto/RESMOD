@@ -16,7 +16,7 @@ public class MainController {
     private Label minhaLabel;
     @FXML
     public void abrirDashboard(ActionEvent event) throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("view.DashboardController"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("resources.view.DashboardController"));
         Parent root = loader.load();
         Stage stage = (Stage) minhaLabel.getScene().getWindow();
         stage.setScene(new Scene(root));

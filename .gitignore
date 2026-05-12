@@ -31,3 +31,6 @@ bin/
 
 ## Connection ##
 src/factory/ConnectionFactory.java
+
+### MAVEN ###
+target/

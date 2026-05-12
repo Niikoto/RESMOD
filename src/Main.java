@@ -13,10 +13,11 @@ public class Main extends Application{
         //Nome da janela
         stage.setTitle("NEWE Logística Integrada - RESMOD");
         //ícone da janela ("N" do NeweLog)
-        stage.getIcons().add(new Image(getClass().getResourceAsStream("sources/Logo_N.png")));
-        Parent root = FXMLLoader.load(
-                getClass().getResource("/view/TelaLogin.fxml")
-        );
+        java.io.File iconFile = new java.io.File("src/sources/Logo_N.png");
+        if (iconFile.exists()) {
+            stage.getIcons().add(new Image(iconFile.toURI().toString()));
+        }
+        Parent root = FXMLLoader.load(new java.io.File("src/resources/view/TelaLogin.fxml").toURI().toURL());
         stage.setScene(new Scene(root));
         stage.show();
     }
