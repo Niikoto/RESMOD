@@ -40,36 +40,41 @@ public class TelaLoginController {
 
         UsuarioDAO dao = new UsuarioDAO();
         CargoDAO dao2 = new CargoDAO();
-        try {
-            Usuario usuarioLogado = dao.verificar(usuario);
-
-            cargo.setID_cargo(usuarioLogado.getCargo());
-            Cargo cargoSetado = dao2.consultarCargo(cargo);//objeto criado para rodar o conultarcargo
-
-            if (usuarioLogado != null && cargoSetado != null) {
-
-                // Inicia a sessão
-                Session.iniciar(usuarioLogado);
-                Session.iniciarCargo(cargoSetado);//guardando o cargo na sessão
-
-                // Carrega a tela principal
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/TelaPrincipal.fxml"));
-                Parent root = loader.load();
-
-                Stage stage = (Stage) campoEmail.getScene().getWindow();
-                stage.setScene(new Scene(root));
-
-                Platform.runLater(() -> {//coloca isso aqui para executar depois, já que caso não seja feito o proximo comando não sera executado
-                    stage.setMaximized(true);//metodo para deixar a tela "cheia"
-                });
-                stage.show();
-
-            } else {
-                exibirAlerta("Erro", "E-mail ou senha incorretos.");
-            }
-        } catch (SQLException | java.io.IOException e) {
-            exibirAlerta("Erro no Sistema", "Não foi possível carregar a próxima tela.");
-            e.printStackTrace();
+        if (email != "" && senha != "") {
+            try {
+                Usuario usuarioLogado = dao.verificar(usuario);
+    
+                cargo.setID_cargo(usuarioLogado.getCargo());
+                Cargo cargoSetado = dao2.consultarCargo(cargo);//objeto criado para rodar o conultarcargo
+    
+                if (usuarioLogado != null && cargoSetado != null) {
+    
+                    // Inicia a sessão
+                    Session.iniciar(usuarioLogado);
+                    Session.iniciarCargo(cargoSetado);//guardando o cargo na sessão
+    
+                    // Carrega a tela principal
+                    FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/TelaPrincipal.fxml"));
+                    Parent root = loader.load();
+    
+                    Stage stage = (Stage) campoEmail.getScene().getWindow();
+                    stage.setScene(new Scene(root));
+    
+                    Platform.runLater(() -> {//coloca isso aqui para executar depois, já que caso não seja feito o proximo comando não sera executado
+                        stage.setMaximized(true);//metodo para deixar a tela "cheia"
+                    });
+                    stage.show();
+    
+                } else {
+                    exibirAlerta("Erro", "E-mail ou senha incorretos.");
+                }
+            } catch (SQLException | java.io.IOException e) {
+                exibirAlerta("Erro no Sistema", "Não foi possível carregar a próxima tela.");
+                e.printStackTrace();
+            } 
+        }
+        else{
+            exibirAlerta("Não foi possivel logar", "Digite um email e senha caso queira logar");
         }
     }
 
