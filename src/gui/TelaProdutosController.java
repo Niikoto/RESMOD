@@ -1,5 +1,6 @@
 package gui;
 
+import java.io.File;
 import java.text.NumberFormat;
 import java.text.ParseException;
 import java.util.List;
@@ -16,6 +17,8 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
@@ -38,36 +41,56 @@ public class TelaProdutosController {
     private TextField txtMinEs;
 
     @FXML
+    private Label txtNotFound;// caso nada tenha sito selecionado
+
+    @FXML
+    private ImageView imgProd;// imagem de estoque
+
+    @FXML
     private ComboBox<Fornecedor> comboFor;
     @FXML
     private ComboBox<Categoria> comboCat;
 
     @FXML
     VBox vBoxCadProd;
-    @FXML private VBox vboxNovaCategoria;
+    @FXML
+    private VBox vboxNovaCategoria;
 
-    @FXML private TextField txtNovaCategoria;
+    @FXML
+    private TextField txtNovaCategoria;
 
-    @FXML private TableColumn<Produto, Integer>columnId ;
-    @FXML private TableColumn<Produto, String>columnNome;
-    @FXML private TableColumn<Produto, Integer> columnQuantidade;
-    @FXML private TableColumn<Produto, Float> columnPreco;
-    @FXML private TableColumn<Produto, String> columnCategoria;
-    @FXML private TableColumn<Produto, String> columnFornecedor;
+    @FXML
+    private TableColumn<Produto, Integer> columnId;
+    @FXML
+    private TableColumn<Produto, String> columnNome;
+    @FXML
+    private TableColumn<Produto, Integer> columnQuantidade;
+    @FXML
+    private TableColumn<Produto, Float> columnPreco;
+    @FXML
+    private TableColumn<Produto, String> columnCategoria;
+    @FXML
+    private TableColumn<Produto, String> columnFornecedor;
 
-    @FXML private TextField txtNomePes;
+    @FXML
+    private TextField txtNomePes;
 
     private CategoriaDAO catDao = new CategoriaDAO();
     private FornecedorDAO forDao = new FornecedorDAO();
 
     @FXML
     public void initialize() {
-        columnId.setCellValueFactory(new PropertyValueFactory<>("ID_produto")); //essa parte vai usar o metodo get nas coisas que estão dentro das aspas no parenteses, a primeira letra ele vai deixar maiuscula
+        columnId.setCellValueFactory(new PropertyValueFactory<>("ID_produto")); // essa parte vai usar o metodo get nas
+                                                                                // coisas que estão dentro das aspas no
+                                                                                // parenteses, a primeira letra ele vai
+                                                                                // deixar maiuscula
         columnNome.setCellValueFactory(new PropertyValueFactory<>("nome_produto"));
         columnPreco.setCellValueFactory(new PropertyValueFactory<>("preco"));
         columnQuantidade.setCellValueFactory(new PropertyValueFactory<>("quantidade"));
-        columnCategoria.setCellValueFactory(cellData -> new javafx.beans.property.SimpleStringProperty(cellData.getValue().getCategoria().getNomeCategoria()));
-        columnFornecedor.setCellValueFactory(cellData -> new javafx.beans.property.SimpleStringProperty(cellData.getValue().getFornecedor().getNome_fornecedor()));
+        columnCategoria.setCellValueFactory(cellData -> new javafx.beans.property.SimpleStringProperty(
+                cellData.getValue().getCategoria().getNomeCategoria()));
+        columnFornecedor.setCellValueFactory(cellData -> new javafx.beans.property.SimpleStringProperty(
+                cellData.getValue().getFornecedor().getNome_fornecedor()));
 
         ProdutoDAO dao = new ProdutoDAO();
         List<Produto> lista = dao.listarProduto("");
@@ -80,10 +103,38 @@ public class TelaProdutosController {
         vBoxCadProd.setVisible(false);
         vBoxCadProd.setManaged(false);
 
+        imgProd.setVisible(false);
+        imgProd.setManaged(false);
+
+        txtNotFound.setVisible(true);
+        txtNotFound.setManaged(true);
+
         txtNomePes.setOnAction(e -> {
             List<Produto> list = dao.listarProduto(txtNomePes.getText());
             tabelaProdutos.setItems(FXCollections.observableArrayList(list));
         });
+
+        //função anonima que faz com que seja identificado um clique em uma linha
+        tabelaProdutos.getSelectionModel().selectedItemProperty().addListener(
+            (obs, oldSelection, newSelection) -> {
+                if (newSelection != null) {
+                    imgProd.setVisible(true);
+                    imgProd.setManaged(true);
+                    imgProd.setPreserveRatio(true);// dimenciona o tamanho da imagem para não dar problema no espaço de exibição
+
+                    Produto prodSelect = tabelaProdutos.getSelectionModel().getSelectedItem();//pega os dados da linha selecionada
+                    String nomeImg = prodSelect.getImg_prod();//pega o nome da imagem que está salva no banco de dados
+
+                    File file = new File("src/resources/sources/" + nomeImg);//caminho para puxar a imagem
+
+                    Image img = new Image(file.toURI().toString());//converte para um caminho de imagem do javafx
+
+                    imgProd.setImage(img);//troca a imagem que está na imagem view
+
+                    txtNotFound.setVisible(false);
+                    txtNotFound.setManaged(false);
+                }
+            });
     }
 
     @FXML
@@ -162,7 +213,8 @@ public class TelaProdutosController {
         boolean visivel = vboxNovaCategoria.isVisible();
         vboxNovaCategoria.setVisible(!visivel);
         vboxNovaCategoria.setManaged(!visivel);
-        if (visivel) txtNovaCategoria.clear();
+        if (visivel)
+            txtNovaCategoria.clear();
     }
 
     @FXML
@@ -238,7 +290,7 @@ public class TelaProdutosController {
         }
     }
 
-    public void atualizarTela(){
+    public void atualizarTela() {
         ProdutoDAO daoProd = new ProdutoDAO();
 
         List<Produto> list = daoProd.listarProduto("");

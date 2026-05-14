@@ -9,6 +9,7 @@
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Region?>
 <?import javafx.scene.layout.VBox?>
@@ -110,9 +111,10 @@
 
                         <VBox prefWidth="300.0" spacing="15.0" style="-fx-background-color: white; -fx-background-radius: 12px; -fx-padding: 20px; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.04), 10, 0, 0, 0);">
                             <children>
-                                <VBox alignment="CENTER" prefHeight="220.0" style="-fx-background-color: #e2e8f0; -fx-background-radius: 8px;">
+                                <VBox alignment="CENTER" prefHeight="268.0" style="-fx-background-color: #e2e8f0; -fx-background-radius: 8px;" VBox.vgrow="SOMETIMES">
                                     <children>
-                                        <Label style="-fx-font-size: 80px; -fx-text-fill: #334155;" text="🖼️" />
+                              <ImageView fx:id="imgProd" fitHeight="268.0" fitWidth="257.0" pickOnBounds="true" preserveRatio="true" VBox.vgrow="SOMETIMES" />
+                                        <Label fx:id="txtNotFound" style="-fx-font-size: 80px; -fx-text-fill: #334155;" text="🖼️" VBox.vgrow="SOMETIMES" />
                                     </children>
                                 </VBox>
 

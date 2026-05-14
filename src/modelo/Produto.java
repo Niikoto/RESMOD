@@ -2,6 +2,7 @@ package modelo;
 
 public class Produto {
     private int ID_produto;
+    private String img_prod;
     private String nome_produto;
     private float preco;
     private int quantidade;
@@ -35,6 +36,7 @@ public class Produto {
 
     public Fornecedor getFornecedor() {return fornecedor;}
 
+    public String getImg_prod() {return img_prod;}
 
     //Seters
     public void setNome_produto(String nome_produto) {this.nome_produto = nome_produto;}
@@ -52,6 +54,8 @@ public class Produto {
     public void setCategoria(Categoria categoria) {this.categoria = categoria;}
 
     public void setFornecedor(Fornecedor fornecedor) {this.fornecedor = fornecedor;}
+
+    public void setImg_prod(String img_prod) {this.img_prod = img_prod;}
 
     @Override
     public String toString(){
