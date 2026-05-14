@@ -112,6 +112,7 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `intellidog`.`produto` (
   `ID_produto` INT NOT NULL AUTO_INCREMENT,
+  `img_prod` VARCHAR(150) NOT NULL,
   `nome_produto` VARCHAR(45) NOT NULL,
   `preco` DECIMAL(10,2) NOT NULL,
   `quantidade` INT NOT NULL,
