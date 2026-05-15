@@ -31,14 +31,15 @@ public class ProdutoDAO {
         }
     }
 
-    public List<Produto> listarProduto(String nome) {
+    public List<Produto> listarProduto(String nome, String nome_fornecedor) {
         List<Produto> produtos = new ArrayList<>();
         Connection conectar = ConnectionFactory.getConnection();
         ResultSet resultado = null;
-        String sql = "SELECT p.ID_produto, p.img_prod, p.nome_produto,p.preco, p.quantidade, f.nome_fornecedor, c.categoria FROM produto p JOIN categoria c ON p.COD_categoria = c.ID_categoria JOIN fornecedor f ON p.COD_CNPJ = f.CNPJ where p.nome_produto like ?;";
+        String sql = "SELECT p.ID_produto, p.img_prod, p.nome_produto,p.preco, p.quantidade, f.nome_fornecedor, c.categoria FROM produto p JOIN categoria c ON p.COD_categoria = c.ID_categoria JOIN fornecedor f ON p.COD_CNPJ = f.CNPJ where p.nome_produto like ? AND f.nome_fornecedor like ?;";
 
         try (PreparedStatement comando = conectar.prepareStatement(sql)) {
             comando.setString(1, "%" + nome + "%");
+            comando.setString(2, "%" + nome_fornecedor + "%");
             resultado = comando.executeQuery();
 
             if (!resultado.next()) {
@@ -53,8 +54,8 @@ public class ProdutoDAO {
                     produto.setNome_produto(resultado.getString(3));
                     produto.setPreco(resultado.getFloat(4));
                     produto.setQuantidade(resultado.getInt(5));
-                    categoria.setNomeCategoria(resultado.getString(6));
-                    fornecedor.setNome_fornecedor(resultado.getString(7));
+                    fornecedor.setNome_fornecedor(resultado.getString(6));
+                    categoria.setNomeCategoria(resultado.getString(7));
 
                     produto.setCategoria(categoria);
                     produto.setFornecedor(fornecedor);

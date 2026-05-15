@@ -74,6 +74,8 @@ public class TelaProdutosController {
 
     @FXML
     private TextField txtNomePes;
+    @FXML
+    private TextField txtNomeFornecedor1;
 
     private CategoriaDAO catDao = new CategoriaDAO();
     private FornecedorDAO forDao = new FornecedorDAO();
@@ -93,7 +95,7 @@ public class TelaProdutosController {
                 cellData.getValue().getFornecedor().getNome_fornecedor()));
 
         ProdutoDAO dao = new ProdutoDAO();
-        List<Produto> lista = dao.listarProduto("");
+        List<Produto> lista = dao.listarProduto("", "");
         tabelaProdutos.setItems(FXCollections.observableArrayList(lista));
 
         comboCat.setItems(FXCollections.observableArrayList(catDao.listarCategoria()));
@@ -110,7 +112,11 @@ public class TelaProdutosController {
         txtNotFound.setManaged(true);
 
         txtNomePes.setOnAction(e -> {
-            List<Produto> list = dao.listarProduto(txtNomePes.getText());
+            List<Produto> list = dao.listarProduto(txtNomePes.getText(), txtNomeFornecedor1.getText());
+            tabelaProdutos.setItems(FXCollections.observableArrayList(list));
+        });
+        txtNomeFornecedor1.setOnAction(e -> {
+            List<Produto> list = dao.listarProduto(txtNomePes.getText(), txtNomeFornecedor1.getText());
             tabelaProdutos.setItems(FXCollections.observableArrayList(list));
         });
 
@@ -192,7 +198,7 @@ public class TelaProdutosController {
             vBoxCadProd.setVisible(false);
             vBoxCadProd.setManaged(false);
 
-            List<Produto> lista = prodDao.listarProduto("");
+            List<Produto> lista = prodDao.listarProduto("", "");
             tabelaProdutos.setItems(FXCollections.observableArrayList(lista));
         } catch (Exception e) {
             e.printStackTrace();
@@ -293,7 +299,7 @@ public class TelaProdutosController {
     public void atualizarTela() {
         ProdutoDAO daoProd = new ProdutoDAO();
 
-        List<Produto> list = daoProd.listarProduto("");
+        List<Produto> list = daoProd.listarProduto("", "");
         tabelaProdutos.setItems(FXCollections.observableArrayList(list));
     }
 

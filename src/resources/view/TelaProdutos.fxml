@@ -135,7 +135,11 @@
                                     <children>
                                         <Label style="-fx-font-weight: bold; -fx-font-size: 18px; -fx-text-fill: #1e293b;" text="Produtos Cadastrados" />
                                         <Region HBox.hgrow="ALWAYS" />
-                                        <TextField fx:id="txtNomePes" promptText="🔍 Buscar por Nome" style="-fx-background-radius: 6px; -fx-border-color: #cbd5e1; -fx-border-radius: 6px; -fx-background-color: white; -fx-padding: 6px 15px;" />
+                                        <TextField fx:id="txtNomePes" promptText="🔍 Buscar por Nome" style="-fx-background-radius: 6px; -fx-border-color: #cbd5e1; -fx-border-radius: 6px; -fx-background-color: white; -fx-padding: 6px 15px;">
+                                 <HBox.margin>
+                                    <Insets right="5.0" />
+                                 </HBox.margin></TextField>
+                              <TextField fx:id="txtNomeFornecedor1" promptText="🔍 Buscar por Fornecedor" style="-fx-background-radius: 6px; -fx-border-color: #cbd5e1; -fx-border-radius: 6px; -fx-background-color: white; -fx-padding: 6px 15px;" />
                                     </children>
                                 </HBox>
 
