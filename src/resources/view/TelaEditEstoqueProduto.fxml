@@ -2,45 +2,83 @@
 
 <?import java.lang.String?>
 <?import javafx.collections.FXCollections?>
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane nodeOrientation="LEFT_TO_RIGHT" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #f1f5f9; -fx-background: #f1f5f9;" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.TelaEstoqueController">
+<AnchorPane nodeOrientation="LEFT_TO_RIGHT" prefHeight="458.0" prefWidth="732.0" style="-fx-background-color: #f1f5f9; -fx-background: #f1f5f9;" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.TelaEstoqueController">
 
     <children>
-
-              <VBox layoutX="120.0" layoutY="83.0" prefHeight="234.0" prefWidth="358.0" spacing="15" style="-fx-padding: 25; -fx-background-radius: 12px; -fx-background-color: white; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.05), 10, 0, 0, 5);">
-
-                        <!-- Título -->
-            <Label style="-fx-font-size: 18px; -fx-font-weight: bold;" text="Gerenciar Estoque" />
-
-                  <!-- Nome -->
-            <Label fx:id="nomeField" style="-fx-font-size: 14px;" text="Carregador" />
-
-                  <TextField fx:id="quantidadeField" promptText="Insira a quantidade" style="-fx-background-radius: 5px;" />
-
-                           <!-- Controle -->
-            <ComboBox fx:id="tipoOperacaoBox" promptText="Entrada ou saída" VBox.vgrow="SOMETIMES">
-                <items>
-                    <FXCollections fx:factory="observableArrayList">
-                        <String fx:value="Entrada" />
-                        <String fx:value="Saída" />
-                    </FXCollections>
-                </items>
-            </ComboBox>
-
-                  <!-- Botão -->
-            <HBox nodeOrientation="RIGHT_TO_LEFT" spacing="10" VBox.vgrow="SOMETIMES">
-                <Button onAction="#enviar" style="-fx-background-color: #49b69b; -fx-text-fill: white; -fx-font-weight: bold;" text="Enviar" HBox.hgrow="SOMETIMES" />
-                <Button onAction="#cancelar" text="Cancelar" HBox.hgrow="SOMETIMES" />
-            </HBox>
-
-              </VBox>
+      <HBox layoutX="18.0" layoutY="64.0" prefHeight="234.0" prefWidth="695.0" spacing="15.0">
+         <children>
+            <VBox style="-fx-background-color: white; -fx-padding: 25; -fx-background-radius: 12px; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.05), 10, 0, 0, 5);" HBox.hgrow="SOMETIMES">
+               <children>
+                  <Label fx:id="txtNomeProd" style="-fx-font-size: 18px; -fx-font-weight: bold;" text="Nome do Produto">
+                     <padding>
+                        <Insets bottom="5.0" />
+                     </padding>
+                  </Label>
+                  <VBox alignment="CENTER" spacing="5.0" VBox.vgrow="SOMETIMES">
+                     <children>
+                        <Label text="Foto do produto:" />
+                        <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+                           <children>
+                              <ImageView fx:id="imgFoto" fitHeight="200.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" />
+                              <Label fx:id="txtNotFound" text="Sem foto" />
+                           </children>
+                        </HBox>
+                        <Button fx:id="btnFoto" mnemonicParsing="false" onAction="#trocarFoto" style="-fx-background-color: #49b69b; -fx-text-fill: white; -fx-font-weight: bold;" text="Trocar Foto" />
+                     </children>
+                  </VBox>
+               </children>
+            </VBox>
+      
+                                <VBox spacing="15" style="-fx-padding: 25; -fx-background-radius: 12px; -fx-background-color: white; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.05), 10, 0, 0, 5);" HBox.hgrow="SOMETIMES">
+               <HBox alignment="CENTER" VBox.vgrow="SOMETIMES">
+                  <children>
+                     <VBox spacing="15.0" HBox.hgrow="SOMETIMES">
+                        <children>
+                  
+                                                      <!-- Título -->
+                              <Label style="-fx-font-size: 18px; -fx-font-weight: bold;" text="Gerenciar Estoque" />
+                  
+                                                      <!-- Nome -->
+                              <Label style="-fx-font-size: 14px;" text="Quantidade:" />
+                  
+                                                      <TextField fx:id="quantidadeField" promptText="Insira a quantidade" style="-fx-background-radius: 5px;" />
+                  
+                                                         <!-- Controle -->
+                              <ComboBox fx:id="tipoOperacaoBox" promptText="Entrada ou saída" VBox.vgrow="SOMETIMES">
+                                  <items>
+                                      <FXCollections fx:factory="observableArrayList">
+                                          <String fx:value="Entrada" />
+                                          <String fx:value="Saída" />
+                                      </FXCollections>
+                                  </items>
+                              </ComboBox>
+                  
+                                                <!-- Botão -->
+                              <HBox alignment="BOTTOM_CENTER" nodeOrientation="RIGHT_TO_LEFT" spacing="10.0" VBox.vgrow="SOMETIMES">
+                                  <Button onAction="#enviar" style="-fx-background-color: #49b69b; -fx-text-fill: white; -fx-font-weight: bold;" text="Enviar" HBox.hgrow="SOMETIMES" />
+                                  <Button onAction="#cancelar" text="Cancelar" HBox.hgrow="SOMETIMES" />
+                              </HBox>
+                        </children>
+                     </VBox>
+                  </children>
+                  <VBox.margin>
+                     <Insets />
+                  </VBox.margin>
+               </HBox>
+      
+                                </VBox>
+         </children>
+      </HBox>
 
     </children>
 </AnchorPane>

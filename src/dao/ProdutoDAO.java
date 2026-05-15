@@ -113,4 +113,18 @@ public class ProdutoDAO {
             e.printStackTrace();
         }
     }
+
+    public void upDateImg(String imgNome, int idProd){
+        String sql = "update produto set img_prod = ? where ID_produto = ?;";
+
+        try(PreparedStatement comando = connetion.prepareStatement(sql)){
+            comando.setString(1, imgNome);
+            comando.setInt(2, idProd);
+
+            comando.executeUpdate();
+        }
+        catch(SQLException e){
+            e.printStackTrace();
+        }
+    }
 }
