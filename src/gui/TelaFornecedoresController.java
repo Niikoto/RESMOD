@@ -30,10 +30,15 @@ public class TelaFornecedoresController {
     @FXML private TextField txtNomePes;
 
     @FXML private ComboBox<String> txtEstado;
+    
     @FXML private Button buttonEnviar;
     @FXML private Button buttonAdicionar;
+    @FXML private Button buttonExcluir;
+
     @FXML private HBox hboxCad;
+    
     @FXML private TableView<?> tabelaFornecedores;
+    
     @FXML private ComboBox<String> comboPesquisaEstado;
 
     @FXML private TableView<Fornecedor> tableFornecedor;
@@ -66,6 +71,16 @@ public class TelaFornecedoresController {
         colRua.setCellValueFactory(new PropertyValueFactory<>("rua"));
         colNumero.setCellValueFactory(new PropertyValueFactory<>("numero"));
         colTel.setCellValueFactory(new PropertyValueFactory<>("telefone"));
+
+        buttonExcluir.setDisable(true);
+        tableFornecedor.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) -> {
+            if(newSelection != null){
+                buttonExcluir.setDisable(false);
+            }
+            else{
+                buttonExcluir.setDisable(true);
+            }
+        });
     }
 
     @FXML
@@ -135,5 +150,15 @@ public class TelaFornecedoresController {
 
         List<Fornecedor> list = dao.listarFornecedores(fornecedor);
         tableFornecedor.setItems(FXCollections.observableArrayList(list));
+    }
+
+    @FXML
+    public void excluirFornecedor(ActionEvent event){
+        Fornecedor fornecedorSelecionado = tableFornecedor.getSelectionModel().getSelectedItem();
+        
+        String guardarCNPJ = fornecedorSelecionado.getCNPJ();
+
+        FornecedorDAO apagarFornecedor = new FornecedorDAO();
+        apagarFornecedor.botaoExcluirFornecedor(guardarCNPJ);
     }
 }

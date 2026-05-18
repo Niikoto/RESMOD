@@ -87,4 +87,14 @@ public class FornecedorDAO {
 
         return fornecedores;
     }
+
+    public void botaoExcluirFornecedor(String CNPJ){
+        String sql = "delete from fornecedor where CNPJ = ?;";
+        try(PreparedStatement deletarFornecedor = connection.prepareStatement(sql)){
+            deletarFornecedor.setString(1, CNPJ);
+            deletarFornecedor.executeUpdate();
+        } catch (SQLException e) {
+           e.printStackTrace();
+        }
+    }
 }

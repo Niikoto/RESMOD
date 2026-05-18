@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.Region?>
 <?import javafx.scene.layout.VBox?>
 
-<ScrollPane fitToWidth="true" style="-fx-background-color: #f1f5f9; -fx-background: #f1f5f9;" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.TelaFornecedoresController">
+<ScrollPane fitToWidth="true" style="-fx-background-color: #f1f5f9; -fx-background: #f1f5f9;" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.TelaFornecedoresController">
     <content>
         <VBox spacing="25.0" style="-fx-padding: 30px;">
             <children>
@@ -168,7 +168,7 @@
 
                         <HBox alignment="CENTER_LEFT">
                             <children>
-                                <Label style="-fx-text-fill: #64748b; -fx-font-size: 13px;" text="0 registros encontrados" />
+                        <Button fx:id="buttonExcluir" contentDisplay="BOTTOM" mnemonicParsing="false" onAction="#excluirFornecedor" style="-fx-background-color: e60000; -fx-text-fill: white; -fx-font-weight: bold; -fx-background-radius: 6px; -fx-padding: 8px 15px; -fx-cursor: hand;" text="Excluir Fornecedor" />
                                 <Region HBox.hgrow="ALWAYS" />
                                 <HBox spacing="5.0">
                                     <children>
