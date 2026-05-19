@@ -114,7 +114,7 @@
                                 <VBox alignment="CENTER" prefHeight="268.0" style="-fx-background-color: #e2e8f0; -fx-background-radius: 8px;" VBox.vgrow="SOMETIMES">
                                     <children>
                               <ImageView fx:id="imgProd" fitHeight="268.0" fitWidth="257.0" pickOnBounds="true" preserveRatio="true" VBox.vgrow="SOMETIMES" />
-                                        <Label fx:id="txtNotFound" style="-fx-font-size: 80px; -fx-text-fill: #334155;" text="🖼️" VBox.vgrow="SOMETIMES" />
+                                        <Label fx:id="txtNotFound" prefHeight="214.0" prefWidth="132.0" style="-fx-font-size: 80px; -fx-text-fill: #334155;" text="🖼️" VBox.vgrow="SOMETIMES" />
                                     </children>
                                 </VBox>
 
@@ -143,7 +143,7 @@
                                     </children>
                                 </HBox>
 
-                                <TableView fx:id="tabelaProdutos" prefHeight="250.0" style="-fx-border-color: #e2e8f0; -fx-border-radius: 6px; -fx-background-color: white;" VBox.vgrow="ALWAYS">
+                                <TableView fx:id="tabelaProdutos" prefHeight="364.0" prefWidth="579.0" style="-fx-border-color: #e2e8f0; -fx-border-radius: 6px; -fx-background-color: white;" VBox.vgrow="ALWAYS">
                                     <columns>
                                         <TableColumn fx:id="columnId" prefWidth="36.0" text="ID" />
                                         <TableColumn fx:id="columnNome" prefWidth="138.0" text="NOME PRODUTO" />
@@ -158,6 +158,7 @@
                                 </TableView>
 
                                 <HBox />
+                        <Button fx:id="buttonExcluir" alignment="BOTTOM_RIGHT" contentDisplay="CENTER" mnemonicParsing="false" onAction="#excluirProduto" style="-fx-background-color: e60000; -fx-text-fill: white; -fx-font-weight: bold;" text="Excluir Produto" />
 
                                 <HBox alignment="CENTER">
                                     <VBox.margin>

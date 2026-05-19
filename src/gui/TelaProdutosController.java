@@ -41,6 +41,9 @@ public class TelaProdutosController {
     private TextField txtMinEs;
 
     @FXML
+    private Button buttonExcluir;
+
+    @FXML
     private Label txtNotFound;// caso nada tenha sito selecionado
 
     @FXML
@@ -141,6 +144,28 @@ public class TelaProdutosController {
                     txtNotFound.setManaged(false);
                 }
             });
+
+        buttonExcluir.setDisable(true);
+        tabelaProdutos.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) -> {
+        if(newSelection != null){
+            buttonExcluir.setDisable(false);
+        }
+        else{
+            buttonExcluir.setDisable(true);
+        }
+    });
+    }
+
+    @FXML
+    public void excluirProduto(ActionEvent event){
+        Produto produtoselecionado = tabelaProdutos.getSelectionModel().getSelectedItem();
+
+        int guardarID_produto = produtoselecionado.getID_produto();
+
+        ProdutoDAO apagarProduto = new ProdutoDAO();
+        apagarProduto.buttonExcluirProduto(guardarID_produto);
+
+        tabelaProdutos.getItems().remove(produtoselecionado);
     }
 
     @FXML

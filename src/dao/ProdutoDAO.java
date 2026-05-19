@@ -127,4 +127,14 @@ public class ProdutoDAO {
             e.printStackTrace();
         }
     }
+
+    public void buttonExcluirProduto(int ID_produto){
+        String sql = "delete from produto where ID_produto = ?;";
+        try(PreparedStatement deletarProduto = connetion.prepareStatement(sql)) {
+            deletarProduto.setInt(1, ID_produto);
+            deletarProduto.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
 }
