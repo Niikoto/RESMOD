@@ -160,5 +160,7 @@ public class TelaFornecedoresController {
 
         FornecedorDAO apagarFornecedor = new FornecedorDAO();
         apagarFornecedor.botaoExcluirFornecedor(guardarCNPJ);
+
+        tableFornecedor.getItems().remove(fornecedorSelecionado);
     }
 }

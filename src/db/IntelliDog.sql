@@ -118,7 +118,7 @@ CREATE TABLE IF NOT EXISTS `intellidog`.`produto` (
   `quantidade` INT NOT NULL,
   `minimo` INT NULL,
   `COD_categoria` INT NOT NULL,
-  `COD_CNPJ` VARCHAR(14) NOT NULL,
+  `COD_CNPJ` VARCHAR(14) NULL,
   PRIMARY KEY (`ID_produto`),
   INDEX `fk_produto_categoria1_idx` (`COD_categoria` ASC) VISIBLE,
   INDEX `fk_produto_fornecedor1_idx` (`COD_CNPJ` ASC) VISIBLE,
@@ -130,7 +130,7 @@ CREATE TABLE IF NOT EXISTS `intellidog`.`produto` (
   CONSTRAINT `fk_produto_fornecedor1`
     FOREIGN KEY (`COD_CNPJ`)
     REFERENCES `intellidog`.`fornecedor` (`CNPJ`)
-    ON DELETE NO ACTION
+    ON DELETE SET NULL
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
