@@ -17,15 +17,16 @@ public class ProdutoDAO {
     Connection connetion = ConnectionFactory.getConnection();
 
     public void cadastrarProduto(Produto p) throws SQLException {
-        String sql = "insert into produto (nome_produto,preco,quantidade,minimo,COD_categoria,COD_CNPJ) values (?,?,?,?,?,?)";
+        String sql = "insert into produto (img_prod,nome_produto,preco,quantidade,minimo,COD_categoria,COD_CNPJ) values (?,?,?,?,?,?,?)";
 
         try (PreparedStatement comando = connetion.prepareStatement(sql)) {
-            comando.setString(1, p.getNome_produto());
-            comando.setFloat(2, p.getPreco());
-            comando.setInt(3, p.getQuantidade());
-            comando.setInt(4, p.getMinimo());
-            comando.setInt(5, p.getCOD_categoria());
-            comando.setString(6, p.getCOD_CNPJ());
+            comando.setString(1, p.getImg_prod());
+            comando.setString(2, p.getNome_produto());
+            comando.setFloat(3, p.getPreco());
+            comando.setInt(4, p.getQuantidade());
+            comando.setInt(5, p.getMinimo());
+            comando.setInt(6, p.getCOD_categoria());
+            comando.setString(7, p.getCOD_CNPJ());
 
             comando.executeUpdate();
         }
