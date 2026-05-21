@@ -47,7 +47,7 @@
                            <children>
                               <VBox spacing="30.0" HBox.hgrow="SOMETIMES">
                                  <children>
-                                    <Label text="* As informações abaixo são obrigatorias para cadastrar o produto" textFill="#f71b1b" />
+                                    <Label style="-fx-text-fill: #f71b1b;" text="* As informações abaixo são obrigatorias para cadastrar o produto" textFill="#f71b1b" />
                                     <HBox spacing="10.0">
                                        <children>
                                           <VBox spacing="5.0">
