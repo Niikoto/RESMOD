@@ -47,6 +47,7 @@
                            <children>
                               <VBox spacing="30.0" HBox.hgrow="SOMETIMES">
                                  <children>
+                                    <Label text="* As informações abaixo são obrigatorias para cadastrar o produto" textFill="#f71b1b" />
                                     <HBox spacing="10.0">
                                        <children>
                                           <VBox spacing="5.0">
@@ -119,7 +120,7 @@
                      <children>
                         <VBox>
                            <children>
-                              <Button fx:id="buttonEnviar" alignment="BOTTOM_RIGHT" contentDisplay="CENTER" mnemonicParsing="false" onAction="#enviarProd" style="-fx-background-color: #49b69b; -fx-text-fill: white; -fx-font-weight: bold;" text="Salvar Produto" />
+                              <Button fx:id="buttonEnviar" alignment="BOTTOM_RIGHT" contentDisplay="CENTER" disable="true" mnemonicParsing="false" onAction="#enviarProd" style="-fx-background-color: #49b69b; -fx-text-fill: white; -fx-font-weight: bold;" text="Salvar Produto" />
                            </children>
                         </VBox>
                      </children>

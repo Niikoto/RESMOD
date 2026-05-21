@@ -52,6 +52,8 @@ public class TelaProdutosController {
 
     @FXML
     private Button buttonExcluir;
+    @FXML
+    private Button buttonEnviar;
 
     @FXML
     private Label txtNotFound;// caso nada tenha sito selecionado
@@ -176,6 +178,47 @@ public class TelaProdutosController {
 
         imgNDefinida.setVisible(false);
         imgNDefinida.setManaged(false);
+
+        txtNomeProd.setOnAction(e ->{
+            if(txtNomeProd.getText() != "" && txtPreco.getText() != "" && txtQuant.getText() != "" && txtMinEs.getText() != "" && comboCat.getValue() != null && comboFor.getValue() != null){
+                buttonEnviar.setDisable(false);
+            }
+            else{
+                buttonEnviar.setDisable(true);
+            }
+        });
+        txtPreco.setOnAction(e ->{
+            if(txtNomeProd.getText() != "" && txtPreco.getText() != "" && txtQuant.getText() != "" && txtMinEs.getText() != "" && comboCat.getValue() != null && comboFor.getValue() != null){
+                buttonEnviar.setDisable(false);
+            }
+            else{
+                buttonEnviar.setDisable(true);
+            }
+        });
+        txtQuant.setOnAction(e ->{
+            if(txtNomeProd.getText() != "" && txtPreco.getText() != "" && txtQuant.getText() != "" && txtMinEs.getText() != "" && comboCat.getValue() != null && comboFor.getValue() != null){
+                buttonEnviar.setDisable(false);
+            }
+            else{
+                buttonEnviar.setDisable(true);
+            }
+        });
+        comboCat.setOnAction(e ->{
+            if(txtNomeProd.getText() != "" && txtPreco.getText() != "" && txtQuant.getText() != "" && txtMinEs.getText() != "" && comboCat.getValue() != null && comboFor.getValue() != null){
+                buttonEnviar.setDisable(false);
+            }
+            else{
+                buttonEnviar.setDisable(true);
+            }
+        });
+        comboFor.setOnAction(e ->{
+            if(txtNomeProd.getText() != "" && txtPreco.getText() != "" && txtQuant.getText() != "" && txtMinEs.getText() != "" && comboCat.getValue() != null && comboFor.getValue() != null){
+                buttonEnviar.setDisable(false);
+            }
+            else{
+                buttonEnviar.setDisable(true);
+            }
+        });
     }
 
     @FXML
@@ -183,10 +226,14 @@ public class TelaProdutosController {
         Produto produtoselecionado = tabelaProdutos.getSelectionModel().getSelectedItem();
 
         int guardarID_produto = produtoselecionado.getID_produto();
+        String nomeImagem = produtoselecionado.getImg_prod();
+
+        File file = new File("src/resources/sources/"+nomeImagem);
 
         ProdutoDAO apagarProduto = new ProdutoDAO();
         apagarProduto.buttonExcluirProduto(guardarID_produto);
 
+        file.delete();
         tabelaProdutos.getItems().remove(produtoselecionado);
     }
 
@@ -211,6 +258,9 @@ public class TelaProdutosController {
         if (nomeImg != "") {
             p.setImg_prod(nomeImg);
         }
+        else{
+            p.setImg_prod("");
+        }
 
         p.setNome_produto(txtNomeProd.getText());
 
@@ -234,7 +284,12 @@ public class TelaProdutosController {
         }
 
         try {
-            prodDao.cadastrarProduto(p);
+            if (p.getImg_prod() != "") {      
+                prodDao.cadastrarProduto(p);
+            }
+            else{
+                prodDao.cadastrarProdutoSImagem(p);
+            }
 
             txtNomeProd.clear();
             txtPreco.clear();

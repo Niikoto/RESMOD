@@ -112,7 +112,7 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `intellidog`.`produto` (
   `ID_produto` INT NOT NULL AUTO_INCREMENT,
-  `img_prod` VARCHAR(150) NOT NULL,
+  `img_prod` VARCHAR(150) NULL,
   `nome_produto` VARCHAR(45) NOT NULL,
   `preco` DECIMAL(10,2) NOT NULL,
   `quantidade` INT NOT NULL,
@@ -139,7 +139,7 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `intellidog`.`produto_has_pedido` (
   `ID_pedpro` INT NOT NULL AUTO_INCREMENT,
-  `COD_produto` INT NOT NULL,
+  `COD_produto` INT NULL,
   `COD_pedido` INT NOT NULL,
   `quantidade` VARCHAR(45) NOT NULL,
   `preco_unitario` DECIMAL(10,2) NOT NULL,
@@ -149,7 +149,7 @@ CREATE TABLE IF NOT EXISTS `intellidog`.`produto_has_pedido` (
   CONSTRAINT `fk_produto_has_pedido_produto1`
     FOREIGN KEY (`COD_produto`)
     REFERENCES `intellidog`.`produto` (`ID_produto`)
-    ON DELETE NO ACTION
+    ON DELETE SET NULL
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_produto_has_pedido_pedido1`
     FOREIGN KEY (`COD_pedido`)
