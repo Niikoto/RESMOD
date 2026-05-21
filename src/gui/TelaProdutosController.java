@@ -1,8 +1,16 @@
 package gui;
 
 import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.nio.file.StandardCopyOption;
 import java.text.NumberFormat;
 import java.text.ParseException;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.Locale;
 
@@ -13,6 +21,7 @@ import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
@@ -20,6 +29,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.VBox;
+import javafx.stage.FileChooser;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import modelo.Categoria;
@@ -42,12 +52,18 @@ public class TelaProdutosController {
 
     @FXML
     private Button buttonExcluir;
+    @FXML
+    private Button buttonEnviar;
 
     @FXML
     private Label txtNotFound;// caso nada tenha sito selecionado
+    @FXML
+    private Label txtImgNDefinida;
 
     @FXML
     private ImageView imgProd;// imagem de estoque
+    @FXML
+    private ImageView imgNDefinida;
 
     @FXML
     private ComboBox<Fornecedor> comboFor;
@@ -82,6 +98,8 @@ public class TelaProdutosController {
 
     private CategoriaDAO catDao = new CategoriaDAO();
     private FornecedorDAO forDao = new FornecedorDAO();
+
+    private String nomeImg;
 
     @FXML
     public void initialize() {
@@ -123,37 +141,84 @@ public class TelaProdutosController {
             tabelaProdutos.setItems(FXCollections.observableArrayList(list));
         });
 
-        //função anonima que faz com que seja identificado um clique em uma linha
+        // função anonima que faz com que seja identificado um clique em uma linha
         tabelaProdutos.getSelectionModel().selectedItemProperty().addListener(
-            (obs, oldSelection, newSelection) -> {
-                if (newSelection != null) {
-                    imgProd.setVisible(true);
-                    imgProd.setManaged(true);
-                    imgProd.setPreserveRatio(true);// dimenciona o tamanho da imagem para não dar problema no espaço de exibição
+                (obs, oldSelection, newSelection) -> {
+                    if (newSelection != null) {
+                        imgProd.setVisible(true);
+                        imgProd.setManaged(true);
+                        imgProd.setPreserveRatio(true);// dimenciona o tamanho da imagem para não dar problema no espaço
+                                                       // de exibição
 
-                    Produto prodSelect = tabelaProdutos.getSelectionModel().getSelectedItem();//pega os dados da linha selecionada
-                    String nomeImg = prodSelect.getImg_prod();//pega o nome da imagem que está salva no banco de dados
+                        Produto prodSelect = tabelaProdutos.getSelectionModel().getSelectedItem();// pega os dados da
+                                                                                                  // linha selecionada
+                        String nomeImg = prodSelect.getImg_prod();// pega o nome da imagem que está salva no banco de
+                                                                  // dados
 
-                    File file = new File("src/resources/sources/" + nomeImg);//caminho para puxar a imagem
+                        File file = new File("src/resources/sources/" + nomeImg);// caminho para puxar a imagem
 
-                    Image img = new Image(file.toURI().toString());//converte para um caminho de imagem do javafx
+                        Image img = new Image(file.toURI().toString());// converte para um caminho de imagem do javafx
 
-                    imgProd.setImage(img);//troca a imagem que está na imagem view
+                        imgProd.setImage(img);// troca a imagem que está na imagem view
 
-                    txtNotFound.setVisible(false);
+                        txtNotFound.setVisible(false);
                     txtNotFound.setManaged(false);
                 }
             });
-
+            
         buttonExcluir.setDisable(true);
         tabelaProdutos.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) -> {
-        if(newSelection != null){
-            buttonExcluir.setDisable(false);
-        }
-        else{
-            buttonExcluir.setDisable(true);
-        }
-    });
+            if(newSelection != null){
+                buttonExcluir.setDisable(false);
+            }
+            else{
+                buttonExcluir.setDisable(true);
+            }
+        });
+
+        imgNDefinida.setVisible(false);
+        imgNDefinida.setManaged(false);
+
+        txtNomeProd.setOnAction(e ->{
+            if(txtNomeProd.getText() != "" && txtPreco.getText() != "" && txtQuant.getText() != "" && txtMinEs.getText() != "" && comboCat.getValue() != null && comboFor.getValue() != null){
+                buttonEnviar.setDisable(false);
+            }
+            else{
+                buttonEnviar.setDisable(true);
+            }
+        });
+        txtPreco.setOnAction(e ->{
+            if(txtNomeProd.getText() != "" && txtPreco.getText() != "" && txtQuant.getText() != "" && txtMinEs.getText() != "" && comboCat.getValue() != null && comboFor.getValue() != null){
+                buttonEnviar.setDisable(false);
+            }
+            else{
+                buttonEnviar.setDisable(true);
+            }
+        });
+        txtQuant.setOnAction(e ->{
+            if(txtNomeProd.getText() != "" && txtPreco.getText() != "" && txtQuant.getText() != "" && txtMinEs.getText() != "" && comboCat.getValue() != null && comboFor.getValue() != null){
+                buttonEnviar.setDisable(false);
+            }
+            else{
+                buttonEnviar.setDisable(true);
+            }
+        });
+        comboCat.setOnAction(e ->{
+            if(txtNomeProd.getText() != "" && txtPreco.getText() != "" && txtQuant.getText() != "" && txtMinEs.getText() != "" && comboCat.getValue() != null && comboFor.getValue() != null){
+                buttonEnviar.setDisable(false);
+            }
+            else{
+                buttonEnviar.setDisable(true);
+            }
+        });
+        comboFor.setOnAction(e ->{
+            if(txtNomeProd.getText() != "" && txtPreco.getText() != "" && txtQuant.getText() != "" && txtMinEs.getText() != "" && comboCat.getValue() != null && comboFor.getValue() != null){
+                buttonEnviar.setDisable(false);
+            }
+            else{
+                buttonEnviar.setDisable(true);
+            }
+        });
     }
 
     @FXML
@@ -161,10 +226,14 @@ public class TelaProdutosController {
         Produto produtoselecionado = tabelaProdutos.getSelectionModel().getSelectedItem();
 
         int guardarID_produto = produtoselecionado.getID_produto();
+        String nomeImagem = produtoselecionado.getImg_prod();
+
+        File file = new File("src/resources/sources/"+nomeImagem);
 
         ProdutoDAO apagarProduto = new ProdutoDAO();
         apagarProduto.buttonExcluirProduto(guardarID_produto);
 
+        file.delete();
         tabelaProdutos.getItems().remove(produtoselecionado);
     }
 
@@ -185,6 +254,14 @@ public class TelaProdutosController {
         NumberFormat nf = NumberFormat.getInstance(new Locale("pt", "BR"));
         ProdutoDAO prodDao = new ProdutoDAO();
         Produto p = new Produto();
+
+        if (nomeImg != "") {
+            p.setImg_prod(nomeImg);
+        }
+        else{
+            p.setImg_prod("");
+        }
+
         p.setNome_produto(txtNomeProd.getText());
 
         try {
@@ -194,9 +271,6 @@ public class TelaProdutosController {
             e.printStackTrace();
         }
 
-        // ARRUMAR AQUI
-        // PERDÃO FAMILIA
-        // :(
         p.setQuantidade(Integer.parseInt(txtQuant.getText()));
         p.setMinimo(Integer.parseInt(txtMinEs.getText()));
         Categoria catEscolhida = comboCat.getValue();
@@ -210,7 +284,12 @@ public class TelaProdutosController {
         }
 
         try {
-            prodDao.cadastrarProduto(p);
+            if (p.getImg_prod() != "") {      
+                prodDao.cadastrarProduto(p);
+            }
+            else{
+                prodDao.cadastrarProdutoSImagem(p);
+            }
 
             txtNomeProd.clear();
             txtPreco.clear();
@@ -218,6 +297,12 @@ public class TelaProdutosController {
             txtMinEs.clear();
             comboCat.setValue(null);
             comboFor.setValue(null);
+            imgNDefinida.setImage(null);
+            imgNDefinida.setVisible(false);
+            imgNDefinida.setManaged(false);
+
+            txtImgNDefinida.setVisible(true);
+            txtImgNDefinida.setManaged(true);
 
             exibirAlerta("Sucesso", "Produto cadastro");
             vBoxCadProd.setVisible(false);
@@ -328,4 +413,37 @@ public class TelaProdutosController {
         tabelaProdutos.setItems(FXCollections.observableArrayList(list));
     }
 
+    @FXML
+    public void colocarImg(ActionEvent event) {
+        FileChooser chooser = new FileChooser();
+        chooser.setTitle("Escolha uma imagem para o produto");
+        chooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("Imagens", "*.png", "*.jpg", "*.jpeg"));
+
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+
+        File arq = chooser.showOpenDialog(stage);
+
+        DateTimeFormatter formato = DateTimeFormatter.ofPattern("yyyy-MM-dd_HH-mm-ss");
+        String dataHora = LocalDateTime.now().format(formato);
+
+        nomeImg = dataHora + arq.getName();
+
+        Path destino = Paths.get("src/resources/sources/" + nomeImg);
+
+        try {
+            Files.copy(arq.toPath(), destino, StandardCopyOption.REPLACE_EXISTING);// salva o arquivo
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        Image img = new Image(destino.toUri().toString());// salva o caminho da imagem para ser setado certo
+
+        imgNDefinida.setPreserveRatio(true);
+        imgNDefinida.setImage(img);// salva a nova imagem
+        imgNDefinida.setVisible(true);
+        imgNDefinida.setManaged(true);
+
+        txtImgNDefinida.setVisible(false);
+        txtImgNDefinida.setManaged(false);
+    }
 }
