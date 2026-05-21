@@ -67,6 +67,9 @@
                   <Button fx:id="botaoFornecedores" alignment="BASELINE_LEFT" mnemonicParsing="false" onAction="#abrirTelaFornecedores" prefHeight="45.0" prefWidth="200.0" style="-fx-background-color: transparent; -fx-text-fill: white; -fx-font-size: 14px;" text=" 👤  Fornecedores">
                      <padding><Insets left="20.0" /></padding>
                   </Button>
+                  <Button fx:id="botaoCentroCusto" alignment="BASELINE_LEFT" mnemonicParsing="false" onAction="#abrirTelaCentroCusto" prefHeight="45.0" prefWidth="200.0" style="-fx-background-color: transparent; -fx-text-fill: white; -fx-font-size: 14px;" text=" 💰  Centro de Custo">
+                     <padding><Insets left="20.0" /></padding>
+                  </Button>
                   <Button fx:id="botaoCriarConta" alignment="BASELINE_LEFT" mnemonicParsing="false" onAction="#abrirTelaCadastro" prefHeight="45.0" prefWidth="200.0" style="-fx-background-color: transparent; -fx-text-fill: white; -fx-font-size: 14px;" text=" 👥  Funcionários">
                      <padding><Insets left="20.0" /></padding>
                   </Button>
@@ -117,11 +120,6 @@
                            </children>
                         </HBox>
 
-                        <HBox alignment="CENTER_LEFT" style="-fx-background-color: #e2e8f0; -fx-background-radius: 8px; -fx-padding: 12px 20px;">
-                           <children>
-                              <Label style="-fx-text-fill: #475569; -fx-font-size: 14px;" text="EXEMPLO ... (Em progresso)" />
-                           </children>
-                        </HBox>
 
                         <VBox style="-fx-background-color: white; -fx-background-radius: 12px; -fx-padding: 25px; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.04), 10, 0, 0, 0);">
                            <children>

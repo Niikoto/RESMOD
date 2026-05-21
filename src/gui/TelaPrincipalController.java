@@ -55,6 +55,8 @@ public class TelaPrincipalController {
     @FXML
     private Button botaoFornecedores;
     @FXML
+    private Button botaoCentroCusto;
+    @FXML
     private Button botaoCriarConta;
 
     // Elementos das Atualizações
@@ -157,6 +159,8 @@ public class TelaPrincipalController {
             botaoFornecedores.setStyle(estiloInativo);
         if (botaoCriarConta != null)
             botaoCriarConta.setStyle(estiloInativo);
+        if (botaoCentroCusto!= null)
+            botaoCentroCusto.setStyle(estiloInativo);
 
         if (botaoAtivo != null)
             botaoAtivo.setStyle(estiloAtivo);
@@ -359,7 +363,7 @@ public class TelaPrincipalController {
         try {
             Parent root = FXMLLoader.load(getClass().getResource("/view/TelaProdutos.fxml"));
             painelPrincipal.setCenter(root);
-            atualizarMenuLateral(botaoProdutos); // fic azul
+            atualizarMenuLateral(botaoProdutos); // fica azul
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -371,6 +375,17 @@ public class TelaPrincipalController {
             Parent root = FXMLLoader.load(getClass().getResource("/view/TelaFornecedores.fxml"));
             painelPrincipal.setCenter(root);
             atualizarMenuLateral(botaoFornecedores); // fica azul
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    @FXML
+    public void abrirTelaCentroCusto(ActionEvent event) {
+        try {
+            Parent root = FXMLLoader.load(getClass().getResource("/view/TelaCentroCusto.fxml"));
+            painelPrincipal.setCenter(root);
+            atualizarMenuLateral(botaoCentroCusto); //fica azul
         } catch (Exception e) {
             e.printStackTrace();
         }

@@ -13,7 +13,7 @@ public class Main extends Application{
         stage.setTitle("NEWE Logística Integrada - RESMOD");
 
         // Ícone
-        java.io.File iconFile = new java.io.File("src/sources/Logo_N.png");
+        java.io.File iconFile = new java.io.File("src/resources/sources/Logo_N.png");
         if (iconFile.exists()) {
             stage.getIcons().add(new Image(iconFile.toURI().toString()));
         }
