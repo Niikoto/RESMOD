@@ -42,6 +42,10 @@ public class TelaPedidoController {
     private TableColumn<Pedido, Float> valorTotal;
     @FXML
     private TableColumn<Pedido, String> criadoPor;
+    @FXML
+    private TableColumn<Pedido, String>  colSetor;
+    @FXML
+    private TableColumn<Pedido, String>  colCentroCusto;
 
     @FXML
     private Label telaAprovados;
@@ -65,7 +69,8 @@ public class TelaPedidoController {
         valorTotal.setCellValueFactory(new PropertyValueFactory<>("Preco_total"));
         criadoPor.setCellValueFactory(
                 cellData -> new javafx.beans.property.SimpleStringProperty(cellData.getValue().getUsuario().getNome()));
-
+        colSetor.setCellValueFactory(new PropertyValueFactory<>("setor"));
+        colCentroCusto.setCellValueFactory(new PropertyValueFactory<>("centro_custo"));
         motivoPedido.setCellValueFactory(new PropertyValueFactory<>("motivo"));
         motivoPedido.setCellFactory(coluna -> new TableCell<Pedido, String>() {
             private final Text textoExpandido = new Text();
