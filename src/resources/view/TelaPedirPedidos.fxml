@@ -35,6 +35,30 @@
                   <TextArea fx:id="campoMotivo" prefHeight="200.0" promptText="Descreva detalhadamente o motivo deste pedido..." style="-fx-background-radius: 6px; -fx-border-color: #cbd5e1; -fx-border-radius: 6px; -fx-background-color: white; -fx-font-size: 14px;" wrapText="true" />
                </children>
             </VBox>
+
+            <HBox spacing="15.0">
+               <children>
+                  <VBox spacing="5.0" HBox.hgrow="ALWAYS">
+                     <children>
+                        <Label style="-fx-font-weight: bold; -fx-text-fill: #475569; -fx-font-size: 14px;" text="Setor *" />
+                        <ComboBox fx:id="comboSetor"
+                                  maxWidth="1.7976931348623157E308"
+                                  promptText="Selecione o setor de destino"
+                                  style="-fx-background-radius: 6px; -fx-border-color: #cbd5e1; -fx-border-radius: 6px; -fx-background-color: white;" />
+                     </children>
+                  </VBox>
+                  <VBox spacing="5.0" HBox.hgrow="ALWAYS">
+                     <children>
+                        <Label style="-fx-font-weight: bold; -fx-text-fill: #475569; -fx-font-size: 14px;" text="Centro de Custo *" />
+                        <ComboBox fx:id="comboCentroCusto"
+                                  maxWidth="1.7976931348623157E308"
+                                  promptText="Selecione o centro de custo"
+                                  style="-fx-background-radius: 6px; -fx-border-color: #cbd5e1; -fx-border-radius: 6px; -fx-background-color: white;" />
+                     </children>
+                  </VBox>
+               </children>
+            </HBox>
+
             <HBox VBox.vgrow="SOMETIMES">
                <children>
                   <VBox HBox.hgrow="SOMETIMES">

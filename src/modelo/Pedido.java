@@ -11,6 +11,9 @@ public class Pedido {
     private String motivo;
     private String COD_email;
     private Usuario usuario;
+    private String setor;
+    private String centro_custo;
+
     
 
     //Constructor vazio
@@ -36,6 +39,10 @@ public class Pedido {
     public String getCOD_email() {return COD_email;}
 
     public Usuario getUsuario() {return usuario;}
+
+    public String getSetor() {return setor;}
+
+    public String getCentro_custo() {return centro_custo;}
     
     //Seters
     public void setMotivo(String motivo) {this.motivo = motivo;}
@@ -57,6 +64,12 @@ public class Pedido {
     public void setCOD_email(String cOD_email) {COD_email = cOD_email;}
 
     public void setUsuario(Usuario usuario) {this.usuario = usuario;}
+
+    public void setSetor(String setor) {this.setor = setor; }
+
+    public void setCentro_custo(String centro_custo) {this.centro_custo = centro_custo;}
+
+
 
     @Override
 public String toString() {
