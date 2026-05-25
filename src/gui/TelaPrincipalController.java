@@ -41,6 +41,8 @@ public class TelaPrincipalController {
     @FXML
     private Label nomeUsuarioSessao;
     @FXML
+    private Label lblEstoqueBaixo;
+    @FXML
     private ImageView minhaImagem;
     @FXML
     private Button botaoLogout;
@@ -122,6 +124,22 @@ public class TelaPrincipalController {
         } catch (Exception e) {
             System.out.println("Aviso: Falha ao carregar atualizações: " + e.getMessage());
         }
+
+        //Alerta mínimo
+        try {
+
+            DashboardDAO dao = new DashboardDAO();
+
+            int estoqueBaixo = dao.contarProdutosEstoqueBaixo();
+
+            lblEstoqueBaixo.setText(
+                    "⚠ " + estoqueBaixo + " produtos com estoque baixo"
+            );
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
 
         // aq é so para adaptar pra tela do usuario
         javafx.application.Platform.runLater(() -> {

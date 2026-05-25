@@ -91,6 +91,9 @@
                      <children>
                         <Label style="-fx-font-size: 26px; -fx-font-weight: bold; -fx-text-fill: #1e293b;" text="Dashboard" />
 
+
+
+
                         <HBox spacing="20.0">
                            <children>
                               <VBox prefHeight="260.0" prefWidth="400.0" style="-fx-background-color: white; -fx-background-radius: 12px; -fx-padding: 20px; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.04), 10, 0, 0, 0);" HBox.hgrow="ALWAYS">
@@ -148,6 +151,12 @@
 
                               <VBox fx:id="vboxAtualizacoes" spacing="0.0" style="-fx-padding: 0;">
                               </VBox>
+
+                              <Label fx:id="lblEstoqueBaixo"
+                                     text="0 produtos com estoque baixo"
+                                     style="-fx-text-fill: #ef4444;
+                               -fx-font-size: 16px;
+                               -fx-font-weight: bold;" />
 
                            </children>
                         </VBox>

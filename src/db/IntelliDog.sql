@@ -138,6 +138,8 @@ CREATE TABLE IF NOT EXISTS `intellidog`.`produto` (
     ON DELETE SET NULL
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
+ALTER TABLE produto
+ADD estoque_minimo INT DEFAULT 5;
 
 -- -----------------------------------------------------
 -- Table `intellidog`.`produto_has_pedido`

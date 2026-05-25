@@ -126,4 +126,26 @@ public class DashboardDAO {
             }
         }
     }
+
+    public int contarProdutosEstoqueBaixo() throws Exception {
+
+        String sql = """
+        SELECT COUNT(*)
+        FROM produto
+        WHERE quantidade <= estoque_minimo
+    """;
+
+        try (
+                Connection conn = ConnectionFactory.getConnection();
+                PreparedStatement stmt = conn.prepareStatement(sql);
+                ResultSet rs = stmt.executeQuery()
+        ) {
+
+            if (rs.next()) {
+                return rs.getInt(1);
+            }
+        }
+
+        return 0;
+    }
 }
