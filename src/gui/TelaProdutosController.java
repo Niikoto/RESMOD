@@ -96,13 +96,32 @@ public class TelaProdutosController {
     @FXML
     private TextField txtNomeFornecedor1;
 
+    @FXML private Label lblProduto1;
+    @FXML private Label lblFornecedor1;
+    @FXML private Label lblPreco1;
+    @FXML private Button buttonSelecionar1;
+    @FXML private Label lblProduto2;
+    @FXML private Label lblFornecedor2;
+    @FXML private Label lblPreco2;
+    @FXML private Button buttonSelecionar2;
+    @FXML private Label lblMaisBarato;
+    @FXML private Label lblProdutoBarato;
+    @FXML private Label lblPrecoBarato;
+
     private CategoriaDAO catDao = new CategoriaDAO();
     private FornecedorDAO forDao = new FornecedorDAO();
+
+    private Produto produtoComparar1 = null;
+    private Produto produtoComparar2 = null;
 
     private String nomeImg;
 
     @FXML
     public void initialize() {
+
+        buttonSelecionar1.setOnAction(e -> selecionarParaComparacao(1));
+        buttonSelecionar2.setOnAction(e -> selecionarParaComparacao(2));
+
         columnId.setCellValueFactory(new PropertyValueFactory<>("ID_produto")); // essa parte vai usar o metodo get nas
                                                                                 // coisas que estão dentro das aspas no
                                                                                 // parenteses, a primeira letra ele vai
@@ -219,6 +238,39 @@ public class TelaProdutosController {
                 buttonEnviar.setDisable(true);
             }
         });
+    }
+
+    private void selecionarParaComparacao(int slot) {
+        Produto selecionado = tabelaProdutos.getSelectionModel().getSelectedItem();
+
+        if (selecionado == null) {
+            exibirAlerta("Aviso", "Selecione um produto na tabela primeiro.");
+            return;
+        }
+        if (slot == 1) {
+            produtoComparar1 = selecionado;
+            lblProduto1.setText(selecionado.getNome_produto());
+            lblFornecedor1.setText(selecionado.getFornecedor().getNome_fornecedor());
+            lblPreco1.setText(String.format("R$ %.2f", selecionado.getPreco()));
+        } else {
+            produtoComparar2 = selecionado;
+            lblProduto2.setText(selecionado.getNome_produto());
+            lblFornecedor2.setText(selecionado.getFornecedor().getNome_fornecedor());
+            lblPreco2.setText(String.format("R$ %.2f", selecionado.getPreco()));
+        }
+
+        atualizarComparacao();
+    }
+
+    private void atualizarComparacao() {
+        if (produtoComparar1 == null || produtoComparar2 == null) return;
+
+        Produto maisBarato = produtoComparar1.getPreco() <= produtoComparar2.getPreco()
+                ? produtoComparar1 : produtoComparar2;
+
+        lblMaisBarato.setText(maisBarato.getFornecedor().getNome_fornecedor());
+        lblProdutoBarato.setText(maisBarato.getNome_produto());
+        lblPrecoBarato.setText(String.format("R$ %.2f", maisBarato.getPreco()));
     }
 
     @FXML
