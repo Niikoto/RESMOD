@@ -69,16 +69,21 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `intellidog`.`compra` (
   `ID_compra` INT NOT NULL AUTO_INCREMENT,
+  `obs_compra` LONGTEXT NULL,
   `valor_da_compra` DECIMAL(10,2) NOT NULL,
   `anexo_fiscal` VARCHAR(100) NULL,
+  `data_compra` DATE NOT NULL,
   `COD_pedido` INT NOT NULL,
+  `COD_email` VARCHAR(60) NOT NULL,
   PRIMARY KEY (`ID_compra`),
   INDEX `fk_compra_pedido1_idx` (`COD_pedido` ASC) VISIBLE,
   CONSTRAINT `fk_compra_pedido1`
     FOREIGN KEY (`COD_pedido`)
     REFERENCES `intellidog`.`pedido` (`ID_pedido`)
     ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
+    ON UPDATE NO ACTION,
+	FOREIGN KEY (`COD_email`) REFERENCES `intellidog`.`usuario`(`ID_email`)
+    )
 ENGINE = InnoDB;
 
 
