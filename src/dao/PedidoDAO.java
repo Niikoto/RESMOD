@@ -16,7 +16,7 @@ public class PedidoDAO {
     Connection conectar = ConnectionFactory.getConnection();
 
     public int cadastrarPedido(Pedido p) throws SQLException {
-        String sql = "INSERT INTO pedido(criado, `status`, motivo, preco_total, forma_de_pagamento, segunda_forma_de_pagamento, COD_email) VALUES(NOW(), ?, ?, 0, ?, ?, ?);";
+        String sql = "INSERT INTO pedido(criado, `status`, motivo, preco_total, forma_de_pagamento, segunda_forma_de_pagamento, COD_email, setor, centro_custo) VALUES(NOW(), ?, ?, 0, ?, ?, ?, ?, ?);";
 
         int idPed = 0;
 
@@ -26,6 +26,8 @@ public class PedidoDAO {
             comando.setString(3, p.getForma_de_pagamento());
             comando.setString(4, p.getSegunda_forma_de_pagamento());
             comando.setString(5, p.getCOD_email());
+            comando.setString(6, p.getSetor());
+            comando.setString(7, p.getCentro_custo());
 
             comando.executeUpdate();
 
@@ -42,7 +44,7 @@ public class PedidoDAO {
         List<Pedido> pedidos = new ArrayList<>();
         Connection conectar = ConnectionFactory.getConnection();
         ResultSet resultado = null;
-        String sql = "SELECT p.ID_pedido, p.motivo,p.forma_de_pagamento, DATE_FORMAT(p.criado, '%d/%m/%Y') as 'criado', p.status, p.preco_total, p.COD_email, u.nome FROM pedido p JOIN usuario u ON p.COD_email = u.ID_email order by p.ID_pedido desc;";
+        String sql = "SELECT p.ID_pedido, p.motivo,p.forma_de_pagamento, DATE_FORMAT(p.criado, '%d/%m/%Y') as 'criado', p.status, p.preco_total, p.COD_email, u.nome, p.setor, p.centro_custo FROM pedido p JOIN usuario u ON p.COD_email = u.ID_email order by p.ID_pedido desc;";
 
         try (PreparedStatement comando = conectar.prepareStatement(sql)) {
             resultado = comando.executeQuery();
@@ -60,7 +62,9 @@ public class PedidoDAO {
                     pedido.setStatus(resultado.getString(5));
                     pedido.setPreco_total(resultado.getFloat(6));
                     pedido.setCOD_email(resultado.getString(7));
-                    usuario.setNome(resultado.getString(8));
+                    pedido.setSetor(resultado.getString(8));
+                    pedido.setCentro_custo(resultado.getString(9));
+                    usuario.setNome(resultado.getString(10));
 
                     pedido.setUsuario(usuario);
                     pedidos.add(pedido);
@@ -73,6 +77,94 @@ public class PedidoDAO {
 
         return pedidos;
 
+    }
+
+    public List<Pedido> listarPedidosFiltrados(String setor, String centroCusto) {
+        List<Pedido> pedidos = new ArrayList<>();
+        Connection conectar = ConnectionFactory.getConnection();
+
+        StringBuilder sql = new StringBuilder(
+                "SELECT p.ID_pedido, p.motivo, p.forma_de_pagamento, " +
+                        "DATE_FORMAT(p.criado, '%d/%m/%Y') AS criado, p.status, p.preco_total, " +
+                        "p.COD_email, u.nome, p.setor, p.centro_custo " +
+                        "FROM pedido p JOIN usuario u ON p.COD_email = u.ID_email WHERE 1=1 ");
+
+        if (setor != null && !setor.isEmpty())
+            sql.append("AND p.setor = ? ");
+        if (centroCusto != null && !centroCusto.isEmpty())
+            sql.append("AND p.centro_custo = ? ");
+        sql.append("ORDER BY p.ID_pedido DESC;");
+
+        try (PreparedStatement comando = conectar.prepareStatement(sql.toString())) {
+            int idx = 1;
+            if (setor != null && !setor.isEmpty())
+                comando.setString(idx++, setor);
+            if (centroCusto != null && !centroCusto.isEmpty())
+                comando.setString(idx++, centroCusto);
+
+            ResultSet resultado = comando.executeQuery();
+            while (resultado.next()) {
+                Pedido pedido   = new Pedido();
+                Usuario usuario = new Usuario();
+
+                pedido.setID_pedido(resultado.getInt("ID_pedido"));
+                pedido.setMotivo(resultado.getString("motivo"));
+                pedido.setForma_de_pagamento(resultado.getString("forma_de_pagamento"));
+                pedido.setCriado(resultado.getString("criado"));
+                pedido.setStatus(resultado.getString("status"));
+                pedido.setPreco_total(resultado.getFloat("preco_total"));
+                pedido.setCOD_email(resultado.getString("COD_email"));
+                pedido.setSetor(resultado.getString("setor"));
+                pedido.setCentro_custo(resultado.getString("centro_custo"));
+                usuario.setNome(resultado.getString("nome"));
+                pedido.setUsuario(usuario);
+
+                pedidos.add(pedido);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return pedidos;
+    }
+
+    // Total gasto por centro de custo
+    public List<DashboardData> totalPorCentroCusto() {
+        List<DashboardData> lista = new ArrayList<>();
+        Connection conectar = ConnectionFactory.getConnection();
+        String sql = "SELECT centro_custo, SUM(preco_total) AS total FROM pedido WHERE centro_custo IS NOT NULL AND centro_custo != '' GROUP BY centro_custo ORDER BY total DESC;";
+
+        try (PreparedStatement comando = conectar.prepareStatement(sql)) {
+            ResultSet resultado = comando.executeQuery();
+            while (resultado.next()) {
+                DashboardData d = new DashboardData();
+                d.setNome_cargo(resultado.getString("centro_custo"));
+                d.setQuantidade_pedido(resultado.getInt("total"));
+                lista.add(d);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return lista;
+    }
+
+    // total gasto por setor
+    public List<DashboardData> totalPorSetor() {
+        List<DashboardData> lista = new ArrayList<>();
+        Connection conectar = ConnectionFactory.getConnection();
+        String sql = "SELECT setor, SUM(preco_total) AS total FROM pedido WHERE setor IS NOT NULL AND setor != '' GROUP BY setor ORDER BY total DESC;";
+
+        try (PreparedStatement comando = conectar.prepareStatement(sql)) {
+            ResultSet resultado = comando.executeQuery();
+            while (resultado.next()) {
+                DashboardData d = new DashboardData();
+                d.setNome_cargo(resultado.getString("setor"));
+                d.setQuantidade_pedido(resultado.getInt("total"));
+                lista.add(d);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return lista;
     }
 
     public DashboardData contarPedidos() {
