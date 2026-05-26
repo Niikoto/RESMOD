@@ -16,8 +16,8 @@ USE `intellidog` ;
 -- Table `intellidog`.`cargo`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `intellidog`.`cargo` (
-                                                    `ID_cargo` INT NOT NULL AUTO_INCREMENT,
-                                                    `tipo` VARCHAR(30) NOT NULL,
+    `ID_cargo` INT NOT NULL AUTO_INCREMENT,
+    `tipo` VARCHAR(30) NOT NULL,
     `adm` TINYINT NOT NULL,
     PRIMARY KEY (`ID_cargo`))
     ENGINE = InnoDB;
@@ -27,7 +27,7 @@ CREATE TABLE IF NOT EXISTS `intellidog`.`cargo` (
 -- Table `intellidog`.`usuario`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `intellidog`.`usuario` (
-                                                      `ID_email` VARCHAR(60) NOT NULL,
+    `ID_email` VARCHAR(60) NOT NULL,
     `Nome` VARCHAR(60) NOT NULL,
     `Senha` VARCHAR(45) NOT NULL,
     `COD_cargo` INT NOT NULL,
@@ -45,21 +45,21 @@ CREATE TABLE IF NOT EXISTS `intellidog`.`usuario` (
 -- Table `intellidog`.`pedido`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `intellidog`.`pedido` (
-                                                     `ID_pedido` INT NOT NULL AUTO_INCREMENT,
-                                                     `criado` DATETIME NOT NULL,
-                                                     `status` VARCHAR(12) NOT NULL,
+    `ID_pedido` INT NOT NULL AUTO_INCREMENT,
+    `criado` DATETIME NOT NULL,
+    `status` VARCHAR(12) NOT NULL,
     `data_aprovacao` DATE NULL,
     `preco_total` DECIMAL(10,2) NOT NULL,
     `forma_de_pagamento` VARCHAR(30) NULL,
     `segunda_forma_de_pagamento` VARCHAR(30) NULL,
     `motivo` LONGTEXT NULL,
-    `COD_email` VARCHAR(60) NOT NULL,
+    `COD_email` VARCHAR(60) NULL,
     PRIMARY KEY (`ID_pedido`),
     INDEX `fk_pedido_usuario1_idx` (`COD_email` ASC) VISIBLE,
     CONSTRAINT `fk_pedido_usuario1`
     FOREIGN KEY (`COD_email`)
     REFERENCES `intellidog`.`usuario` (`ID_email`)
-    ON DELETE NO ACTION
+    ON DELETE SET NULL
     ON UPDATE NO ACTION)
     ENGINE = InnoDB;
 
@@ -67,8 +67,8 @@ CREATE TABLE IF NOT EXISTS `intellidog`.`pedido` (
 -- Table `intellidog`.`historico_pedido`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `intellidog`.`historico_pedido` (
-                                                               `ID_historico` INT NOT NULL AUTO_INCREMENT,
-                                                               `COD_email` VARCHAR(60) NOT NULL,
+    `ID_historico` INT NOT NULL AUTO_INCREMENT,
+    `COD_email` VARCHAR(60) NOT NULL,
     `status` VARCHAR(12) NOT NULL,
     `data_alteracao` DATE NOT NULL,
     `COD_pedido` INT NOT NULL,
@@ -81,9 +81,9 @@ CREATE TABLE IF NOT EXISTS `intellidog`.`historico_pedido` (
 -- Table `intellidog`.`compra`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `intellidog`.`compra` (
-                                                     `ID_compra` INT NOT NULL AUTO_INCREMENT,
-                                                     `obs_compra` LONGTEXT NULL,
-                                                     `valor_da_compra` DECIMAL(10,2) NOT NULL,
+    `ID_compra` INT NOT NULL AUTO_INCREMENT,
+    `obs_compra` LONGTEXT NULL,
+    `valor_da_compra` DECIMAL(10,2) NOT NULL,
     `anexo_fiscal` VARCHAR(100) NULL,
     `data_compra` DATE NOT NULL,
     `COD_pedido` INT NOT NULL,
@@ -104,8 +104,8 @@ CREATE TABLE IF NOT EXISTS `intellidog`.`compra` (
 -- Table `intellidog`.`categoria`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `intellidog`.`categoria` (
-                                                        `ID_categoria` INT NOT NULL AUTO_INCREMENT,
-                                                        `categoria` VARCHAR(60) NOT NULL,
+    `ID_categoria` INT NOT NULL AUTO_INCREMENT,
+    `categoria` VARCHAR(60) NOT NULL,
     PRIMARY KEY (`ID_categoria`))
     ENGINE = InnoDB;
 
@@ -113,7 +113,7 @@ CREATE TABLE IF NOT EXISTS `intellidog`.`categoria` (
 -- Table `intellidog`.`fornecedor`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `intellidog`.`fornecedor` (
-                                                         `CNPJ` VARCHAR(14) NOT NULL,
+    `CNPJ` VARCHAR(14) NOT NULL,
     `nome_fornecedor` VARCHAR(45) NOT NULL,
     `descricao` LONGTEXT NULL,
     `municipio` VARCHAR(125) NOT NULL,
@@ -129,8 +129,8 @@ CREATE TABLE IF NOT EXISTS `intellidog`.`fornecedor` (
 -- Table `intellidog`.`produto`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `intellidog`.`produto` (
-                                                      `ID_produto` INT NOT NULL AUTO_INCREMENT,
-                                                      `img_prod` VARCHAR(150) NULL,
+    `ID_produto` INT NOT NULL AUTO_INCREMENT,
+    `img_prod` VARCHAR(150) NULL,
     `nome_produto` VARCHAR(45) NOT NULL,
     `preco` DECIMAL(10,2) NOT NULL,
     `quantidade` INT NOT NULL,
@@ -158,10 +158,10 @@ ALTER TABLE produto
 -- Table `intellidog`.`produto_has_pedido`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `intellidog`.`produto_has_pedido` (
-                                                                 `ID_pedpro` INT NOT NULL AUTO_INCREMENT,
-                                                                 `COD_produto` INT NULL,
-                                                                 `COD_pedido` INT NOT NULL,
-                                                                 `quantidade` VARCHAR(45) NOT NULL,
+    `ID_pedpro` INT NOT NULL AUTO_INCREMENT,
+    `COD_produto` INT NULL,
+    `COD_pedido` INT NOT NULL,
+    `quantidade` VARCHAR(45) NOT NULL,
     `preco_unitario` DECIMAL(10,2) NOT NULL,
     PRIMARY KEY (`ID_pedpro`),
     INDEX `fk_produto_has_pedido_pedido1_idx` (`COD_pedido` ASC) VISIBLE,
@@ -183,11 +183,11 @@ CREATE TABLE IF NOT EXISTS `intellidog`.`produto_has_pedido` (
 -- Table `intellidog`.`entrada_saida`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `intellidog`.`entrada_saida` (
-                                                            `ID_entrada_saida` INT NOT NULL AUTO_INCREMENT,
-                                                            `tipo` TINYINT NOT NULL,
-                                                            `quantidade` INT NOT NULL,
-                                                            `COD_produto` INT NOT NULL,
-                                                            PRIMARY KEY (`ID_entrada_saida`),
+    `ID_entrada_saida` INT NOT NULL AUTO_INCREMENT,
+    `tipo` TINYINT NOT NULL,
+    `quantidade` INT NOT NULL,
+    `COD_produto` INT NOT NULL,
+    PRIMARY KEY (`ID_entrada_saida`),
     INDEX `fk_entrada_saida_produto1_idx` (`COD_produto` ASC) VISIBLE,
     CONSTRAINT `fk_entrada_saida_produto1`
     FOREIGN KEY (`COD_produto`)
@@ -203,8 +203,8 @@ ADD data_alteracao DATE;
 -- Table `intellidog`.`atualizacao`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `intellidog`.`atualizacao` (
-                                                          `ID_atualizacao` INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
-                                                          `titulo` VARCHAR(45) NOT NULL,
+    `ID_atualizacao` INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    `titulo` VARCHAR(45) NOT NULL,
     `mensagem` LONGTEXT NOT NULL,
     `data_hora` DATETIME)
     ENGINE = InnoDB;
@@ -212,23 +212,22 @@ CREATE TABLE IF NOT EXISTS `intellidog`.`atualizacao` (
 -- -----------------------------------------------------
 -- Table `intellidog`.`atualizacao_lida`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS intellidog.atualizacao_lida (
-                                                           ID_atualizacao_lida INT NOT NULL PRIMARY KEY,
-                                                           ID_atualizacao INT NOT NULL,
-                                                           COD_email VARCHAR(45) NOT NULL,
+CREATE TABLE IF NOT EXISTS `intellidog`.`atualizacao_lida` (
+    `ID_atualizacao_lida` INT NOT NULL PRIMARY KEY,
+    `ID_atualizacao` INT NOT NULL,
+    `COD_email` VARCHAR(45) NOT NULL,
+    INDEX `fk_atualizacao_lida_idx` (`COD_email` ASC) VISIBLE,
+    INDEX `fk_atualizacao_idx` (`ID_atualizacao` ASC) VISIBLE,
 
-    INDEX fk_atualizacao_lida_idx (COD_email ASC) VISIBLE,
-    INDEX fk_atualizacao_idx (ID_atualizacao ASC) VISIBLE,
-
-    CONSTRAINT fk_atualizacao_lida1
-    FOREIGN KEY (COD_email)
-    REFERENCES intellidog.usuario (ID_email)
+    CONSTRAINT `fk_atualizacao_lida1`
+    FOREIGN KEY (`COD_email`)
+    REFERENCES intellidog.usuario (`ID_email`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
 
-    CONSTRAINT fk_atualizacao_lida2
-    FOREIGN KEY (ID_atualizacao)
-    REFERENCES intellidog.atualizacao (ID_atualizacao)
+    CONSTRAINT `fk_atualizacao_lida2`
+    FOREIGN KEY (`ID_atualizacao`)
+    REFERENCES intellidog.atualizacao (`ID_atualizacao`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION
     )
