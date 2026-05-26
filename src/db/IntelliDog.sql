@@ -53,6 +53,8 @@ CREATE TABLE IF NOT EXISTS `intellidog`.`pedido` (
     `forma_de_pagamento` VARCHAR(30) NULL,
     `segunda_forma_de_pagamento` VARCHAR(30) NULL,
     `motivo` LONGTEXT NULL,
+    `setor` VARCHAR(45) NULL,
+    `centro_custo` VARCHAR(45) NULL,
     `COD_email` VARCHAR(60) NULL,
     PRIMARY KEY (`ID_pedido`),
     INDEX `fk_pedido_usuario1_idx` (`COD_email` ASC) VISIBLE,

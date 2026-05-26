@@ -62,6 +62,8 @@ public class TelaPedidoController {
     private Button botaoAdicionarPedido;
     @FXML
     private Button buttonExcluir;
+    @FXML
+    private Button btnCompra;
 
 
     @FXML
@@ -142,11 +144,18 @@ public class TelaPedidoController {
 
         buttonExcluir.setDisable(true);
         tablePedido.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) -> {
-        if(newSelection != null){
-            buttonExcluir.setDisable(false);
-        }
-        else{
+            if(newSelection != null){
+                buttonExcluir.setDisable(false);
+                String status = newSelection.getStatus();
+                if (!status.equals("finalizado") && !status.equals("negado")) {
+                    btnCompra.setDisable(false);
+                } else {
+                    btnCompra.setDisable(true);
+                }
+            }
+            else {
             buttonExcluir.setDisable(true);
+            btnCompra.setDisable(true);
         }
     });
     }
@@ -237,5 +246,29 @@ public class TelaPedidoController {
         }
 
         return idGerado;
+    }
+
+    public void finalizarCompra(ActionEvent event) throws IOException{
+        try{
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/TelaCompraPedido.fxml"));
+            Parent root = loader.load();
+
+            TelaComprarPedidoController filhoCompra = loader.getController(); 
+            Pedido pedidoselecionado = tablePedido.getSelectionModel().getSelectedItem();
+
+            filhoCompra.setPaiController(this,pedidoselecionado);
+            
+            BorderPane painel = (BorderPane) btnCompra.getScene().lookup("#painelPrincipal");
+
+            if (painel != null) {
+                painel.setCenter(root);
+            }
+            else{
+                Stage stage = (Stage) btnCompra.getScene().getWindow();
+                stage.setScene(new Scene(root));
+            }
+        }catch(Exception e){
+            e.printStackTrace();
+        }
     }
 }

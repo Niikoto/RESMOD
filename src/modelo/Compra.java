@@ -39,13 +39,15 @@ public class Compra {
 
     public void setValor_da_compra(float valor_da_compra) {this.valor_da_compra = valor_da_compra;}
 
-    public void setID_compra(int iD_compra) {ID_compra = iD_compra;}
+    public void setID_compra(int iD_compra) {this.ID_compra = iD_compra;}
+
+    public void setObs_compra(String obs_compra){this.obs_compra = obs_compra;}
 
     public void setData_compra(String data_compra){this.data_compra = data_compra;}
 
     public void setCOD_pedido(int cOD_pedido) {this.COD_pedido = cOD_pedido;}
 
-    public void setCOD_email(int COD_email) {this.COD_pedido = COD_email;}
+    public void setCOD_email(String COD_email) {this.COD_email = COD_email;}
 
     public void setUsuario(Usuario usuario){this.usuario = usuario;}
 

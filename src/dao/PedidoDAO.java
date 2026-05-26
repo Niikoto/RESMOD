@@ -228,4 +228,16 @@ public class PedidoDAO {
         }
     }
 
+
+    public void upDataStatus(String status, int nPed){
+        String sql = "update pedido set status = ? where ID_pedido = ?;";
+        try(PreparedStatement comando = conectar.prepareStatement(sql)) {
+            comando.setString(1,status);
+            comando.setInt(2,nPed);
+
+            comando.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
 }

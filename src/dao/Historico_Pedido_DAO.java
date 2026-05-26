@@ -1,8 +1,6 @@
 package dao;
 
 import factory.ConnectionFactory;
-import modelo.Pedido;
-
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;

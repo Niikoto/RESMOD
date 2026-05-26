@@ -89,7 +89,23 @@
                         <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
                      </columnResizePolicy>
                   </TableView>
-                  <Button fx:id="buttonExcluir" mnemonicParsing="false" onAction="#excluirPedido" style="-fx-background-color: e60000; -fx-text-fill: white; -fx-font-weight: bold; -fx-background-radius: 6px; -fx-cursor: hand; -fx-padding: 10px 20px; -fx-font-size: 14px;" text="Excluir" />
+                  <HBox alignment="CENTER" VBox.vgrow="SOMETIMES">
+                     <children>
+                        <VBox alignment="CENTER_LEFT" HBox.hgrow="SOMETIMES">
+                           <children>
+                              <Button fx:id="buttonExcluir" mnemonicParsing="false" onAction="#excluirPedido" style="-fx-background-color: e60000; -fx-text-fill: white; -fx-font-weight: bold; -fx-background-radius: 6px; -fx-cursor: hand; -fx-padding: 10px 20px; -fx-font-size: 14px;" text="Excluir" />
+                           </children>
+                        </VBox>
+                        <VBox alignment="CENTER_RIGHT" HBox.hgrow="SOMETIMES">
+                           <children>
+                              <Button fx:id="btnCompra" disable="true" mnemonicParsing="false" onAction="#finalizarCompra" style="-fx-background-color: #49b69b; -fx-text-fill: white; -fx-font-weight: bold; -fx-background-radius: 6px; -fx-cursor: hand; -fx-padding: 10px 20px; -fx-font-size: 14px;" text="Finalizar Compra" />
+                           </children>
+                        </VBox>
+                     </children>
+                     <VBox.margin>
+                        <Insets top="5.0" />
+                     </VBox.margin>
+                  </HBox>
                </children>
             </VBox>
 
