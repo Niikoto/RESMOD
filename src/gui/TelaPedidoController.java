@@ -57,8 +57,12 @@ public class TelaPedidoController {
     private Label telaEmAnalise;
     @FXML
     private Label telaTotal;
+
     @FXML
     private Button botaoAdicionarPedido;
+    @FXML
+    private Button buttonExcluir;
+
 
     @FXML
     public void initialize() {
@@ -135,6 +139,16 @@ public class TelaPedidoController {
         });
 
         atualizarTabelaEDashboard();
+
+        buttonExcluir.setDisable(true);
+        tablePedido.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) -> {
+        if(newSelection != null){
+            buttonExcluir.setDisable(false);
+        }
+        else{
+            buttonExcluir.setDisable(true);
+        }
+    });
     }
 
     // PARA ABRIR A TELA DE CONFIRMAR SE O DIRETOR
@@ -174,6 +188,18 @@ public class TelaPedidoController {
         telaEmAberto.setText(String.valueOf(dados.getTotalEmAberto()));
         telaEmAnalise.setText(String.valueOf(dados.getTotalEmAnalise()));
         telaTotal.setText(String.valueOf(lista.size()));
+    }
+
+    @FXML
+    public void excluirPedido(ActionEvent event){
+        Pedido pedidoselecionado = tablePedido.getSelectionModel().getSelectedItem();
+
+        int guardar_idPedido = pedidoselecionado.getID_pedido();
+
+        PedidoDAO apagarPedido = new PedidoDAO();
+        apagarPedido.buttonExcluirpedido(guardar_idPedido);
+
+        tablePedido.getItems().remove(pedidoselecionado);
     }
 
     @FXML

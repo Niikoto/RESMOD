@@ -125,4 +125,15 @@ public class PedidoDAO {
         }
     }
 
+    public void buttonExcluirpedido(int idPedido){
+        String sql = "delete from pedido where ID_pedido = ?;";
+        try(PreparedStatement deletarPedido = conectar.prepareStatement(sql)) {
+            deletarPedido.setInt(1, idPedido);
+            deletarPedido.executeUpdate();
+            
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
 }

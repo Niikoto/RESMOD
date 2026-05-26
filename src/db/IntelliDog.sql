@@ -147,7 +147,7 @@ ADD estoque_minimo INT DEFAULT 5;
 CREATE TABLE IF NOT EXISTS `intellidog`.`produto_has_pedido` (
   `ID_pedpro` INT NOT NULL AUTO_INCREMENT,
   `COD_produto` INT NULL,
-  `COD_pedido` INT NOT NULL,
+  `COD_pedido` INT NULL,
   `quantidade` VARCHAR(45) NOT NULL,
   `preco_unitario` DECIMAL(10,2) NOT NULL,
   PRIMARY KEY (`ID_pedpro`),
@@ -161,7 +161,7 @@ CREATE TABLE IF NOT EXISTS `intellidog`.`produto_has_pedido` (
   CONSTRAINT `fk_produto_has_pedido_pedido1`
     FOREIGN KEY (`COD_pedido`)
     REFERENCES `intellidog`.`pedido` (`ID_pedido`)
-    ON DELETE NO ACTION
+    ON DELETE SET NULL
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
