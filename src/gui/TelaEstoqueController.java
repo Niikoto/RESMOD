@@ -23,6 +23,7 @@ import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import modelo.Entrada_saida;
 import modelo.Produto;
+import modelo.Session;
 
 public class TelaEstoqueController {
     @FXML
@@ -114,7 +115,7 @@ public class TelaEstoqueController {
             }
         }
 
-        daoES.inserirEouS(entSai);
+        daoES.inserirEouS(entSai, Session.getUsuario().getId_Email());
 
         daoPro.upDateEstoque(produto);
 

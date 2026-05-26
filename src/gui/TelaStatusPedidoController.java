@@ -1,5 +1,6 @@
 package gui;
 
+import dao.Historico_Pedido_DAO;
 import dao.PedidoDAO;
 import dao.ProdutoDAO;
 import dao.Produto_has_pedidoDAO;
@@ -161,6 +162,13 @@ public class TelaStatusPedidoController {
 
         PedidoDAO dao = new PedidoDAO();
         dao.updateStatus(pedidoAtual.getID_pedido(), novoStatus, editar_motivo.getText());
+
+        Historico_Pedido_DAO hitorico_dao = new Historico_Pedido_DAO();
+        try {
+            hitorico_dao.cadastrarHistoricoPedido(pedidoAtual.getID_pedido(),novoStatus,Session.getUsuario().getId_Email());
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
 
         if (paiController != null) {
             paiController.atualizarTabelaEDashboard();
