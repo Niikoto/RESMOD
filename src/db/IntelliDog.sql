@@ -86,7 +86,7 @@ CREATE TABLE IF NOT EXISTS `intellidog`.`compra` (
     `ID_compra` INT NOT NULL AUTO_INCREMENT,
     `obs_compra` LONGTEXT NULL,
     `valor_da_compra` DECIMAL(10,2) NOT NULL,
-    `anexo_fiscal` VARCHAR(100) NULL,
+    `anexo_fiscal` VARCHAR(200) NULL,
     `data_compra` DATE NOT NULL,
     `COD_pedido` INT NOT NULL,
     `COD_email` VARCHAR(60) NOT NULL,
