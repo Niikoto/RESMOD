@@ -76,14 +76,21 @@
                     </VBox.margin>
                 </VBox>
 
-                <VBox alignment="CENTER" spacing="4.0">
-                    <children>
-                        <Label style="-fx-text-fill: #2b59c3; -fx-font-weight: bold; -fx-font-size: 14px;" text="Primeira vez acessando o sistema?" />
-                        <Label style="-fx-text-fill: #888888; -fx-font-size: 12px;" text="Contate o diretor da empresa" />
-                    </children>
+                <VBox alignment="CENTER">
                     <VBox.margin>
                         <Insets top="15.0" />
                     </VBox.margin>
+                    <children>
+                        <Button mnemonicParsing="false" onAction="#abrirGuia"
+                                text="Primeira vez no sistema?"
+                                style="-fx-background-color: transparent;
+                                       -fx-text-fill: #2b59c3;
+                                       -fx-font-weight: bold;
+                                       -fx-font-size: 13px;
+                                       -fx-underline: true;
+                                       -fx-cursor: hand;
+                                       -fx-padding: 4px 0;" />
+                    </children>
                 </VBox>
             </children>
             <effect>

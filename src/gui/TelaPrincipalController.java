@@ -1,6 +1,8 @@
 package gui;
 
 import dao.DashboardDAO;
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -26,6 +28,7 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
 import javafx.stage.Window;
+import javafx.util.Duration;
 import modelo.Atualizacao;
 import modelo.DashboardData;
 import modelo.DashboardService;
@@ -85,6 +88,44 @@ public class TelaPrincipalController {
     @FXML
     private NumberAxis yAxis;
 
+    // Auto-refresh 5 seg
+    private Timeline autoRefreshTimeline;
+    private static final int INTERVALO_REFRESH_SEGUNDOS = 5;
+
+    private void iniciarAutoRefresh() {
+        pararAutoRefresh(); // garante que não há timer duplicado
+        autoRefreshTimeline = new Timeline(
+            new KeyFrame(Duration.seconds(INTERVALO_REFRESH_SEGUNDOS), e -> atualizarDashboard())
+        );
+        autoRefreshTimeline.setCycleCount(Timeline.INDEFINITE);
+        autoRefreshTimeline.play();
+    }
+
+    private void pararAutoRefresh() {
+        if (autoRefreshTimeline != null) {
+            autoRefreshTimeline.stop();
+            autoRefreshTimeline = null;
+        }
+    }
+
+    public void atualizarDashboard() {
+        carregarGraficos();
+
+        try {
+            DashboardDAO dao = new DashboardDAO();
+            int estoqueBaixo = dao.contarProdutosEstoqueBaixo();
+            lblEstoqueBaixo.setText("⚠ " + estoqueBaixo + " produtos com estoque baixo");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        try {
+            carregarAtualizacoes();
+        } catch (Exception e) {
+            System.out.println("Aviso: Falha ao carregar atualizações: " + e.getMessage());
+        }
+    }
+
     public void initialize() {
         if (Session.getUsuario() != null && Session.getUsuario().getNome() != null) {
             nomeUsuarioSessao.setText("Olá, " + Session.getUsuario().getNome());
@@ -99,7 +140,7 @@ public class TelaPrincipalController {
             }
         }
 
-        // SEGURANÇA: caso a pessoa tenha acesso adm consegue acessar esses botões
+        // caso a pessoa tenha acesso adm consegue acessar esses botões
         if (meuCargo) {
             if (botaoNovaAtualizacao != null) {
                 botaoNovaAtualizacao.setVisible(true);
@@ -117,28 +158,9 @@ public class TelaPrincipalController {
             vboxAdminPost.setManaged(false);
         }
 
-        carregarGraficos();
-
-        try {
-            carregarAtualizacoes();
-        } catch (Exception e) {
-            System.out.println("Aviso: Falha ao carregar atualizações: " + e.getMessage());
-        }
-
-        //Alerta mínimo
-        try {
-
-            DashboardDAO dao = new DashboardDAO();
-
-            int estoqueBaixo = dao.contarProdutosEstoqueBaixo();
-
-            lblEstoqueBaixo.setText(
-                    "⚠ " + estoqueBaixo + " produtos com estoque baixo"
-            );
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        // Carrega os dados na primeira vez e inicia o auto-refresh de 5s
+        atualizarDashboard();
+        iniciarAutoRefresh();
 
 
         // aq é so para adaptar pra tela do usuario
@@ -187,32 +209,45 @@ public class TelaPrincipalController {
     DashboardService service = new DashboardService();
 
     public void carregarGraficos() {
+        // Desabilita animação para não ficar piscando quando refreshar os dados 
+        if (graficoPizza != null) graficoPizza.setAnimated(false);
+        if (graficoBarras != null) graficoBarras.setAnimated(false);
+
         if (graficoPizza != null) {
             DashboardData dados = service.getDados();
 
-
-            ObservableList<PieChart.Data> pieData = FXCollections.observableArrayList();
+            ObservableList<PieChart.Data> pieDataNova = FXCollections.observableArrayList();
 
             if (dados.getTotalAprovados() == 0 && dados.getTotalEmAberto() == 0 && dados.getTotalNegados() == 0) {
-                pieData.addAll(
+                pieDataNova.addAll(
                         new PieChart.Data("Aprovados (Exemplo)", 41),
                         new PieChart.Data("Em aberto (Exemplo)", 24),
                         new PieChart.Data("Negados (Exemplo)", 11));
             } else {
-                if (dados.getTotalAprovados() > 0) {
-                    pieData.add(
-                            new PieChart.Data("Aprovados: " + dados.getTotalAprovados(), dados.getTotalAprovados()));
-
-                }
+                if (dados.getTotalAprovados() > 0)
+                    pieDataNova.add(new PieChart.Data("Aprovados: " + dados.getTotalAprovados(), dados.getTotalAprovados()));
                 if (dados.getTotalEmAberto() > 0 || dados.getTotalEmAnalise() > 0) {
-                    int totalAbertoAnalise = dados.getTotalEmAberto() + dados.getTotalEmAnalise();
-                    pieData.add(new PieChart.Data("Em aberto: " + totalAbertoAnalise, dados.getTotalEmAberto() + dados.getTotalEmAnalise()));
+                    int total = dados.getTotalEmAberto() + dados.getTotalEmAnalise();
+                    pieDataNova.add(new PieChart.Data("Em aberto: " + total, total));
                 }
-                if (dados.getTotalNegados() > 0) {
-                    pieData.add(new PieChart.Data("Negados: " + dados.getTotalNegados(), dados.getTotalNegados()));
-                }
+                if (dados.getTotalNegados() > 0)
+                    pieDataNova.add(new PieChart.Data("Negados: " + dados.getTotalNegados(), dados.getTotalNegados()));
             }
-            graficoPizza.setData(pieData);
+
+            ObservableList<PieChart.Data> dadosAtuais = graficoPizza.getData();
+
+            if (dadosAtuais.size() == pieDataNova.size()) {
+                // Mesma quantidade de fatias: atualiza só os valores, sem recriar nós.
+                // O gráfico nunca fica vazio -> zero piscar.
+                for (int i = 0; i < dadosAtuais.size(); i++) {
+                    dadosAtuais.get(i).setName(pieDataNova.get(i).getName());
+                    dadosAtuais.get(i).setPieValue(pieDataNova.get(i).getPieValue());
+                }
+            } else {
+               
+                graficoPizza.getData().clear();
+                graficoPizza.getData().addAll(pieDataNova);
+            }
         }
 
         if (graficoBarras != null) {
@@ -350,16 +385,20 @@ public class TelaPrincipalController {
     public void abrirTelaDashboard(ActionEvent event) {
         if (painelPrincipal != null && painelDashboardOriginal != null) {
             painelPrincipal.setCenter(painelDashboardOriginal);
-            atualizarMenuLateral(botaoDashboard); // Fica Azul
+            atualizarMenuLateral(botaoDashboard);
+            // Atualiza imediatamente e reinicia o timer de 5s
+            atualizarDashboard();
+            iniciarAutoRefresh();
         }
     }
 
     @FXML
     public void abrirTelaPedidos(ActionEvent event) {
+        pararAutoRefresh();
         try {
             Parent root = FXMLLoader.load(getClass().getResource("/view/TelaPedidos.fxml"));
             painelPrincipal.setCenter(root);
-            atualizarMenuLateral(botaoPedidos); // Fica Azul
+            atualizarMenuLateral(botaoPedidos);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -367,10 +406,11 @@ public class TelaPrincipalController {
 
     @FXML
     public void abrirTelaCadastro(ActionEvent event) {
+        pararAutoRefresh();
         try {
             Parent root = FXMLLoader.load(getClass().getResource("/view/TelaCadastro.fxml"));
             painelPrincipal.setCenter(root);
-            atualizarMenuLateral(botaoCriarConta); // Fica Azul
+            atualizarMenuLateral(botaoCriarConta);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -378,10 +418,11 @@ public class TelaPrincipalController {
 
     @FXML
     public void abrirTelaProdutos(ActionEvent event) {
+        pararAutoRefresh();
         try {
             Parent root = FXMLLoader.load(getClass().getResource("/view/TelaProdutos.fxml"));
             painelPrincipal.setCenter(root);
-            atualizarMenuLateral(botaoProdutos); // fica azul
+            atualizarMenuLateral(botaoProdutos);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -389,10 +430,11 @@ public class TelaPrincipalController {
 
     @FXML
     public void abrirTelaFornecedores(ActionEvent event) {
+        pararAutoRefresh();
         try {
             Parent root = FXMLLoader.load(getClass().getResource("/view/TelaFornecedores.fxml"));
             painelPrincipal.setCenter(root);
-            atualizarMenuLateral(botaoFornecedores); // fica azul
+            atualizarMenuLateral(botaoFornecedores);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -400,10 +442,11 @@ public class TelaPrincipalController {
 
     @FXML
     public void abrirTelaCentroCusto(ActionEvent event) {
+        pararAutoRefresh();
         try {
             Parent root = FXMLLoader.load(getClass().getResource("/view/TelaCentroCusto.fxml"));
             painelPrincipal.setCenter(root);
-            atualizarMenuLateral(botaoCentroCusto); //fica azul
+            atualizarMenuLateral(botaoCentroCusto);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -411,6 +454,7 @@ public class TelaPrincipalController {
 
     @FXML
     public void fazerLogout(ActionEvent event) {
+        pararAutoRefresh();
         Session.encerrar(); // limpa o usuário da memória
         try {
             Parent root = FXMLLoader.load(getClass().getResource("/view/TelaLogin.fxml"));

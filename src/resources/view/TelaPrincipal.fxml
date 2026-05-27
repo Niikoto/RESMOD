@@ -34,7 +34,6 @@
                   </VBox>
                   <HBox alignment="CENTER_RIGHT" spacing="15.0" HBox.hgrow="ALWAYS">
                      <children>
-                        <Label style="-fx-font-size: 18px; -fx-text-fill: #333333;" text="🔔" />
                         <VBox alignment="CENTER_RIGHT">
                            <children>
                               <Label fx:id="nomeUsuarioSessao" style="-fx-font-weight: bold; -fx-text-fill: #333333;" text="Usuário" />

@@ -10,7 +10,9 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
@@ -200,15 +202,36 @@ public class TelaPedidoController {
     }
 
     @FXML
-    public void excluirPedido(ActionEvent event){
-        Pedido pedidoselecionado = tablePedido.getSelectionModel().getSelectedItem();
+    public void excluirPedido(ActionEvent event) {
+        Pedido pedidoSelecionado = tablePedido.getSelectionModel().getSelectedItem();
+        if (pedidoSelecionado == null) return;
 
-        int guardar_idPedido = pedidoselecionado.getID_pedido();
+        // Confirmação antes de excluir
+        Alert confirmacao = new Alert(Alert.AlertType.CONFIRMATION);
+        confirmacao.setTitle("Confirmar exclusão");
+        confirmacao.setHeaderText("Excluir pedido #" + pedidoSelecionado.getID_pedido() + "?");
+        confirmacao.setContentText("Esta ação removerá o pedido e todos os registros vinculados a ele.\nEssa operação não pode ser desfeita.");
+        confirmacao.initOwner(tablePedido.getScene().getWindow());
 
-        PedidoDAO apagarPedido = new PedidoDAO();
-        apagarPedido.buttonExcluirpedido(guardar_idPedido);
+        confirmacao.showAndWait().ifPresent(resposta -> {
+            if (resposta == ButtonType.OK) {
+                PedidoDAO dao = new PedidoDAO();
+                boolean sucesso = dao.buttonExcluirpedido(pedidoSelecionado.getID_pedido());
 
-        tablePedido.getItems().remove(pedidoselecionado);
+                if (sucesso) {
+                    atualizarTabelaEDashboard();
+                    buttonExcluir.setDisable(true);
+                    btnCompra.setDisable(true);
+                } else {
+                    Alert erro = new Alert(Alert.AlertType.ERROR);
+                    erro.setTitle("Erro ao excluir");
+                    erro.setHeaderText(null);
+                    erro.setContentText("Não foi possível excluir o pedido. Tente novamente.");
+                    erro.initOwner(tablePedido.getScene().getWindow());
+                    erro.showAndWait();
+                }
+            }
+        });
     }
 
     @FXML

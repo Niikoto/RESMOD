@@ -217,14 +217,26 @@ public class PedidoDAO {
         }
     }
 
-    public void buttonExcluirpedido(int idPedido){
-        String sql = "delete from pedido where ID_pedido = ?;";
-        try(PreparedStatement deletarPedido = conectar.prepareStatement(sql)) {
-            deletarPedido.setInt(1, idPedido);
-            deletarPedido.executeUpdate();
-            
+    public boolean buttonExcluirpedido(int idPedido) {
+        //  primeiro apagar os filhos que referenciam pedido em si
+        // depois apagar o pedido em si.
+        String[] sqls = {
+            "DELETE FROM compra              WHERE COD_pedido = ?;",
+            "DELETE FROM historico_pedido    WHERE COD_pedido = ?;",
+            "DELETE FROM produto_has_pedido  WHERE COD_pedido = ?;",
+            "DELETE FROM pedido              WHERE ID_pedido  = ?;"
+        };
+        try {
+            for (String sql : sqls) {
+                try (PreparedStatement cmd = conectar.prepareStatement(sql)) {
+                    cmd.setInt(1, idPedido);
+                    cmd.executeUpdate();
+                }
+            }
+            return true;
         } catch (SQLException e) {
             e.printStackTrace();
+            return false;
         }
     }
 
