@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Pos?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane prefHeight="660.0" prefWidth="1050.0"
+            xmlns="http://javafx.com/javafx/17"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="gui.TelaHistoricoEstoqueController"
+            style="-fx-background-color: #F4F6FF;">
+
+    <children>
+
+        <VBox alignment="CENTER"
+              spacing="25.0"
+              AnchorPane.topAnchor="20.0"
+              AnchorPane.bottomAnchor="20.0"
+              AnchorPane.leftAnchor="20.0"
+              AnchorPane.rightAnchor="20.0">
+
+            <Label text="Histórico do Estoque"
+                   style="-fx-font-size: 22px; -fx-font-weight: bold; -fx-text-fill: #4A5BDC;" />
+
+            <TableView fx:id="tabelaHistorico">
+
+                <columns>
+                    <TableColumn fx:id="colProduto" text="Produto"/>
+                    <TableColumn fx:id="colTipo" text="Tipo"/>
+                    <TableColumn fx:id="colQuantidade" text="Quantidade"/>
+                    <TableColumn fx:id="colData" text="Data"/>
+                    <TableColumn fx:id="colEmail" text="Email"/>
+
+                </columns>
+
+            </TableView>
+
+            <Button fx:id="fecharButton"
+                    text="Fechar"
+                    onAction="#fechar"
+                    prefWidth="120"
+                    style="-fx-background-color: #b3d9ff;
+                           -fx-background-radius: 15;
+                           -fx-font-weight: bold;" />
+
+        </VBox>
+
+    </children>
+</AnchorPane>

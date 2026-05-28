@@ -1,10 +1,30 @@
 package modelo;
 
+import java.util.Date;
+
 public class Entrada_saida {
     private int ID_entrada_saida;
     private boolean tipo;
     private int quantidade;
     private int COD_produto;
+    private Date data;
+    private String email;
+
+    public Date getData() {
+        return data;
+    }
+
+    public void setData(Date data) {
+        this.data = data;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
 
     //Constructor vazio
     public Entrada_saida() {}

@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Pos?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane prefHeight="220.0" prefWidth="350.0"
+            xmlns="http://javafx.com/javafx/17"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="gui.TelaHistoricoPedidoController"
+            style="-fx-background-color: #F4F6FF;">
+
+    <children>
+
+        <VBox alignment="CENTER"
+              spacing="25.0"
+              AnchorPane.topAnchor="20.0"
+              AnchorPane.bottomAnchor="20.0"
+              AnchorPane.leftAnchor="20.0"
+              AnchorPane.rightAnchor="20.0">
+
+            <Label text="Histórico do Pedido"
+                   style="-fx-font-size: 22px; -fx-font-weight: bold; -fx-text-fill: #4A5BDC;" />
+
+            <Label text="Aqui ficará o histórico das movimentações."
+                   wrapText="true"
+                   style="-fx-font-size: 14px; -fx-text-fill: #555555;" />
+
+            <Button fx:id="fecharButton"
+                    text="Fechar"
+                    onAction="#fechar"
+                    prefWidth="120"
+                    style="-fx-background-color: #b3d9ff;
+                           -fx-background-radius: 15;
+                           -fx-font-weight: bold;" />
+
+        </VBox>
+
+    </children>
+</AnchorPane>

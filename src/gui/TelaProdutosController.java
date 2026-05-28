@@ -17,6 +17,7 @@ import java.util.Locale;
 import dao.CategoriaDAO;
 import dao.FornecedorDAO;
 import dao.ProdutoDAO;
+import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -129,9 +130,9 @@ public class TelaProdutosController {
         columnNome.setCellValueFactory(new PropertyValueFactory<>("nome_produto"));
         columnPreco.setCellValueFactory(new PropertyValueFactory<>("preco"));
         columnQuantidade.setCellValueFactory(new PropertyValueFactory<>("quantidade"));
-        columnCategoria.setCellValueFactory(cellData -> new javafx.beans.property.SimpleStringProperty(
+        columnCategoria.setCellValueFactory(cellData -> new SimpleStringProperty(
                 cellData.getValue().getCategoria().getNomeCategoria()));
-        columnFornecedor.setCellValueFactory(cellData -> new javafx.beans.property.SimpleStringProperty(
+        columnFornecedor.setCellValueFactory(cellData -> new SimpleStringProperty(
                 cellData.getValue().getFornecedor().getNome_fornecedor()));
 
         ProdutoDAO dao = new ProdutoDAO();
@@ -457,6 +458,31 @@ public class TelaProdutosController {
             e.printStackTrace();
         }
     }
+
+    @FXML
+    private void abrirHistoricoEstoque() {
+
+        try {
+
+            FXMLLoader loader = new FXMLLoader(
+                    getClass().getResource("/view/TelaHistoricoEstoque.fxml")
+            );
+
+            Parent root = loader.load();
+
+            Stage modal = new Stage();
+
+            modal.initModality(Modality.APPLICATION_MODAL);
+            modal.setTitle("Histórico do Estoque");
+            modal.setScene(new Scene(root));
+
+            modal.showAndWait();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
 
     public void atualizarTela() {
         ProdutoDAO daoProd = new ProdutoDAO();
