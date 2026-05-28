@@ -22,6 +22,7 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.text.Text;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 import modelo.DashboardData;
 import modelo.DashboardService;
 import modelo.Pedido;
@@ -249,6 +250,7 @@ public class TelaPedidoController {
 
             modal.initModality(Modality.APPLICATION_MODAL);
             modal.setTitle("Histórico dos Pedidos");
+            modal.initStyle(StageStyle.UNDECORATED);
             modal.setScene(new Scene(root));
 
             modal.showAndWait();
