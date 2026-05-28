@@ -33,6 +33,7 @@ import javafx.scene.layout.VBox;
 import javafx.stage.FileChooser;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 import modelo.Categoria;
 import modelo.Fornecedor;
 import modelo.Produto;
@@ -448,6 +449,7 @@ public class TelaProdutosController {
             controller.setAtualizar(this);
 
             Stage modal = new Stage();
+
             modal.initModality(Modality.APPLICATION_MODAL);
             modal.setScene(new Scene(root));
             modal.setTitle("Editar Produto");
@@ -474,6 +476,7 @@ public class TelaProdutosController {
 
             modal.initModality(Modality.APPLICATION_MODAL);
             modal.setTitle("Histórico do Estoque");
+            modal.initStyle(StageStyle.UNDECORATED);
             modal.setScene(new Scene(root));
 
             modal.showAndWait();
