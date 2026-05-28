@@ -22,7 +22,11 @@
                <children>
                   <Label style="-fx-font-size: 26px; -fx-font-weight: bold; -fx-text-fill: #1e293b;" text="Pedidos" />
                   <Region HBox.hgrow="ALWAYS" />
-                  <Button fx:id="botaoAdicionarPedido" mnemonicParsing="false" onAction="#adicionarTelaPedido" style="-fx-background-color: #49b69b; -fx-text-fill: white; -fx-font-weight: bold; -fx-background-radius: 6px; -fx-cursor: hand; -fx-padding: 10px 20px; -fx-font-size: 14px;" text="+ Novo Pedido" />
+                  <Button fx:id="historicoPed" mnemonicParsing="false" onAction="#abrirHistoricoPedido" style="-fx-background-color: #49b69b; -fx-text-fill: white; -fx-font-weight: bold; -fx-background-radius: 6px; -fx-cursor: hand; -fx-padding: 10px 20px; -fx-font-size: 14px;" text="Acessar Histórico Pedido">
+                     <HBox.margin>
+                        <Insets right="10.0" />
+                     </HBox.margin></Button>
+                  <Button fx:id="botaoAdicionarPedido" layoutX="760.0" layoutY="10.0" mnemonicParsing="false" onAction="#adicionarTelaPedido" style="-fx-background-color: #49b69b; -fx-text-fill: white; -fx-font-weight: bold; -fx-background-radius: 6px; -fx-cursor: hand; -fx-padding: 10px 20px; -fx-font-size: 14px;" text="+ Novo Pedido" />
                </children>
             </HBox>
 

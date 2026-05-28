@@ -4,7 +4,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane prefHeight="220.0" prefWidth="350.0"
+<AnchorPane prefHeight="660.0" prefWidth="1050.0"
             xmlns="http://javafx.com/javafx/17"
             xmlns:fx="http://javafx.com/fxml/1"
             fx:controller="gui.TelaHistoricoPedidoController"
@@ -22,13 +22,21 @@
             <Label text="Histórico do Pedido"
                    style="-fx-font-size: 22px; -fx-font-weight: bold; -fx-text-fill: #4A5BDC;" />
 
-            <Label text="Aqui ficará o histórico das movimentações."
-                   wrapText="true"
-                   style="-fx-font-size: 14px; -fx-text-fill: #555555;" />
+            <TableView fx:id="tabelaHistoricoPedido">
 
-            <Button fx:id="fecharButton"
+                <columns>
+                    <TableColumn fx:id="colPedido" text="Pedido"/>
+                    <TableColumn fx:id="colStatus" text="Status"/>
+                    <TableColumn fx:id="colDataAlteracao" text="Data"/>
+                    <TableColumn fx:id="colEmail" text="Email"/>
+
+                </columns>
+
+            </TableView>
+
+            <Button fx:id="fecharButtonPedido"
                     text="Fechar"
-                    onAction="#fechar"
+                    onAction="#fecharPed"
                     prefWidth="120"
                     style="-fx-background-color: #b3d9ff;
                            -fx-background-radius: 15;

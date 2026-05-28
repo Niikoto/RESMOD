@@ -235,6 +235,30 @@ public class TelaPedidoController {
     }
 
     @FXML
+    private void abrirHistoricoPedido() {
+
+        try {
+
+            FXMLLoader loader = new FXMLLoader(
+                    getClass().getResource("/view/TelaHistoricoPedido.fxml")
+            );
+
+            Parent root = loader.load();
+
+            Stage modal = new Stage();
+
+            modal.initModality(Modality.APPLICATION_MODAL);
+            modal.setTitle("Histórico dos Pedidos");
+            modal.setScene(new Scene(root));
+
+            modal.showAndWait();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    @FXML
     public void adicionarTelaPedido(ActionEvent event) throws IOException {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/TelaPedirPedidos.fxml"));
