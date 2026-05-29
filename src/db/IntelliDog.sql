@@ -66,6 +66,26 @@ CREATE TABLE IF NOT EXISTS `intellidog`.`pedido` (
     ENGINE = InnoDB;
 
 -- -----------------------------------------------------
+-- Table `intellidog`.`setor`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `intellidog`.`setor` (
+    `ID_setor` INT NOT NULL AUTO_INCREMENT,
+    `nome` VARCHAR(60) NOT NULL,
+    PRIMARY KEY (`ID_setor`)
+    )
+    ENGINE = InnoDB;
+
+-- -----------------------------------------------------
+-- Table `intellidog`.`centro_custo`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `intellidog`.`centro_custo` (
+    `ID_centro_custo` INT NOT NULL AUTO_INCREMENT,
+    `nome` VARCHAR(60) NOT NULL,
+    PRIMARY KEY (`ID_centro_custo`)
+    )
+    ENGINE = InnoDB;
+
+-- -----------------------------------------------------
 -- Table `intellidog`.`historico_pedido`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `intellidog`.`historico_pedido` (

@@ -3,7 +3,6 @@ package gui;
 import java.sql.SQLException;
 import java.util.List;
 
-import javafx.scene.control.Label;
 import dao.PedidoDAO;
 import dao.ProdutoDAO;
 import dao.Produto_has_pedidoDAO;
@@ -14,6 +13,16 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
+import javafx.geometry.Insets;
+import javafx.geometry.Pos;
+import javafx.scene.control.Alert;
+import javafx.scene.Scene;
+import javafx.scene.control.Label;
+import javafx.scene.control.ScrollPane;
+import javafx.scene.layout.Priority;
+import javafx.scene.layout.VBox;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextArea;
@@ -42,6 +51,9 @@ public class TelaPedirPedidoController {
     private ComboBox<String> comBoxForDois;
     @FXML
     private ComboBox<Produto> comboProd;
+
+    @FXML private TextField txtSetor;
+    @FXML private TextField txtCentroCusto;
 
     @FXML
     private TableView<Produto_has_pedido> tableProPed;
@@ -77,6 +89,7 @@ public class TelaPedirPedidoController {
 
     private float totalPedido;
 
+    private final PedidoDAO dao = new PedidoDAO();
     ProdutoDAO daoProd = new ProdutoDAO();
 
     @FXML
@@ -168,6 +181,14 @@ public class TelaPedirPedidoController {
     public void criarPedido(ActionEvent event) {
         String motivo = campoMotivo.getText();
 
+        if (txtSetor.getText().trim().isEmpty()) {
+            mostrarAlerta("Campo obrigatório", "Informe o Setor.");
+            return;
+        }
+        if (txtCentroCusto.getText().trim().isEmpty()) {
+            mostrarAlerta("Campo obrigatório", "Informe o Centro de Custo.");
+            return;
+        }
         if (motivo != null && !motivo.trim().isEmpty()) {
             Pedido novoPedido = new Pedido();
 
@@ -210,6 +231,9 @@ public class TelaPedirPedidoController {
 
         comBoxForUm.setDisable(true);
         comBoxForDois.setDisable(true);
+
+        txtSetor.setDisable(true);
+        txtCentroCusto.setDisable(true);
 
         colIdProd.setCellValueFactory(cellData -> new javafx.beans.property.SimpleIntegerProperty(
                 cellData.getValue().getProduto().getID_produto()).asObject());
@@ -260,5 +284,13 @@ public class TelaPedirPedidoController {
         btnCadProd.setDisable(true);
 
         comboProd.setValue(null);
+    }
+
+    private void mostrarAlerta(String titulo, String mensagem) {
+        Alert alert = new Alert(Alert.AlertType.WARNING);
+        alert.setTitle(titulo);
+        alert.setHeaderText(null);
+        alert.setContentText(mensagem);
+        alert.showAndWait();
     }
 }

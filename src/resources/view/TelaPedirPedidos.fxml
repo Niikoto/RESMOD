@@ -41,19 +41,13 @@
                   <VBox spacing="5.0" HBox.hgrow="ALWAYS">
                      <children>
                         <Label style="-fx-font-weight: bold; -fx-text-fill: #475569; -fx-font-size: 14px;" text="Setor *" />
-                        <ComboBox fx:id="comboSetor"
-                                  maxWidth="1.7976931348623157E308"
-                                  promptText="Selecione o setor de destino"
-                                  style="-fx-background-radius: 6px; -fx-border-color: #cbd5e1; -fx-border-radius: 6px; -fx-background-color: white;" />
+                        <TextField fx:id="txtSetor" promptText="Ex: Operacional, Administrativo..." style="-fx-background-radius: 6px; -fx-border-color: #cbd5e1; -fx-border-radius: 6px; -fx-background-color: white; -fx-padding: 8px;" />
                      </children>
                   </VBox>
                   <VBox spacing="5.0" HBox.hgrow="ALWAYS">
                      <children>
                         <Label style="-fx-font-weight: bold; -fx-text-fill: #475569; -fx-font-size: 14px;" text="Centro de Custo *" />
-                        <ComboBox fx:id="comboCentroCusto"
-                                  maxWidth="1.7976931348623157E308"
-                                  promptText="Selecione o centro de custo"
-                                  style="-fx-background-radius: 6px; -fx-border-color: #cbd5e1; -fx-border-radius: 6px; -fx-background-color: white;" />
+                        <TextField fx:id="txtCentroCusto" promptText="Ex: Informática, Limpeza..." style="-fx-background-radius: 6px; -fx-border-color: #cbd5e1; -fx-border-radius: 6px; -fx-background-color: white; -fx-padding: 8px;" />
                      </children>
                   </VBox>
                </children>
