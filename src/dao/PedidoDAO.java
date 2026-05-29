@@ -55,16 +55,16 @@ public class PedidoDAO {
                 do {
                     Pedido pedido = new Pedido();
                     Usuario usuario = new Usuario();
-                    pedido.setID_pedido(resultado.getInt(1));
-                    pedido.setMotivo(resultado.getString(2));
-                    pedido.setForma_de_pagamento(resultado.getString(3));
-                    pedido.setCriado(resultado.getString(4));
-                    pedido.setStatus(resultado.getString(5));
-                    pedido.setPreco_total(resultado.getFloat(6));
-                    pedido.setCOD_email(resultado.getString(7));
-                    pedido.setSetor(resultado.getString(8));
-                    pedido.setCentro_custo(resultado.getString(9));
-                    usuario.setNome(resultado.getString(10));
+                    pedido.setID_pedido(resultado.getInt("ID_pedido"));
+                    pedido.setMotivo(resultado.getString("motivo"));
+                    pedido.setForma_de_pagamento(resultado.getString("forma_de_pagamento"));
+                    pedido.setCriado(resultado.getString("criado"));
+                    pedido.setStatus(resultado.getString("status"));
+                    pedido.setPreco_total(resultado.getFloat("preco_total"));
+                    pedido.setCOD_email(resultado.getString("COD_email"));
+                    pedido.setSetor(resultado.getString("setor"));
+                    pedido.setCentro_custo(resultado.getString("centro_custo"));
+                    usuario.setNome(resultado.getString("nome"));
 
                     pedido.setUsuario(usuario);
                     pedidos.add(pedido);

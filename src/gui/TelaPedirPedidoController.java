@@ -193,6 +193,8 @@ public class TelaPedirPedidoController {
             Pedido novoPedido = new Pedido();
 
             novoPedido.setMotivo(motivo);
+            novoPedido.setSetor(txtSetor.getText().trim());
+            novoPedido.setCentro_custo(txtCentroCusto.getText().trim());
 
             if (comBoxForUm.getValue() != "") {
                 novoPedido.setForma_de_pagamento(comBoxForUm.getValue());
