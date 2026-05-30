@@ -66,7 +66,7 @@
                   <Button fx:id="botaoFornecedores" alignment="BASELINE_LEFT" mnemonicParsing="false" onAction="#abrirTelaFornecedores" prefHeight="45.0" prefWidth="200.0" style="-fx-background-color: transparent; -fx-text-fill: white; -fx-font-size: 14px;" text=" 👤  Fornecedores">
                      <padding><Insets left="20.0" /></padding>
                   </Button>
-                  <Button fx:id="botaoCentroCusto" alignment="BASELINE_LEFT" mnemonicParsing="false" onAction="#abrirTelaCentroCusto" prefHeight="45.0" prefWidth="200.0" style="-fx-background-color: transparent; -fx-text-fill: white; -fx-font-size: 14px;" text=" 💰  Controle de Gastos">
+                  <Button fx:id="botaoCentroCusto" alignment="BASELINE_LEFT" mnemonicParsing="false" onAction="#abrirTelaCentroCusto" prefHeight="45.0" prefWidth="200.0" style="-fx-background-color: transparent; -fx-text-fill: white; -fx-font-size: 14px;" text=" 💰  Centro de Custos">
                      <padding><Insets left="20.0" /></padding>
                   </Button>
                   <Button fx:id="botaoCriarConta" alignment="BASELINE_LEFT" mnemonicParsing="false" onAction="#abrirTelaCadastro" prefHeight="45.0" prefWidth="200.0" style="-fx-background-color: transparent; -fx-text-fill: white; -fx-font-size: 14px;" text=" 👥  Funcionários">
