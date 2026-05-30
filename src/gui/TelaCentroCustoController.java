@@ -83,9 +83,6 @@ public class TelaCentroCustoController implements Initializable {
         comboSetor.setItems(FXCollections.observableArrayList(setores));
         comboCentroCusto.setItems(FXCollections.observableArrayList(centros));
     }
-
-
-
     @FXML
     private void aplicarFiltro() {
         String setor  = comboSetor.getValue();

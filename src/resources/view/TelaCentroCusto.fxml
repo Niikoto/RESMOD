@@ -80,6 +80,9 @@
                                 <Label fx:id="labelQtdPedidos"
                                        style="-fx-text-fill: #a16207; -fx-font-size: 22px; -fx-font-weight: bold;"
                                        text="0" />
+                                <Label fx:id="labelTotalTabela"
+                                       style="-fx-text-fill: #a16207; -fx-font-size: 13px;"
+                                       text="R$ 0,00" />
                             </children>
                         </VBox>
                     </children>
