@@ -15,7 +15,7 @@
         <VBox spacing="25.0" style="-fx-padding: 30px;">
             <children>
 
-                <Label style="-fx-font-size: 26px; -fx-font-weight: bold; -fx-text-fill: #1e293b;" text="Centro de Custo" />
+                <Label style="-fx-font-size: 26px; -fx-font-weight: bold; -fx-text-fill: #1e293b;" text="Controle de Gastos" />
 
                 <VBox spacing="15.0" style="-fx-background-color: white; -fx-background-radius: 12px; -fx-padding: 25px; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.04), 10, 0, 0, 0);">
                     <children>

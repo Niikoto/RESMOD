@@ -127,12 +127,10 @@ public class TelaCentroCustoController implements Initializable {
             return;
         }
 
-        List<DashboardData> totais = dao.totalPorSetor();
-        float total = totais.stream()
-                .filter(d -> setor.equalsIgnoreCase(d.getNome_cargo()))
-                .map(d -> (float) d.getQuantidade_pedido())
-                .findFirst()
-                .orElse(0f);
+        List<Pedido> pedidosSetor = dao.listarPedidosFiltrados(setor, null);
+        float total = (float) pedidosSetor.stream()
+                .mapToDouble(Pedido::getPreco_total)
+                .sum();
 
         labelNomeSetor.setText(setor);
         labelTotalSetor.setText(String.format("R$ %,.2f", total));
@@ -144,12 +142,11 @@ public class TelaCentroCustoController implements Initializable {
             labelTotalCentro.setText("R$ 0,00");
             return;
         }
-        List<DashboardData> totais = dao.totalPorCentroCusto();
-        float total = totais.stream()
-                .filter(d -> centro.equalsIgnoreCase(d.getNome_cargo()))
-                .map(d -> (float) d.getQuantidade_pedido())
-                .findFirst()
-                .orElse(0f);
+
+        List<Pedido> pedidosCentro = dao.listarPedidosFiltrados(null, centro);
+        float total = (float) pedidosCentro.stream()
+                .mapToDouble(Pedido::getPreco_total)
+                .sum();
 
         labelNomeCentro.setText(centro);
         labelTotalCentro.setText(String.format("R$ %,.2f", total));
