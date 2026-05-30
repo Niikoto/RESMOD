@@ -1,101 +1,166 @@
-# ⚙️ Instalação e Execução
+# ⚙️ Instalação e Execução com Maven
 
 ## 📋 Pré-requisitos
 
-Antes de iniciar, garanta que você possui instalado:
+Antes de iniciar, garanta que possui instalado:
 
-- Java JDK 17 ou superior
-- JavaFX SDK compatível com sua versão do Java
+- Java JDK 25
+- Maven
 - MySQL Server 8+
 - Git
-- IDE (IntelliJ, VSCode, Eclipse)
-  
-Opcional:
 
-- Cliente SQL (MySQL Workbench, DBeaver, etc.)
+> O projeto utiliza Maven para gerenciar dependências como JavaFX e MySQL Connector.
 
-
-
+---
 
 ## 📥 Clonando o repositório
-```Bash
+
+```bash
 git clone https://github.com/Niikoto/RESMOD.git
 cd RESMOD
 ```
 
- 
+---
 
 ## 🗄️ Configuração do Banco de Dados
-**1. Criar o banco**
-```CREATE DATABASE intellidog;```
 
-**2. Executar scripts**
+Crie o banco de dados:
 
-Localizados em:
+```sql
+CREATE DATABASE intellidog;
+```
 
-```src/db/```
+Depois, execute os scripts localizados em:
 
-Execute:
-- IntelliDog.sql
-- insert.sql
-- Selects.sql
+```text
+src/db/
+```
 
+Ordem sugerida:
 
+1. `IntelliDog.sql`
+2. `insert.sql`
+3. `Selects.sql` *(opcional)*
+
+---
 
 ## 🔌 Configuração da Conexão
 
-Crie o arquivo:
+Verifique o arquivo:
 
-```src/factory/ConnectionFactory.java```
-
-```
-package factory;
-
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
-
-public class ConnectionFactory {
-    private static final String URL = "jdbc:mysql://localhost/intellidog";
-    private static final String USER = "root";
-    private static final String PASSWORD = "";
-
-    public static Connection getConnection() {
-        try {
-            return DriverManager.getConnection(URL, USER, PASSWORD);
-        } catch (SQLException e) {
-            throw new RuntimeException("Erro ao conectar com o banco de dados.", e);
-        }
-    }
-}
+```text
+src/factory/ConnectionFactory.java
 ```
 
-**⚠️ Ajuste usuário e senha conforme seu ambiente. Crie com base no ```ConnectionFactoryExample.java```**
+Confirme se as credenciais estão de acordo com seu ambiente local:
 
+```java
+private static final String URL = "jdbc:mysql://localhost/intellidog";
+private static final String USER = "root";
+private static final String PASSWORD = "";
+```
 
+> Ajuste usuário e senha conforme sua configuração do MySQL.
 
-## 📦 Dependência: MySQL Connector
+---
 
-Baixe o MySQL Connector/J e adicione ao projeto.
+# 🚀 Execução
 
-## 🚀 Execução
-#### 💻 Com IDE (IntelliJ / VSCode)
-#### 🔧 Configuração
-Abra a pasta do projeto e configure:
-- JDK 17+
-- JavaFX SDK
-- MySQL Connector (.jar)
+## 💻 Opção 1 — IntelliJ IDEA
 
-**No VM Options (JavaFX), Adicione:**
+1. Abra a pasta do projeto no IntelliJ.
+2. Aguarde o Maven carregar as dependências.
+3. Caso necessário, clique com o botão direito no `pom.xml` e selecione:
 
-```--module-path <caminho-javafx>/lib --add-modules javafx.controls,javafx.fxml```
+```text
+Add as Maven Project
+```
 
-E Execute a classe:
+4. Verifique se o SDK do projeto está configurado como Java 25:
 
-```Main.java```
+```text
+File > Project Structure > Project SDK
+```
 
+5. Execute pelo Maven:
 
-# ⚠️ Atenção 
-- Configuração é manual
-- Banco de dados é obrigatório
-- JavaFX precisa ser configurado explicitamente
+```text
+Maven > Plugins > javafx > javafx:run
+```
+
+Ou pelo terminal integrado:
+
+```bash
+mvn javafx:run
+```
+
+---
+
+## 💻 Opção 2 — VSCode
+
+1. Abra a pasta do projeto no VSCode.
+2. Instale as extensões:
+   - Extension Pack for Java
+   - Maven for Java
+3. Aguarde o Maven reconhecer o `pom.xml`.
+4. Execute pelo terminal:
+
+```bash
+mvn javafx:run
+```
+
+---
+
+## ⚠️ Problemas comuns
+
+### Java não compatível
+
+O projeto está configurado para Java 25 no `pom.xml`.
+
+Verifique com:
+
+```bash
+java -version
+```
+
+---
+
+### Maven não reconhecido
+
+Verifique se o Maven está instalado:
+
+```bash
+mvn -version
+```
+
+---
+
+### Erro de conexão com banco
+
+Verifique:
+
+- se o MySQL está rodando
+- se o banco `intellidog` foi criado
+- se os scripts SQL foram executados
+- se usuário e senha estão corretos no `ConnectionFactory.java`
+
+---
+
+### Erro ao executar JavaFX
+
+Execute usando:
+
+```bash
+mvn javafx:run
+```
+
+Evite executar diretamente o `Main.java`, pois o Maven já configura as dependências necessárias do JavaFX.
+
+---
+
+## ℹ️ Observações
+
+- As dependências JavaFX e MySQL Connector são gerenciadas pelo Maven.
+- Não é necessário adicionar `.jar` manualmente.
+- Não é necessário configurar `--module-path` manualmente ao executar com `mvn javafx:run`.
+- O banco de dados MySQL continua sendo obrigatório para o funcionamento do sistema.
