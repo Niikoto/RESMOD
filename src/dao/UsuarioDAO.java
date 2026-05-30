@@ -17,19 +17,19 @@ public class UsuarioDAO {
     public void cadastrar(Usuario u) throws SQLException {
         String sql = "INSERT INTO usuario(ID_email, Nome, Senha, COD_cargo) VALUES(?, ?, ?, ?)";
 
-        try(PreparedStatement comando = conectar.prepareStatement(sql)){
+        try (PreparedStatement comando = conectar.prepareStatement(sql)) {
 
             // 1 = email, pois é o primeiro elemento
             // 2 = nome... e assim va indo
             comando.setString(1, u.getId_Email());
             comando.setString(2, u.getNome());
             comando.setString(3, u.getSenha());
-            comando.setInt   (4, u.getCargo());
+            comando.setInt(4, u.getCargo());
 
-            //dps de definir o catastro ele vai
+            // dps de definir o catastro ele vai
             comando.executeUpdate();
 
-            //E fechar esta conexão
+            // E fechar esta conexão
         }
     }
 
@@ -44,7 +44,8 @@ public class UsuarioDAO {
 
             // Se houver um próximo registro, significa que o login é válido
             if (resultado.next()) {
-                // Puxa o número do cargo lá do banco de dados(o treco de 1, 2 3)e salva no nosso objeto
+                // Puxa o número do cargo lá do banco de dados(o treco de 1, 2 3)e salva no
+                // nosso objeto
                 u.setCargo(resultado.getInt("COD_cargo"));
                 // setta também o nome do usuário caso ele tenha um.
                 u.setNome(resultado.getString("Nome"));
@@ -62,8 +63,8 @@ public class UsuarioDAO {
 
         // aq é so pra ele ver o back pra trazer os funcionario
         try (Connection conn = ConnectionFactory.getConnection();
-             PreparedStatement comando = conn.prepareStatement(sql);
-             ResultSet resultado = comando.executeQuery()) {
+                PreparedStatement comando = conn.prepareStatement(sql);
+                ResultSet resultado = comando.executeQuery()) {
 
             while (resultado.next()) {
                 Usuario u = new Usuario();
@@ -82,5 +83,16 @@ public class UsuarioDAO {
         }
 
         return lista;
+    }
+
+    public void buttonExcluirUsuario(Usuario ID_email) {
+        String sql = "delete from usuario where ID_email = ?;";
+        try (PreparedStatement deletarUsuario = conectar.prepareStatement(sql)) {
+            deletarUsuario.setString(1, ID_email.getId_Email());
+            deletarUsuario.executeUpdate();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 }

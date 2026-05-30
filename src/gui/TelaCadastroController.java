@@ -9,26 +9,37 @@ import javafx.scene.control.*;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.VBox;
 import modelo.Cargo;
+import modelo.Session;
 import modelo.Usuario;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
 public class TelaCadastroController {
-    @FXML private TextField campoNomeCadastro;
-    @FXML private TextField campoEmailCadastro;
-    @FXML private TextField txtCargo;
-    @FXML private TextField campoPesquisa; // A barra de pesquisa
-    
-    @FXML private PasswordField campoSenhaCadastro;
+    @FXML
+    private TextField campoNomeCadastro;
+    @FXML
+    private TextField campoEmailCadastro;
+    @FXML
+    private TextField txtCargo;
+    @FXML
+    private TextField campoPesquisa; // A barra de pesquisa
 
-    @FXML private ComboBox<String> comboAdm;
-    @FXML private ComboBox<Cargo> campoCargo;
+    @FXML
+    private PasswordField campoSenhaCadastro;
 
-    @FXML private FlowPane painelFuncionarios; // Onde os cards serão desenhados
+    @FXML
+    private ComboBox<String> comboAdm;
+    @FXML
+    private ComboBox<Cargo> campoCargo;
 
-    @FXML private VBox vboxFormulario; // O formulário de cadastro
-    @FXML private VBox vboxCargo;
+    @FXML
+    private FlowPane painelFuncionarios; // Onde os cards serão desenhados
+
+    @FXML
+    private VBox vboxFormulario; // O formulário de cadastro
+    @FXML
+    private VBox vboxCargo;
 
     private CargoDAO car = new CargoDAO();
     private UsuarioDAO dao = new UsuarioDAO();
@@ -48,12 +59,13 @@ public class TelaCadastroController {
 
         carregarListaFuncionarios();
 
-        // Adiciona um "ouvinte" à barra de pesquisa. Sempre que o texto muda, ele filtra.
+        // Adiciona um "ouvinte" à barra de pesquisa. Sempre que o texto muda, ele
+        // filtra.
         campoPesquisa.textProperty().addListener((observavel, valorAntigo, valorNovo) -> {
             filtrarFuncionarios(valorNovo);
         });
 
-        comboAdm.getItems().addAll("sim","não");
+        comboAdm.getItems().addAll("sim", "não");
     }
 
     public void carregarListaFuncionarios() {
@@ -62,7 +74,9 @@ public class TelaCadastroController {
             todosUsuarios = dao.listar();
             // Inicia mostrando toda a gente (texto vazio)
             filtrarFuncionarios("");
-        } catch (Exception e) { e.printStackTrace(); }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     // A MÁGICA DA PESQUISA
@@ -94,7 +108,24 @@ public class TelaCadastroController {
         Label email = new Label("✉ " + u.getId_Email());
         email.setStyle("-fx-text-fill: #64748b; -fx-font-size: 13px;");
 
-        card.getChildren().addAll(nome, email);
+        Button excluirUsuario = new Button("Excluir");
+        excluirUsuario.setStyle("-fx-background-color: #e60000; -fx-text-fill: white; -fx-font-weight: bold; -fx-background-radius: 6px; -fx-cursor: hand; -fx-padding: 10px 20p; -fx-font-size: 14px;");
+        String sessao = Session.getUsuario().getId_Email();
+        String sessaodois = u.getId_Email();
+
+        excluirUsuario.setOnAction(e -> {
+            UsuarioDAO deletarUsuario = new UsuarioDAO();
+            deletarUsuario.buttonExcluirUsuario(u);
+            card.setVisible(false);
+            card.setManaged(false);
+        });
+
+        if(sessao.equals(sessaodois)){
+            excluirUsuario.setVisible(false);
+            excluirUsuario.setManaged(false);
+        }
+
+        card.getChildren().addAll(nome, email, excluirUsuario);
         return card;
     }
 
@@ -116,9 +147,10 @@ public class TelaCadastroController {
         u.setId_email(campoEmailCadastro.getText());
         u.setNome(campoNomeCadastro.getText());
         u.setSenha(campoSenhaCadastro.getText());
-        Cargo cargoEscolhido = campoCargo.getValue(); //Vai guardar o que o usuario escolheu no CampoBox
+        Cargo cargoEscolhido = campoCargo.getValue(); // Vai guardar o que o usuario escolheu no CampoBox
 
-        if (cargoEscolhido != null) { //Quando ele tiver escolhido esse comando vai rodar guardando o ID do cargo escolhido
+        if (cargoEscolhido != null) { // Quando ele tiver escolhido esse comando vai rodar guardando o ID do cargo
+                                      // escolhido
             u.setCargo(cargoEscolhido.getID_cargo());
         } else {
             exibirAlerta("Aviso", "Por favor, selecione um cargo na lista.");
@@ -153,18 +185,18 @@ public class TelaCadastroController {
     }
 
     @FXML
-    public void enviarCadastroCargo(ActionEvent event){
+    public void enviarCadastroCargo(ActionEvent event) {
         Cargo cargo = new Cargo();
         CargoDAO dao = new CargoDAO();
 
         cargo.setTipo(txtCargo.getText());
         if (comboAdm.getValue().equals("sim")) {
             cargo.setAdm(true);
-        }else{
+        } else {
             cargo.setAdm(false);
         }
 
-        try {            
+        try {
             dao.cadastrarCargo(cargo);
 
             disabilitar();
@@ -175,7 +207,7 @@ public class TelaCadastroController {
         }
     }
 
-    public void disabilitar(){
+    public void disabilitar() {
         boolean visivel = !vboxCargo.isVisible();
 
         vboxCargo.setVisible(visivel);
