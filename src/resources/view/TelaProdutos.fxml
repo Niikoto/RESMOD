@@ -5,6 +5,7 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Pagination?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
@@ -271,6 +272,7 @@
                                         <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
                                     </columnResizePolicy>
                                 </TableView>
+                        <Pagination fx:id="prodpagination" maxPageIndicatorCount="5" pageCount="1000" prefHeight="28.0" prefWidth="579.0" />
 
                                 <HBox />
                                 <Button fx:id="buttonExcluir" alignment="BOTTOM_RIGHT" contentDisplay="CENTER" mnemonicParsing="false" onAction="#excluirProduto" style="-fx-background-color: e60000; -fx-text-fill: white; -fx-font-weight: bold;" text="Excluir Produto" />

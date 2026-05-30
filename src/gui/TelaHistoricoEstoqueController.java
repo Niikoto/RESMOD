@@ -3,15 +3,13 @@ package gui;
 import dao.Entrada_SaidaDAO;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.TableCell;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 import modelo.Entrada_saida;
 
 import java.util.Date;
+import java.util.List;
 
 public class TelaHistoricoEstoqueController {
 
@@ -71,15 +69,47 @@ public class TelaHistoricoEstoqueController {
 
         Entrada_SaidaDAO dao = new Entrada_SaidaDAO();
 
-        tabelaHistorico.setItems(
-                FXCollections.observableArrayList(
-                        dao.listar()
-                )
+        historico = dao.listar();
+
+        int paginas = (int) Math.ceil(
+                (double) historico.size() / ITENS_POR_PAGINA
         );
+
+        pagination.setPageCount(Math.max(1, paginas));
+
+        pagination.currentPageIndexProperty().addListener(
+                (obs, oldValue, newValue) ->
+                        carregarPagina(newValue.intValue())
+        );
+
+        carregarPagina(0);
+
+
     }
 
     @FXML
     private Button fecharButton;
+
+    @FXML
+    private Pagination pagination;
+    private List<Entrada_saida> historico;
+    private final int ITENS_POR_PAGINA = 15;
+    private void carregarPagina(int pagina) {
+
+        int inicio = pagina * ITENS_POR_PAGINA;
+
+        int fim = Math.min(
+                inicio + ITENS_POR_PAGINA,
+                historico.size()
+        );
+
+        tabelaHistorico.setItems(
+                FXCollections.observableArrayList(
+                        historico.subList(inicio, fim)
+                )
+        );
+    }
+
 
     @FXML
     private void fechar() {

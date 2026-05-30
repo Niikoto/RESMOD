@@ -6,16 +6,12 @@ import java.util.List;
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.HBox;
 import modelo.Fornecedor;
+import modelo.Produto;
 
 public class TelaFornecedoresController {
     @FXML private TextField txtCnpj;
@@ -81,6 +77,7 @@ public class TelaFornecedoresController {
                 buttonExcluir.setDisable(true);
             }
         });
+
     }
 
     @FXML
@@ -132,6 +129,26 @@ public class TelaFornecedoresController {
     }
 
     @FXML
+    private Pagination fornpagination;
+    private List<Fornecedor> fornecedores;
+    private final int ITENS_POR_PAGINA = 10;
+    private void carregarPagina(int pagina) {
+
+        int inicio = pagina * ITENS_POR_PAGINA;
+
+        int fim = Math.min(
+                inicio + ITENS_POR_PAGINA,
+                fornecedores.size()
+        );
+
+        tableFornecedor.setItems(
+                FXCollections.observableArrayList(
+                        fornecedores.subList(inicio, fim)
+                )
+        );
+    }
+
+    @FXML
     public void btnPesquisar(ActionEvent event){
         iniciarPesquisa();
     }
@@ -148,8 +165,22 @@ public class TelaFornecedoresController {
             fornecedor.setEstado("");
         }
 
-        List<Fornecedor> list = dao.listarFornecedores(fornecedor);
-        tableFornecedor.setItems(FXCollections.observableArrayList(list));
+        fornecedores = dao.listarFornecedores(fornecedor);
+        tableFornecedor.setItems(FXCollections.observableArrayList(fornecedores));
+
+
+        int paginas = (int) Math.ceil(
+                (double) fornecedores.size() / ITENS_POR_PAGINA
+        );
+
+        fornpagination.setPageCount(Math.max(1, paginas));
+
+        fornpagination.currentPageIndexProperty().addListener(
+                (obs, oldValue, newValue) ->
+                        carregarPagina(newValue.intValue())
+        );
+
+        carregarPagina(0);
     }
 
     @FXML

@@ -35,6 +35,7 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import modelo.Categoria;
+import modelo.Entrada_saida;
 import modelo.Fornecedor;
 import modelo.Produto;
 
@@ -137,8 +138,8 @@ public class TelaProdutosController {
                 cellData.getValue().getFornecedor().getNome_fornecedor()));
 
         ProdutoDAO dao = new ProdutoDAO();
-        List<Produto> lista = dao.listarProduto("", "");
-        tabelaProdutos.setItems(FXCollections.observableArrayList(lista));
+        produtos = dao.listarProduto("", "");
+        tabelaProdutos.setItems(FXCollections.observableArrayList(produtos));
 
         comboCat.setItems(FXCollections.observableArrayList(catDao.listarCategoria()));
         comboFor.setItems(FXCollections.observableArrayList(forDao.listarFornecedor()));
@@ -240,6 +241,20 @@ public class TelaProdutosController {
                 buttonEnviar.setDisable(true);
             }
         });
+
+        int paginas = (int) Math.ceil(
+                (double) produtos.size() / ITENS_POR_PAGINA
+        );
+
+        prodpagination.setPageCount(Math.max(1, paginas));
+
+        prodpagination.currentPageIndexProperty().addListener(
+                (obs, oldValue, newValue) ->
+                        carregarPagina(newValue.intValue())
+        );
+
+        carregarPagina(0);
+
     }
 
     private void selecionarParaComparacao(int slot) {
@@ -289,6 +304,26 @@ public class TelaProdutosController {
 
         file.delete();
         tabelaProdutos.getItems().remove(produtoselecionado);
+    }
+
+    @FXML
+    private Pagination prodpagination;
+    private List<Produto> produtos;
+    private final int ITENS_POR_PAGINA = 14;
+    private void carregarPagina(int pagina) {
+
+        int inicio = pagina * ITENS_POR_PAGINA;
+
+        int fim = Math.min(
+                inicio + ITENS_POR_PAGINA,
+                produtos.size()
+        );
+
+        tabelaProdutos.setItems(
+                FXCollections.observableArrayList(
+                        produtos.subList(inicio, fim)
+                )
+        );
     }
 
     @FXML

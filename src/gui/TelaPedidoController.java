@@ -10,13 +10,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
-import javafx.scene.control.ButtonType;
-import javafx.scene.control.Label;
-import javafx.scene.control.TableCell;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.text.Text;
@@ -26,6 +20,7 @@ import javafx.stage.StageStyle;
 import modelo.DashboardData;
 import modelo.DashboardService;
 import modelo.Pedido;
+import modelo.Produto;
 
 public class TelaPedidoController {
     @FXML
@@ -161,6 +156,18 @@ public class TelaPedidoController {
             btnCompra.setDisable(true);
         }
     });
+        int paginas = (int) Math.ceil(
+                (double) pedidos.size() / ITENS_POR_PAGINA
+        );
+
+        pedidopagination.setPageCount(Math.max(1, paginas));
+
+        pedidopagination.currentPageIndexProperty().addListener(
+                (obs, oldValue, newValue) ->
+                        carregarPagina(newValue.intValue())
+        );
+
+        carregarPagina(0);
     }
 
     // PARA ABRIR A TELA DE CONFIRMAR SE O DIRETOR
@@ -189,8 +196,8 @@ public class TelaPedidoController {
 
     public void atualizarTabelaEDashboard() {
         PedidoDAO ped = new PedidoDAO();
-        List<Pedido> lista = ped.listarPedidos();
-        tablePedido.setItems(FXCollections.observableArrayList(lista));
+        pedidos = ped.listarPedidos();
+        tablePedido.setItems(FXCollections.observableArrayList(pedidos));
 
         DashboardService service = new DashboardService();
         DashboardData dados = service.getDados();
@@ -199,7 +206,7 @@ public class TelaPedidoController {
         telaNegados.setText(String.valueOf(dados.getTotalNegados()));
         telaEmAberto.setText(String.valueOf(dados.getTotalEmAberto()));
         telaEmAnalise.setText(String.valueOf(dados.getTotalEmAnalise()));
-        telaTotal.setText(String.valueOf(lista.size()));
+        telaTotal.setText(String.valueOf(pedidos.size()));
     }
 
     @FXML
@@ -233,6 +240,26 @@ public class TelaPedidoController {
                 }
             }
         });
+    }
+
+    @FXML
+    private Pagination pedidopagination;
+    private List<Pedido> pedidos;
+    private final int ITENS_POR_PAGINA = 19;
+    private void carregarPagina(int pagina) {
+
+        int inicio = pagina * ITENS_POR_PAGINA;
+
+        int fim = Math.min(
+                inicio + ITENS_POR_PAGINA,
+                pedidos.size()
+        );
+
+        tablePedido.setItems(
+                FXCollections.observableArrayList(
+                        pedidos.subList(inicio, fim)
+                )
+        );
     }
 
     @FXML

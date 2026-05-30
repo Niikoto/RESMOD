@@ -2,6 +2,7 @@
 
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Pagination?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -29,6 +30,7 @@
             </columnResizePolicy>
 
             </TableView>
+         <Pagination fx:id="pedipagination" maxPageIndicatorCount="5" pageCount="1000" prefHeight="45.0" prefWidth="1010.0" />
 
             <Button fx:id="fecharButtonPedido" onAction="#fecharPed" prefWidth="120" style="-fx-background-color: #b3d9ff;                            -fx-background-radius: 15;                            -fx-font-weight: bold;" text="Fechar" />
 
