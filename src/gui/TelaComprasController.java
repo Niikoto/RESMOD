@@ -104,12 +104,32 @@ public class TelaComprasController {
     }
 
     @FXML
-    public void excluirCompra(ActionEvent event) {
+    public void alterConsultar(ActionEvent event) {
+        Compra selecionada = tableCompra.getSelectionModel().getSelectedItem();
+        if (selecionada == null) return;
 
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/TelaEditarCompra.fxml"));
+            Parent root = loader.load();
+
+            TelaEditarCompraController editController = loader.getController();
+            editController.setDados(selecionada, this);
+            editController.preencherDados();
+
+            Stage stage = new Stage();
+            stage.initModality(javafx.stage.Modality.APPLICATION_MODAL);
+            stage.setTitle("Editar Compra");
+            stage.setScene(new Scene(root));
+            stage.showAndWait();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     @FXML
-    public void alterConsultar(ActionEvent event) {
+    public void excluirCompra(){}
 
+    public void recarregarTabela() {
+        tableCompra.setItems(FXCollections.observableArrayList(daoCompra.listaCompras()));
     }
 }

@@ -64,4 +64,15 @@ public class CompraDAO {
 
         return compras;
     }
+
+    public void atualizarCompra(Compra c) throws SQLException {
+        String sql = "UPDATE compra SET obs_compra = ?, valor_da_compra = ?, anexo_fiscal = ? WHERE ID_compra = ?";
+        try (PreparedStatement comando = conexao.prepareStatement(sql)) {
+            comando.setString(1, c.getObs());
+            comando.setFloat(2, c.getValor_da_compra());
+            comando.setString(3, c.getAnexo_fiscal());
+            comando.setInt(4, c.getID_compra());
+            comando.executeUpdate();
+        }
+    }
 }
