@@ -111,6 +111,8 @@ public class TelaProdutosController {
     @FXML private Label lblProdutoBarato;
     @FXML private Label lblPrecoBarato;
     @FXML private Button buttonEditarProduto;
+    @FXML private Label texto_estoque;
+    @FXML private Label texto_id_usuario;
 
     private CategoriaDAO catDao = new CategoriaDAO();
     private FornecedorDAO forDao = new FornecedorDAO();
@@ -183,7 +185,8 @@ public class TelaProdutosController {
                         Image img = new Image(file.toURI().toString());// converte para um caminho de imagem do javafx
 
                         imgProd.setImage(img);// troca a imagem que está na imagem view
-
+                        texto_estoque.setText(prodSelect.getNome_produto());
+                        texto_id_usuario.setText(prodSelect.getFornecedor().getNome_fornecedor());
                         txtNotFound.setVisible(false);
                     txtNotFound.setManaged(false);
                 }

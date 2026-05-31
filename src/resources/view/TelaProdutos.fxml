@@ -233,9 +233,9 @@
                                     </children>
                                 </VBox>
 
-                                <Label style="-fx-font-weight: bold; -fx-font-size: 16px; -fx-text-fill: #1e293b;" text="Carregador de Celular" />
+                                <Label fx:id="texto_estoque" style="-fx-font-weight: bold; -fx-font-size: 16px; -fx-text-fill: #1e293b;" text="Nenhum produto selecionado" />
 
-                                <Label style="-fx-text-fill: #475569; -fx-font-size: 13px; -fx-font-weight: bold;" text="Adicionado em: YYYY-MM-DD&#10;por USUÁRIO X" wrapText="true" />
+                                <Label fx:id="texto_id_usuario" style="-fx-text-fill: #475569; -fx-font-size: 13px; -fx-font-weight: bold;" text="---" wrapText="true" />
 
                                 <Region VBox.vgrow="ALWAYS" />
 
