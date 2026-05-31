@@ -19,7 +19,7 @@ public class Produto_has_pedidoDAO {
         List<Produto_has_pedido> listaProdutoPedido = new ArrayList<>();
         ResultSet resultado = null;
 
-        String sql = "select p.ID_produto, p.nome_produto, p.preco, f.nome_fornecedor, pp.quantidade, pp.preco_unitario from produto_has_pedido pp join produto p on pp.COD_produto = p.ID_produto join fornecedor f on p.COD_CNPJ = f.CNPJ where pp.COD_pedido = ?;";
+        String sql = "select pp.ID_pedpro, p.ID_produto, p.nome_produto, p.preco, f.nome_fornecedor, pp.quantidade, pp.preco_unitario from produto_has_pedido pp join produto p on pp.COD_produto = p.ID_produto join fornecedor f on p.COD_CNPJ = f.CNPJ where pp.COD_pedido = ?;";
 
         try (PreparedStatement comando = conectar.prepareStatement(sql)) {
             comando.setInt(1, pp);
@@ -34,6 +34,7 @@ public class Produto_has_pedidoDAO {
                     Produto produto = new Produto();
                     Fornecedor fornecedor = new Fornecedor();
 
+                    pediprod.setID_pedpro(resultado.getInt("ID_pedpro"));
                     produto.setID_produto(resultado.getInt("ID_produto"));
                     produto.setNome_produto(resultado.getString("nome_produto"));
                     produto.setPreco(resultado.getFloat("preco"));
@@ -65,6 +66,17 @@ public class Produto_has_pedidoDAO {
             comando.setFloat(4, pp.getPreco_unitario());
 
             comando.executeUpdate();
+        }
+    }
+
+    public void deletar(int ID_pedpro){
+        String sql = "delete from produto_has_pedido where ID_pedpro = ?;";
+        try(PreparedStatement deletarProPed = conectar.prepareStatement(sql)) {
+            deletarProPed.setInt(1, ID_pedpro);
+            deletarProPed.executeUpdate();
+            
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
     }
 }

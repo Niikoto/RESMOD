@@ -57,6 +57,7 @@
                   </TableView>
                </children>
             </VBox>
+            <Button fx:id="buttonExcluirProdPedido" mnemonicParsing="false" onAction="#excluirProdPed" prefHeight="37.0" prefWidth="129.0" style="-fx-background-color: e60000; -fx-text-fill: white; -fx-font-weight: bold; -fx-background-radius: 6px; -fx-cursor: hand; -fx-padding: 10px 20px;" text="Excluir produto" />
             <Label style="-fx-font-weight: bold; -fx-text-fill: #475569; -fx-font-size: 14px;" text="Adicionar produto ao pedido" />
             <HBox fx:id="hBox_add_prod" spacing="15.0">
                <children>

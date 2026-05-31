@@ -62,6 +62,8 @@ public class TelaStatusPedidoController {
     @FXML
     private Button btnCadProd;
     @FXML
+    private Button buttonExcluirProdPedido;
+    @FXML
     private TextField txtQuant;
     @FXML
     private TextField txtPreco;
@@ -116,6 +118,16 @@ public class TelaStatusPedidoController {
         colQua.setCellValueFactory(new PropertyValueFactory<>("Quantidade"));
         colPrecoTotal.setCellValueFactory(new PropertyValueFactory<>("preco_unitario"));
         comBoxForUm.setItems(FXCollections.observableArrayList("em analise", "aprovado", "negado"));
+
+        buttonExcluirProdPedido.setDisable(true);
+        tableProPed.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) -> {
+        if(newSelection != null){
+            buttonExcluirProdPedido.setDisable(false);
+        }
+        else{
+            buttonExcluirProdPedido.setDisable(true);
+        }
+        });
     }
 
     public Pedido getPedido(Pedido pedido) {
@@ -214,6 +226,17 @@ public class TelaStatusPedidoController {
         txtPreco.setDisable(true);
         btnCadProd.setDisable(true);
 
-        comboProd.setValue(null);
+        comboProd.setValue(null);  
+    }
+
+    @FXML
+    public void excluirProdPed(ActionEvent event){
+        Produto_has_pedido produtoselecionado = tableProPed.getSelectionModel().getSelectedItem();
+        int guardar_ID_pedPro = produtoselecionado.getID_pedpro();
+
+        Produto_has_pedidoDAO apagarProduto = new Produto_has_pedidoDAO();
+        apagarProduto.deletar(guardar_ID_pedPro);
+
+        tableProPed.getItems().remove(produtoselecionado);
     }
 }
