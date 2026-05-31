@@ -7,6 +7,7 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.effect.DropShadow?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.paint.Color?>
@@ -55,7 +56,20 @@
                 <VBox spacing="6.0">
                     <children>
                         <Label style="-fx-font-weight: bold; -fx-text-fill: #333333; -fx-font-size: 13px;" text="Senha" />
-                        <PasswordField fx:id="campoSenha" prefHeight="40.0" promptText="Sua senha" style="-fx-background-color: white; -fx-border-color: #2b59c3; -fx-border-radius: 6px; -fx-padding: 10px;" />
+                        <HBox spacing="8.0" alignment="CENTER_LEFT">
+                            <children>
+                                <StackPane HBox.hgrow="ALWAYS" maxWidth="Infinity">
+                                    <children>
+                                        <PasswordField fx:id="campoSenha" prefHeight="40.0" promptText="Sua senha" maxWidth="Infinity" style="-fx-background-color: white; -fx-border-color: #2b59c3; -fx-border-radius: 6px; -fx-padding: 10px;" />
+                                        <TextField fx:id="campoSenhaVisivel" prefHeight="40.0" promptText="Sua senha" maxWidth="Infinity" style="-fx-background-color: white; -fx-border-color: #2b59c3; -fx-border-radius: 6px; -fx-padding: 10px;" visible="false" managed="false" />
+                                    </children>
+                                </StackPane>
+                                <Button fx:id="botaoMostrarSenha" mnemonicParsing="false" onAction="#alternarMostrarSenha"
+                                    style="-fx-background-color: transparent; -fx-cursor: hand; -fx-min-width: 40px; -fx-pref-width: 40px; -fx-alignment: CENTER;" />
+                            </children>
+                        </HBox>
+                        <Label fx:id="mensagemErro" text="" wrapText="true" visible="false" managed="false"
+                               style="-fx-text-fill: #dc2626; -fx-font-size: 12px; -fx-padding: 4px 0 0 0;" />
                     </children>
                 </VBox>
 

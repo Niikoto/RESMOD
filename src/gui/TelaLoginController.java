@@ -2,6 +2,7 @@ package gui;
 
 import dao.CargoDAO;
 import dao.UsuarioDAO;
+import javafx.animation.PauseTransition;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -18,9 +19,15 @@ import javafx.scene.control.Separator;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.scene.Group;
+import javafx.scene.paint.Color;
+import javafx.scene.shape.Circle;
+import javafx.scene.shape.Ellipse;
+import javafx.scene.shape.Line;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
+import javafx.util.Duration;
 import modelo.Cargo;
 import modelo.Session;
 import modelo.Usuario;
@@ -32,15 +39,42 @@ public class TelaLoginController {
     private TextField campoEmail; // id do FXML
     @FXML
     private PasswordField campoSenha; // id do FXML
+    @FXML
+    private TextField campoSenhaVisivel; 
+    @FXML
+    private Button botaoMostrarSenha; // botão de olho
+    @FXML
+    private Label mensagemErro; // mensagem exibida na tela quando a senha estiver errada
+
+    private boolean senhaVisivel = false;
 
     public TextField getCampoEmail() {
         return campoEmail;
     }
 
     @FXML
+    public void initialize() {
+        
+        senhaVisivel = false;
+        if (botaoMostrarSenha != null) {
+            botaoMostrarSenha.setGraphic(createEyeGraphic(false));
+        }
+        if (campoSenhaVisivel != null) {
+            campoSenhaVisivel.setVisible(false);
+            campoSenhaVisivel.setManaged(false);
+        }
+        if (campoSenha != null) {
+            campoSenha.setVisible(true);
+            campoSenha.setManaged(true);
+        }
+    }
+
+    @FXML
     public void fazerLogin(ActionEvent event) {
         String email = campoEmail.getText();
-        String senha = campoSenha.getText();
+        String senha = getSenhaAtual();
+
+        limparMensagemErro();
 
         Usuario usuario = new Usuario();
         Cargo cargo = new Cargo();
@@ -49,41 +83,42 @@ public class TelaLoginController {
 
         UsuarioDAO dao = new UsuarioDAO();
         CargoDAO dao2 = new CargoDAO();
-        if (email != "" && senha != "") {
+        if (!email.trim().isEmpty() && !senha.trim().isEmpty()) {
             try {
                 Usuario usuarioLogado = dao.verificar(usuario);
-    
-                cargo.setID_cargo(usuarioLogado.getCargo());
-                Cargo cargoSetado = dao2.consultarCargo(cargo);//objeto criado para rodar o conultarcargo
-    
-                if (usuarioLogado != null && cargoSetado != null) {
-    
-                    // Inicia a sessão
-                    Session.iniciar(usuarioLogado);
-                    Session.iniciarCargo(cargoSetado);//guardando o cargo na sessão
-    
-                    // Carrega a tela principal
-                    FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/TelaPrincipal.fxml"));
-                    Parent root = loader.load();
-    
-                    Stage stage = (Stage) campoEmail.getScene().getWindow();
-                    stage.setScene(new Scene(root));
-    
-                    Platform.runLater(() -> {//coloca isso aqui para executar depois, já que caso não seja feito o proximo comando não sera executado
-                        stage.setMaximized(true);//metodo para deixar a tela "cheia"
-                    });
-                    stage.show();
-    
+
+                if (usuarioLogado != null) {
+                    cargo.setID_cargo(usuarioLogado.getCargo());
+                    Cargo cargoSetado = dao2.consultarCargo(cargo); 
+
+                    if (cargoSetado != null) {
+                        // Inicia a sessão
+                        Session.iniciar(usuarioLogado);
+                        Session.iniciarCargo(cargoSetado); 
+
+                        // Carrega a tela principal
+                        FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/TelaPrincipal.fxml"));
+                        Parent root = loader.load();
+
+                        Stage stage = (Stage) campoEmail.getScene().getWindow();
+                        stage.setScene(new Scene(root));
+
+                        Platform.runLater(() -> {
+                            stage.setMaximized(true);
+                        });
+                        stage.show();
+                    } else {
+                        setMensagemErro("E-mail ou senha incorretos.");
+                    }
                 } else {
-                    exibirAlerta("Erro", "E-mail ou senha incorretos.");
+                    setMensagemErro("E-mail ou senha incorretos.");
                 }
             } catch (SQLException | java.io.IOException e) {
                 exibirAlerta("Erro no Sistema", "Não foi possível carregar a próxima tela.");
                 e.printStackTrace();
-            } 
-        }
-        else{
-            exibirAlerta("Não foi possivel logar", "Digite um email e senha caso queira logar");
+            }
+        } else {
+            setMensagemErro("Digite um e-mail e senha para acessar o sistema.");
         }
     }
 
@@ -184,5 +219,81 @@ public class TelaLoginController {
         alerta.setHeaderText(null);
         alerta.setContentText(mensagem);
         alerta.showAndWait();
+    }
+
+    private String getSenhaAtual() {
+        return senhaVisivel ? campoSenhaVisivel.getText() : campoSenha.getText();
+    }
+
+    @FXML
+    public void alternarMostrarSenha(ActionEvent event) {
+        if (senhaVisivel) {
+            esconderSenha();
+        } else {
+            mostrarSenha();
+        }
+    }
+
+    private void mostrarSenha() {
+        campoSenhaVisivel.setText(campoSenha.getText());
+        campoSenhaVisivel.setVisible(true);
+        campoSenhaVisivel.setManaged(true);
+        campoSenha.setVisible(false);
+        campoSenha.setManaged(false);
+        if (botaoMostrarSenha != null) botaoMostrarSenha.setGraphic(createEyeGraphic(true));
+        senhaVisivel = true;
+    }
+
+    private void esconderSenha() {
+        campoSenha.setText(campoSenhaVisivel.getText());
+        campoSenha.setVisible(true);
+        campoSenha.setManaged(true);
+        campoSenhaVisivel.setVisible(false);
+        campoSenhaVisivel.setManaged(false);
+        if (botaoMostrarSenha != null) botaoMostrarSenha.setGraphic(createEyeGraphic(false));
+        senhaVisivel = false;
+    }
+
+    
+    private Group createEyeGraphic(boolean struck) {
+        Ellipse outer = new Ellipse(0, 0, 10, 6);
+        outer.setFill(Color.TRANSPARENT);
+        outer.setStroke(Color.web("#374151"));
+        outer.setStrokeWidth(1.5);
+
+        Circle pupil = new Circle(0, 0, 3);
+        pupil.setFill(Color.web("#374151"));
+
+        Group g = new Group(outer, pupil);
+        if (struck) {
+            Line slash = new Line(-12, -6, 12, 6);
+            slash.setStroke(Color.web("#ef4444"));
+            slash.setStrokeWidth(2);
+            g.getChildren().add(slash);
+        }
+        // small translate to center inside button
+        g.setTranslateX(0);
+        g.setTranslateY(0);
+        return g;
+    }
+
+    private void setMensagemErro(String mensagem) {
+        if (mensagemErro != null) {
+            mensagemErro.setText(mensagem);
+            mensagemErro.setVisible(true);
+            mensagemErro.setManaged(true);
+
+            PauseTransition pausa = new PauseTransition(Duration.seconds(10));
+            pausa.setOnFinished(e -> limparMensagemErro());
+            pausa.play();
+        }
+    }
+
+    private void limparMensagemErro() {
+        if (mensagemErro != null) {
+            mensagemErro.setText("");
+            mensagemErro.setVisible(false);
+            mensagemErro.setManaged(false);
+        }
     }
 }
