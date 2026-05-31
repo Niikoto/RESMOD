@@ -60,16 +60,16 @@ A documentação foi atualizada, se necessário
 | Rank | User Story | DOD |
 |------|-----------|-----|
 | 5 | Interface mais agradável e organizada | OK |
-| 6 | Gerenciamento de permissões | |
-| 7 | Aprovação e rejeição de pedidos | |
+| 6 | Gerenciamento de permissões | OK |
+| 7 | Aprovação e rejeição de pedidos | OK |
 | 8 | Identidade visual da empresa no sistema | OK |
-| 9 | Controle de status dos pedidos | |
-| 10 | Histórico de aprovações | |
+| 9 | Controle de status dos pedidos | OK |
+| 10 | Histórico de aprovações | OK |
 
 ### Sprint 3 — até 31/05
 
 | Rank | User Story | DOD |
 |------|-----------|-----|
-| 11 | Tela de controle de estoque | |
-| 12 | Comparação de fornecedores | |
-| 13 | Controle de quantidade mínima em estoque | |
+| 11 | Tela de controle de estoque | OK |
+| 12 | Comparação de fornecedores | OK |
+| 13 | Controle de quantidade mínima em estoque | OK |
