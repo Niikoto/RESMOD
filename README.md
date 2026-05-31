@@ -20,7 +20,6 @@ Desenvolver um software de gestão de pedidos de compra que automatize a abertur
 
 ## 🗂️ DOCUMENTAÇÃO DO PROJETO
 
-🚧 In Progress... 🚧
 ### [Backlog do produto](./docs/Backlog_produto.md)
 
 ### [Backlog da Sprint](./docs/Backlog_Sprint.md)
@@ -46,7 +45,6 @@ Desenvolver um software de gestão de pedidos de compra que automatize a abertur
 
 ## 💻 Tecnologias
 
-🚧 In Progress... 🚧
 ### Tecnologias usadas
 
 ![Java](https://img.shields.io/badge/Java-ED8B00?style=for-the-badge&logo=openjdk&logoColor=white)
@@ -70,7 +68,6 @@ Desenvolver um software de gestão de pedidos de compra que automatize a abertur
 
 ## 📅 Sprints
 
-🚧 In Progress... 🚧
 ### [Sprint 1](./docs/docs_sprint1.md)
 
 ### [Sprint 2](./docs/docs_sprint2.md)
