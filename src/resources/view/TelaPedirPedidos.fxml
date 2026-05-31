@@ -123,7 +123,7 @@
                             <TableColumn fx:id="colIdProd" minWidth="-1.0" prefWidth="66.399993121624" text="ID_Produto" />
                             <TableColumn fx:id="colNomeProd" prefWidth="119.199951171875" text="Nome do produto" />
                               <TableColumn fx:id="colPrecoProd" prefWidth="110.40005493164062" text="Preço do produto" />
-                              <TableColumn fx:id="colFor" prefWidth="75.0" text="Fornedor" />
+                              <TableColumn fx:id="colFor" prefWidth="75.0" text="Fornecedor" />
                               <TableColumn fx:id="colQua" prefWidth="83.20001220703125" text="Quantidade" />
                               <TableColumn fx:id="colPrecoTotal" prefWidth="134.39996337890625" text="Preço total do produto" />
                           </columns>
@@ -135,6 +135,7 @@
                   </VBox>
                </children>
             </HBox>
+            <Button fx:id="buttonExcluirProNovoPed" mnemonicParsing="false" onAction="#excluirProNovoPed" style="-fx-background-color: e60000; -fx-text-fill: white; -fx-font-weight: bold; -fx-background-radius: 6px; -fx-cursor: hand; -fx-padding: 10px 20px;" text="Excluir" />
             <HBox alignment="TOP_RIGHT" prefHeight="100.0" prefWidth="200.0">
                <children>
                   <Label text="Valor total do pedido: " />

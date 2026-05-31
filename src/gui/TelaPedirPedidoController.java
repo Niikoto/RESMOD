@@ -78,6 +78,8 @@ public class TelaPedirPedidoController {
 
     @FXML
     private Button btnCadProd;
+    @FXML
+    private Button buttonExcluirProNovoPed;
 
     @FXML
     private Label labelTotal;
@@ -147,6 +149,15 @@ public class TelaPedirPedidoController {
                 txtPreco.setText(Float.toString(valor));
 
                 btnCadProd.setDisable(false);
+            }
+        });
+
+        buttonExcluirProNovoPed.setDisable(true);
+        tableProPed.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) -> {
+            if(newSelection != null){
+                buttonExcluirProNovoPed.setDisable(false);
+            }else{
+                buttonExcluirProNovoPed.setDisable(true);
             }
         });
     }
@@ -286,6 +297,17 @@ public class TelaPedirPedidoController {
         btnCadProd.setDisable(true);
 
         comboProd.setValue(null);
+    }
+
+    @FXML
+    public void excluirProNovoPed(ActionEvent event){
+        Produto_has_pedido produtoselecionado = tableProPed.getSelectionModel().getSelectedItem();
+        int guardar_ID_pedPro = produtoselecionado.getID_pedpro();
+
+        Produto_has_pedidoDAO apagarProduto = new Produto_has_pedidoDAO();
+        apagarProduto.deletar(guardar_ID_pedPro);
+
+        tableProPed.getItems().remove(produtoselecionado);
     }
 
     private void mostrarAlerta(String titulo, String mensagem) {
