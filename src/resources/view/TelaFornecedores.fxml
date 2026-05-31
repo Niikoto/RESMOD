@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
@@ -170,7 +171,14 @@
 
                         <HBox alignment="CENTER_LEFT">
                             <children>
-                        <Button fx:id="buttonExcluir" contentDisplay="BOTTOM" mnemonicParsing="false" onAction="#excluirFornecedor" style="-fx-background-color: e60000; -fx-text-fill: white; -fx-font-weight: bold; -fx-background-radius: 6px; -fx-padding: 8px 15px; -fx-cursor: hand;" text="Excluir Fornecedor" />
+                                <Button fx:id="buttonExcluir" contentDisplay="BOTTOM" mnemonicParsing="false" onAction="#excluirFornecedor" style="-fx-background-color: e60000; -fx-text-fill: white; -fx-font-weight: bold; -fx-background-radius: 6px; -fx-padding: 8px 15px; -fx-cursor: hand;" text="Excluir Fornecedor" />
+                                <Button fx:id="buttonEditar" mnemonicParsing="false" onAction="#editarFornecedor" style="-fx-background-color: #3b82f6; -fx-text-fill: white; -fx-font-weight: bold; -fx-background-radius: 6px; -fx-padding: 8px 15px; -fx-cursor: hand; -fx-margin: 0 0 0 10px;" text="✏ Editar Fornecedor">
+                           <padding>
+                              <Insets left="10.0" />
+                           </padding>
+                           <HBox.margin>
+                              <Insets left="10.0" />
+                           </HBox.margin></Button>
                                 <Region HBox.hgrow="ALWAYS" />
                             </children>
                         </HBox>

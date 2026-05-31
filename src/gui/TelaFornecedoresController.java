@@ -6,10 +6,15 @@ import java.util.List;
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.HBox;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
 import modelo.Fornecedor;
 import modelo.Produto;
 
@@ -30,6 +35,7 @@ public class TelaFornecedoresController {
     @FXML private Button buttonEnviar;
     @FXML private Button buttonAdicionar;
     @FXML private Button buttonExcluir;
+    @FXML private Button buttonEditar;
 
     @FXML private HBox hboxCad;
     
@@ -69,6 +75,10 @@ public class TelaFornecedoresController {
         colTel.setCellValueFactory(new PropertyValueFactory<>("telefone"));
 
         buttonExcluir.setDisable(true);
+        buttonEditar.setDisable(true);
+        tableFornecedor.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) -> {
+            buttonEditar.setDisable(newSelection == null);
+        });
         tableFornecedor.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) -> {
             if(newSelection != null){
                 buttonExcluir.setDisable(false);
@@ -181,6 +191,28 @@ public class TelaFornecedoresController {
         );
 
         carregarPagina(0);
+    }
+
+    @FXML
+    public void editarFornecedor(ActionEvent event) {
+        Fornecedor selecionado = tableFornecedor.getSelectionModel().getSelectedItem();
+        if (selecionado == null) return;
+
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/TelaEditarFornecedor.fxml"));
+            Parent root = loader.load();
+
+            TelaEditarFornecedorController editController = loader.getController();
+            editController.setDados(selecionado, this);
+
+            Stage stage = new Stage();
+            stage.initModality(Modality.APPLICATION_MODAL);
+            stage.setTitle("Editar Fornecedor");
+            stage.setScene(new Scene(root));
+            stage.showAndWait();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     @FXML

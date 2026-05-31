@@ -61,6 +61,21 @@ public class FornecedorDAO {
         return fornecedores;
     }
 
+    public void atualizarFornecedor(Fornecedor f) throws SQLException {
+        String sql = "UPDATE fornecedor SET nome_fornecedor = ?, descricao = ?, estado = ?, municipio = ?, rua = ?, numero = ?, telefone = ? WHERE CNPJ = ?";
+        try (PreparedStatement ps = connection.prepareStatement(sql)) {
+            ps.setString(1, f.getNome_fornecedor());
+            ps.setString(2, f.getDescricao());
+            ps.setString(3, f.getEstado());
+            ps.setString(4, f.getMunicipio());
+            ps.setString(5, f.getRua());
+            ps.setInt(6, f.getNumero());
+            ps.setString(7, f.getTelefone());
+            ps.setString(8, f.getCNPJ());
+            ps.executeUpdate();
+        }
+    }
+
     public List<Fornecedor> listarFornecedor() {
         List<Fornecedor> fornecedores = new ArrayList<>();
         ResultSet resultado = null;

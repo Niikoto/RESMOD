@@ -73,7 +73,7 @@ public class UsuarioDAO {
                 u.setId_email(resultado.getString("ID_email"));
                 u.setNome(resultado.getString("Nome"));
                 u.setCargo(resultado.getInt("COD_cargo"));
-
+                u.setSenha(resultado.getString("Senha"));
                 lista.add(u);
             }
 
@@ -83,6 +83,19 @@ public class UsuarioDAO {
         }
 
         return lista;
+    }
+
+    public void atualizarUsuario(Usuario u) throws SQLException {
+        String sql = "UPDATE usuario SET Nome = ?, Senha = ?, COD_cargo = ? WHERE ID_email = ?";
+
+        try (PreparedStatement comando = conectar.prepareStatement(sql)) {
+            comando.setString(1, u.getNome());
+            comando.setString(2, u.getSenha());
+            comando.setInt(3, u.getCargo());
+            comando.setString(4, u.getId_Email());
+
+            comando.executeUpdate();
+        }
     }
 
     public void buttonExcluirUsuario(Usuario ID_email) {

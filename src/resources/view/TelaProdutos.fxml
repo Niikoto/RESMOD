@@ -275,8 +275,12 @@
                         <Pagination fx:id="prodpagination" maxPageIndicatorCount="5" pageCount="1000" prefHeight="28.0" prefWidth="579.0" />
 
                                 <HBox />
-                                <Button fx:id="buttonExcluir" alignment="BOTTOM_RIGHT" contentDisplay="CENTER" mnemonicParsing="false" onAction="#excluirProduto" style="-fx-background-color: e60000; -fx-text-fill: white; -fx-font-weight: bold;" text="Excluir Produto" />
-
+                                <HBox spacing="10.0">
+                                    <children>
+                                        <Button fx:id="buttonExcluir" contentDisplay="CENTER" mnemonicParsing="false" onAction="#excluirProduto" style="-fx-background-color: #e60000; -fx-text-fill: white; -fx-font-weight: bold; -fx-background-radius: 6px; -fx-padding: 8px 15px; -fx-cursor: hand;" text="Excluir Produto" />
+                                        <Button fx:id="buttonEditarProduto" mnemonicParsing="false" onAction="#editarProduto" style="-fx-background-color: #3b82f6; -fx-text-fill: white; -fx-font-weight: bold; -fx-background-radius: 6px; -fx-padding: 8px 15px; -fx-cursor: hand;" text="✏ Editar Produto" />
+                                    </children>
+                                </HBox>
                                 <HBox alignment="CENTER">
                                     <VBox.margin>
                                         <Insets bottom="20.0" top="20.0" />

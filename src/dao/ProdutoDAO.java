@@ -144,6 +144,20 @@ public class ProdutoDAO {
         }
     }
 
+    public void atualizarProduto(Produto p) throws SQLException {
+        String sql = "UPDATE produto SET nome_produto = ?, preco = ?, quantidade = ?, minimo = ?, COD_categoria = ?, COD_CNPJ = ? WHERE ID_produto = ?";
+        try (PreparedStatement comando = connetion.prepareStatement(sql)) {
+            comando.setString(1, p.getNome_produto());
+            comando.setFloat(2, p.getPreco());
+            comando.setInt(3, p.getQuantidade());
+            comando.setInt(4, p.getMinimo());
+            comando.setInt(5, p.getCOD_categoria());
+            comando.setString(6, p.getCOD_CNPJ());
+            comando.setInt(7, p.getID_produto());
+            comando.executeUpdate();
+        }
+    }
+
     public void buttonExcluirProduto(int ID_produto){
         String sql = "delete from produto where ID_produto = ?;";
         try(PreparedStatement deletarProduto = connetion.prepareStatement(sql)) {

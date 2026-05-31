@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<AnchorPane xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="gui.TelaEditarProdutoController">
+    <children>
+        <VBox spacing="15" style="-fx-background-color: #f1f5f9; -fx-padding: 30px;">
+            <children>
+                <Label style="-fx-font-size: 20px; -fx-font-weight: bold; -fx-text-fill: #1e293b;" text="Editar Produto" />
+
+                <VBox spacing="5">
+                    <Label style="-fx-text-fill: #475569; -fx-font-weight: bold;" text="Nome" />
+                    <TextField fx:id="campoNome" promptText="Nome do produto" />
+                </VBox>
+
+                <HBox spacing="15">
+                    <VBox spacing="5" HBox.hgrow="ALWAYS">
+                        <Label style="-fx-text-fill: #475569; -fx-font-weight: bold;" text="Preço" />
+                        <TextField fx:id="campoPreco" promptText="0,00" />
+                    </VBox>
+                    <VBox spacing="5" HBox.hgrow="ALWAYS">
+                        <Label style="-fx-text-fill: #475569; -fx-font-weight: bold;" text="Quantidade" />
+                        <TextField fx:id="campoQuantidade" promptText="0" />
+                    </VBox>
+                    <VBox spacing="5" HBox.hgrow="ALWAYS">
+                        <Label style="-fx-text-fill: #475569; -fx-font-weight: bold;" text="Mínimo no Estoque" />
+                        <TextField fx:id="campoMinimo" promptText="0" />
+                    </VBox>
+                </HBox>
+
+                <VBox spacing="5">
+                    <Label style="-fx-text-fill: #475569; -fx-font-weight: bold;" text="Categoria" />
+                    <ComboBox fx:id="campoCat" maxWidth="1.7976931348623157E308" />
+                </VBox>
+
+                <VBox spacing="5">
+                    <Label style="-fx-text-fill: #475569; -fx-font-weight: bold;" text="Fornecedor" />
+                    <ComboBox fx:id="campoFor" maxWidth="1.7976931348623157E308" />
+                </VBox>
+
+                <HBox alignment="CENTER_RIGHT" spacing="10">
+                    <Button mnemonicParsing="false" onAction="#cancelar"
+                            style="-fx-background-color: transparent; -fx-border-color: #94a3b8; -fx-text-fill: #64748b; -fx-border-radius: 6px; -fx-padding: 8px 20px; -fx-cursor: hand;"
+                            text="Cancelar" />
+                    <Button mnemonicParsing="false" onAction="#salvar"
+                            style="-fx-background-color: #3b82f6; -fx-text-fill: white; -fx-font-weight: bold; -fx-background-radius: 6px; -fx-padding: 8px 20px; -fx-cursor: hand;"
+                            text="Salvar" />
+                </HBox>
+            </children>
+        </VBox>
+    </children>
+</AnchorPane>

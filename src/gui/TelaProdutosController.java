@@ -110,6 +110,7 @@ public class TelaProdutosController {
     @FXML private Label lblMaisBarato;
     @FXML private Label lblProdutoBarato;
     @FXML private Label lblPrecoBarato;
+    @FXML private Button buttonEditarProduto;
 
     private CategoriaDAO catDao = new CategoriaDAO();
     private FornecedorDAO forDao = new FornecedorDAO();
@@ -197,7 +198,10 @@ public class TelaProdutosController {
                 buttonExcluir.setDisable(true);
             }
         });
-
+        buttonEditarProduto.setDisable(true);
+        tabelaProdutos.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) -> {
+            buttonEditarProduto.setDisable(newSelection == null);
+        });
         imgNDefinida.setVisible(false);
         imgNDefinida.setManaged(false);
 
@@ -527,6 +531,28 @@ public class TelaProdutosController {
 
         List<Produto> list = daoProd.listarProduto("", "");
         tabelaProdutos.setItems(FXCollections.observableArrayList(list));
+    }
+
+    @FXML
+    private void editarProduto() {
+        Produto selecionado = tabelaProdutos.getSelectionModel().getSelectedItem();
+        if (selecionado == null) return;
+
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/TelaEditarProduto.fxml"));
+            Parent root = loader.load();
+
+            TelaEditarProdutoController editController = loader.getController();
+            editController.setDados(selecionado, this);
+
+            Stage stage = new Stage();
+            stage.initModality(Modality.APPLICATION_MODAL);
+            stage.setTitle("Editar Produto");
+            stage.setScene(new Scene(root));
+            stage.showAndWait();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     @FXML
