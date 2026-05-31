@@ -308,6 +308,16 @@ public class TelaPedirPedidoController {
         apagarProduto.deletar(guardar_ID_pedPro);
 
         tableProPed.getItems().remove(produtoselecionado);
+
+        List<Produto_has_pedido> list = apagarProduto.listarProdutosPedidos(idPed);
+
+        for (Produto_has_pedido item : list) {
+                totalPedido = totalPedido + item.getPreco_unitario();
+            }
+            
+        PedidoDAO daoPed = new PedidoDAO();
+            daoPed.upDatePrecoTotal(idPed, totalPedido);
+            labelTotal.setText(String.format("Total: R$ %.2f", totalPedido));
     }
 
     private void mostrarAlerta(String titulo, String mensagem) {

@@ -251,4 +251,43 @@ public class PedidoDAO {
             e.printStackTrace();
         }
     }
+
+    public List<Pedido> listarPedidosNaoNegado() {
+        List<Pedido> pedidos = new ArrayList<>();
+        Connection conectar = ConnectionFactory.getConnection();
+        ResultSet resultado = null;
+        String sql = "SELECT p.ID_pedido, p.motivo,p.forma_de_pagamento, DATE_FORMAT(p.criado, '%d/%m/%Y') as 'criado', p.status, p.preco_total, p.COD_email, u.nome, p.setor, p.centro_custo FROM pedido p JOIN usuario u ON p.COD_email = u.ID_email where p.status <> 'negado' and p.status <> 'finalizado' order by p.ID_pedido desc;";
+
+        try (PreparedStatement comando = conectar.prepareStatement(sql)) {
+            resultado = comando.executeQuery();
+
+            if (!resultado.next()) {
+                return pedidos;
+            } else {
+                do {
+                    Pedido pedido = new Pedido();
+                    Usuario usuario = new Usuario();
+                    pedido.setID_pedido(resultado.getInt("ID_pedido"));
+                    pedido.setMotivo(resultado.getString("motivo"));
+                    pedido.setForma_de_pagamento(resultado.getString("forma_de_pagamento"));
+                    pedido.setCriado(resultado.getString("criado"));
+                    pedido.setStatus(resultado.getString("status"));
+                    pedido.setPreco_total(resultado.getFloat("preco_total"));
+                    pedido.setCOD_email(resultado.getString("COD_email"));
+                    pedido.setSetor(resultado.getString("setor"));
+                    pedido.setCentro_custo(resultado.getString("centro_custo"));
+                    usuario.setNome(resultado.getString("nome"));
+
+                    pedido.setUsuario(usuario);
+                    pedidos.add(pedido);
+                } while (resultado.next());
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return pedidos;
+
+    }
 }

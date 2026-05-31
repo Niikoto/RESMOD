@@ -131,7 +131,7 @@
                         <Cursor fx:constant="DEFAULT" />
                     </cursor>
                 </VBox>
-                <VBox prefHeight="200.0" prefWidth="100.0" style="-fx-background-color: white; -fx-background-radius: 12px; -fx-padding: 20px; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.04), 10, 0, 0, 0);">
+                <VBox style="-fx-background-color: white; -fx-background-radius: 12px; -fx-padding: 20px; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.04), 10, 0, 0, 0);" VBox.vgrow="SOMETIMES">
                     <children>
                         <Label style="-fx-font-weight: bold; -fx-font-size: 18px; -fx-text-fill: #1e293b;" text="Comparação de valores">
                             <VBox.margin>
@@ -143,9 +143,9 @@
                         <Insets bottom="10.0" />
                      </VBox.margin>
                   </Label>
-                        <HBox spacing="25.0">
+                        <HBox spacing="25.0" VBox.vgrow="SOMETIMES">
                             <children>
-                                <VBox alignment="CENTER" spacing="5.0">
+                                <VBox alignment="CENTER" spacing="5.0" HBox.hgrow="SOMETIMES">
                                     <children>
                                         <HBox spacing="15.0">
                                             <children>
@@ -168,7 +168,7 @@
                                         <Button fx:id="buttonSelecionar1" mnemonicParsing="false" style="-fx-background-color: #49b69b; -fx-text-fill: white; -fx-font-weight: bold;" text="Selecionar Produto" />
                                     </children>
                                 </VBox>
-                                <VBox alignment="CENTER" spacing="5.0">
+                                <VBox alignment="CENTER" spacing="5.0" HBox.hgrow="SOMETIMES">
                                     <children>
                                         <HBox spacing="15.0">
                                             <children>
@@ -194,7 +194,7 @@
                                         <Insets />
                                     </HBox.margin>
                                 </VBox>
-                                <VBox alignment="TOP_CENTER" spacing="5.0">
+                                <VBox alignment="TOP_CENTER" spacing="5.0" HBox.hgrow="SOMETIMES">
                                     <children>
                                         <HBox spacing="15.0">
                                             <children>

@@ -128,14 +128,28 @@ public class TelaPedidoController {
             }
         });
 
-        // DIRETOR CLICA DUAS VEZES PARA SELECIONAR PEDIDO
-        tablePedido.setOnMouseClicked(event -> {
-            if (event.getClickCount() == 2) {
-                Pedido pedidoSelecionado = tablePedido.getSelectionModel().getSelectedItem();
-                if (pedidoSelecionado != null) {
-                    abrirPopupStatus(pedidoSelecionado);
+        tablePedido.setRowFactory(dica ->{
+            TableRow<Pedido> row = new TableRow<>();
+            row.hoverProperty().addListener((obs, oldValue, newValue) ->{
+                if (newValue && !row.isEmpty()) {
+                    row.setStyle("-fx-cursor: hand;");
+                }else{
+                    row.setStyle("");
                 }
-            }
+            });
+      
+            row.setTooltip(new Tooltip("Clique duas vezes para abrir o pedido"));
+
+            // DIRETOR CLICA DUAS VEZES PARA SELECIONAR PEDIDO
+            tablePedido.setOnMouseClicked(event -> {
+                if (event.getClickCount() == 2) {
+                    Pedido pedidoSelecionado = tablePedido.getSelectionModel().getSelectedItem();
+                    if (pedidoSelecionado != null) {
+                        abrirPopupStatus(pedidoSelecionado);
+                    }
+                }
+            });
+            return row;
         });
 
         atualizarTabelaEDashboard();

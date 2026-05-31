@@ -5,6 +5,7 @@
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
@@ -36,8 +37,21 @@
                         </VBox>
                         <VBox alignment="CENTER_LEFT" HBox.hgrow="SOMETIMES">
                            <children>
-                              <Label text="Pedido:" />
-                              <ComboBox fx:id="comboPed" promptText="Selecione um Pedido" />
+                              <VBox VBox.vgrow="SOMETIMES">
+                                 <children>
+                                    <Label text="Pedido:" />
+                                    <ComboBox fx:id="comboPed" promptText="Selecione um Pedido" />
+                                    <VBox VBox.vgrow="SOMETIMES">
+                                       <children>
+                                          <Label text="Valor da Compra:" />
+                                          <TextField fx:id="txtValorCompra" disable="true" promptText="R$" />
+                                       </children>
+                                       <padding>
+                                          <Insets top="10.0" />
+                                       </padding>
+                                    </VBox>
+                                 </children>
+                              </VBox>
                            </children>
                         </VBox>
                      </children>

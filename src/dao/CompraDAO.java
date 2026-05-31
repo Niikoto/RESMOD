@@ -33,7 +33,7 @@ public class CompraDAO {
     public List<Compra> listaCompras(){
         List<Compra> compras = new ArrayList<Compra>();
         
-        String sql = "select c.ID_compra, c.obs_compra, c.valor_da_compra, c.anexo_fiscal, c.data_compra, c.COD_pedido, u.Nome from compra c inner join usuario u on c.COD_email = u.ID_email;";
+        String sql = "select c.ID_compra, c.obs_compra, c.valor_da_compra, c.anexo_fiscal, DATE_FORMAT(c.data_compra, '%d/%m/%Y'), c.COD_pedido, u.Nome from compra c inner join usuario u on c.COD_email = u.ID_email;";
         
         try(PreparedStatement comando = conexao.prepareStatement(sql)) {
             ResultSet res;
@@ -73,6 +73,16 @@ public class CompraDAO {
             comando.setString(3, c.getAnexo_fiscal());
             comando.setInt(4, c.getID_compra());
             comando.executeUpdate();
+        }
+    }
+
+    public void deletarCompra(int idCompra){
+        String sql = "delete from compra where ID_compra = ?;";
+        try(PreparedStatement comando = conexao.prepareStatement(sql)) {
+            comando.setInt(1, idCompra);
+            comando.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
     }
 }

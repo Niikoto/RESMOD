@@ -1,5 +1,9 @@
 package gui;
 
+import java.io.File;
+import java.io.IOException;
+import java.awt.Desktop;
+
 import dao.CompraDAO;
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
@@ -44,12 +48,18 @@ public class TelaComprasController {
         colObs.setCellValueFactory(new PropertyValueFactory<>("Obs"));
         colValCom.setCellValueFactory(new PropertyValueFactory<>("Valor_da_compra"));
         colAnex.setCellFactory(par -> new TableCell<>() {
-            private final Button btnAnexo = new Button("Arquivo");
+            private final Button btnAnexo = new Button("📄 Arquivo");
             {
                 btnAnexo.setStyle(
                         "-fx-background-color:  #3b82f6; -fx-text-fill: white; -fx-font-weight: bold; -fx-border-radius: 6px; -fx-cursor: hand; -fx-font-size: 14px;");
                 btnAnexo.setOnAction(e -> {
-
+                    try {
+                        Compra compra = getTableView().getItems().get(getIndex()); 
+                        File file = new File("src/resources/sources/"+compra.getAnexo_fiscal());
+                        Desktop.getDesktop().open(file);
+                    } catch (IOException ex) {
+                        ex.printStackTrace();
+                    }
                 });
             }
 
@@ -127,7 +137,12 @@ public class TelaComprasController {
     }
 
     @FXML
-    public void excluirCompra(){}
+    public void excluirCompra(){
+        CompraDAO dao = new CompraDAO();
+        int idCompra = tableCompra.getSelectionModel().getSelectedItem().getID_compra();
+        dao.deletarCompra(idCompra);
+        tableCompra.getItems().remove(tableCompra.getSelectionModel().getSelectedItem());
+    }
 
     public void recarregarTabela() {
         tableCompra.setItems(FXCollections.observableArrayList(daoCompra.listaCompras()));
