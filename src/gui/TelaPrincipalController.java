@@ -63,6 +63,8 @@ public class TelaPrincipalController {
     private Button botaoCentroCusto;
     @FXML
     private Button botaoCriarConta;
+    @FXML
+    private Button btnCompras;
 
     // Elementos das Atualizações
     @FXML
@@ -201,6 +203,8 @@ public class TelaPrincipalController {
             botaoCriarConta.setStyle(estiloInativo);
         if (botaoCentroCusto!= null)
             botaoCentroCusto.setStyle(estiloInativo);
+        if (btnCompras!= null)
+            btnCompras.setStyle(estiloInativo);
 
         if (botaoAtivo != null)
             botaoAtivo.setStyle(estiloAtivo);
@@ -467,6 +471,17 @@ public class TelaPrincipalController {
                     ((Stage) window).close();
                 }
             }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    @FXML
+    public void abrirTelaCompras(ActionEvent event){
+        try {
+            Parent root = FXMLLoader.load(getClass().getResource("/view/TelaCompras.fxml"));
+            painelPrincipal.setCenter(root);
+            atualizarMenuLateral(btnCompras);
         } catch (Exception e) {
             e.printStackTrace();
         }

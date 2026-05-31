@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<AnchorPane prefHeight="600.0" prefWidth="950.0" style="-fx-background-color: #f1f5f9;" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.TelaComprarController">
+   <children>
+      <VBox AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <Label style="-fx-text-fill: #1e293b; -fx-font-size: 26px; -fx-font-weight: bold;" text="Realizar Compra" />
+            <VBox style="-fx-background-color: white; -fx-background-radius: 10px;" VBox.vgrow="SOMETIMES">
+               <children>
+                  <Button fx:id="btnVoltar" mnemonicParsing="false" onAction="#voltar" style="-fx-background-color: #3b82f6; -fx-text-fill: white; -fx-font-weight: bold;" text="&lt;- Voltar" />
+                  <HBox spacing="10.0" VBox.vgrow="SOMETIMES">
+                     <children>
+                        <VBox alignment="CENTER" HBox.hgrow="SOMETIMES">
+                           <children>
+                              <Label text="Arquivo Fiscal:" />
+                              <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" style="-fx-background-color: #e2e8f0; -fx-background-radius: 8px;" VBox.vgrow="SOMETIMES">
+                                 <children>
+                                    <Label fx:id="imgNotFound" text="Nenhum Arquivo Selecionado" />
+                                 </children>
+                              </VBox>
+                              <Button fx:id="btnSelecionar" mnemonicParsing="false" onAction="#selecArqu" style="-fx-background-color: #49b69b; -fx-text-fill: white; -fx-font-weight: bold;" text="Selecionar Arquivo">
+                                 <VBox.margin>
+                                    <Insets top="5.0" />
+                                 </VBox.margin>
+                              </Button>
+                           </children>
+                        </VBox>
+                        <VBox alignment="CENTER_LEFT" HBox.hgrow="SOMETIMES">
+                           <children>
+                              <Label text="Pedido:" />
+                              <ComboBox fx:id="comboPed" promptText="Selecione um Pedido" />
+                           </children>
+                        </VBox>
+                     </children>
+                  </HBox>
+                  <HBox VBox.vgrow="SOMETIMES">
+                     <children>
+                        <VBox prefHeight="200.0" prefWidth="100.0" HBox.hgrow="SOMETIMES">
+                           <children>
+                              <Label text="Observação:" />
+                              <TextArea fx:id="txtArea" prefHeight="200.0" prefWidth="200.0" />
+                           </children>
+                        </VBox>
+                     </children>
+                     <opaqueInsets>
+                        <Insets />
+                     </opaqueInsets>
+                     <padding>
+                        <Insets top="10.0" />
+                     </padding>
+                  </HBox>
+                  <HBox prefHeight="100.0" prefWidth="200.0">
+                     <children>
+                        <VBox alignment="CENTER_RIGHT" prefHeight="200.0" prefWidth="100.0" HBox.hgrow="SOMETIMES">
+                           <children>
+                              <Button fx:id="btnComprarPed" mnemonicParsing="false" onAction="#compraPed" style="-fx-background-color: #49b69b; -fx-text-fill: white; -fx-font-weight: bold;" text="Comprar Pedido" VBox.vgrow="SOMETIMES">
+                                 <padding>
+                                    <Insets bottom="15.0" left="20.0" right="20.0" top="15.0" />
+                                 </padding>
+                              </Button>
+                           </children>
+                        </VBox>
+                     </children>
+                  </HBox>
+               </children>
+               <padding>
+                  <Insets bottom="30.0" left="30.0" right="30.0" top="15.0" />
+               </padding>
+            </VBox>
+         </children>
+         <padding>
+            <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+         </padding>
+      </VBox>
+   </children>
+</AnchorPane>

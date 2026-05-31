@@ -63,10 +63,15 @@
                   <Button fx:id="botaoPedidos" alignment="BASELINE_LEFT" mnemonicParsing="false" onAction="#abrirTelaPedidos" prefHeight="45.0" prefWidth="200.0" style="-fx-background-color: transparent; -fx-text-fill: white; -fx-font-size: 14px;" text=" 🛒  Pedidos">
                      <padding><Insets left="20.0" /></padding>
                   </Button>
+                  <Button fx:id="btnCompras" alignment="BASELINE_LEFT" mnemonicParsing="false" onAction="#abrirTelaCompras" prefHeight="45.0" prefWidth="200.0" style="-fx-background-color: transparent; -fx-text-fill: white; -fx-font-size: 14px;" text=" 💵  Compras">
+                     <padding>
+                        <Insets left="20.0" />
+                     </padding>
+                  </Button>
                   <Button fx:id="botaoFornecedores" alignment="BASELINE_LEFT" mnemonicParsing="false" onAction="#abrirTelaFornecedores" prefHeight="45.0" prefWidth="200.0" style="-fx-background-color: transparent; -fx-text-fill: white; -fx-font-size: 14px;" text=" 👤  Fornecedores">
                      <padding><Insets left="20.0" /></padding>
                   </Button>
-                  <Button fx:id="botaoCentroCusto" alignment="BASELINE_LEFT" mnemonicParsing="false" onAction="#abrirTelaCentroCusto" prefHeight="45.0" prefWidth="200.0" style="-fx-background-color: transparent; -fx-text-fill: white; -fx-font-size: 14px;" text=" 💰  Centro de Custos">
+                  <Button fx:id="botaoCentroCusto" alignment="BASELINE_LEFT" mnemonicParsing="false" onAction="#abrirTelaCentroCusto" prefHeight="45.0" prefWidth="200.0" style="-fx-background-color: transparent; -fx-text-fill: white; -fx-font-size: 14px;" text=" 💰  Centro de Custo">
                      <padding><Insets left="20.0" /></padding>
                   </Button>
                   <Button fx:id="botaoCriarConta" alignment="BASELINE_LEFT" mnemonicParsing="false" onAction="#abrirTelaCadastro" prefHeight="45.0" prefWidth="200.0" style="-fx-background-color: transparent; -fx-text-fill: white; -fx-font-size: 14px;" text=" 👥  Funcionários">
@@ -111,7 +116,7 @@
                                     <Label style="-fx-font-weight: bold; -fx-font-size: 16px; -fx-text-fill: #334155;" text="Quantidades de pedidos por cargo" />
                                     <BarChart fx:id="graficoBarras" legendVisible="false" prefHeight="200.0">
                                        <xAxis>
-                                          <CategoryAxis fx:id="xAxis" label="Cargo"  side="BOTTOM" />
+                                          <CategoryAxis label="Cargo" side="BOTTOM" fx:id="xAxis" />
                                        </xAxis>
                                        <yAxis>
                                           <NumberAxis fx:id="yAxis" label="Quantidade de Pedidos" side="LEFT" />
@@ -151,11 +156,7 @@
                               <VBox fx:id="vboxAtualizacoes" spacing="0.0" style="-fx-padding: 0;">
                               </VBox>
 
-                              <Label fx:id="lblEstoqueBaixo"
-                                     text="0 produtos com estoque baixo"
-                                     style="-fx-text-fill: #ef4444;
-                               -fx-font-size: 16px;
-                               -fx-font-weight: bold;" />
+                              <Label fx:id="lblEstoqueBaixo" style="-fx-text-fill: #ef4444;                                -fx-font-size: 16px;                                -fx-font-weight: bold;" text="0 produtos com estoque baixo" />
 
                            </children>
                         </VBox>
